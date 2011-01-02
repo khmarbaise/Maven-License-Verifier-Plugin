@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<document>
+	<properties>
+		<title>Feature Additions, Fixes, and Updates</title>
+	</properties>
+	<body>
+		<release version="0.2" date="xx.xx.2010" desc="First Release">
+			<action
+				dev="Karl Heinz Marbaise"
+				type="fix"
+				issue="297"
+				due-to="Laurent Perez">Problem with NPE, based on missing data in licenses file.
+			</action>
+			<action dev="Karl Heinz Marbaise" type="fix" issue="295">Change struture project to separate verifier code from plugin code.</action>
+			<action dev="Karl Heinz Marbaise" type="add">Added missing description and issueManagement section.</action>
+		</release>
+		<release version="0.1" date="19.02.2010" desc="First Release">
+			<action dev="Karl Heinz Marbaise" type="fix" issue="290">Report has not been created during integration test (basicReporTest).</action>
+			<action dev="Karl Heinz Marbaise" type="add" issue="288">Replaced xstream usage with Maven Modello</action>
+			<action dev="Karl Heinz Marbaise" type="fix" issue="283">Use references @project.artifactId@ and @project.groupId@ instead of hard coded values in integration-tests.</action>
+			<action dev="Karl Heinz Marbaise" type="fix" issue="282">Wrong groupId in integration test pom for maven-compiler-plugin.</action>
+			<action dev="Karl Heinz Marbaise" type="update">Introduced Id field for License
+				<fixes issue="276"/>
+				<fixes issue="280"/>
+			</action>
+			<action dev="Karl Heinz Marbaise" type="update">Changed groupId
+				<fixes issue="279"/>
+				<fixes issue="274"/>
+			</action>
+			<action dev="Karl Heinz Marbaise" type="fix" issue="275">Problem with XML fragment in Unit Test fixed.</action>
+			<action dev="Karl Heinz Marbaise" type="add" issue="272">Added OSS Sonatype Snapshot/Staging repository.</action>
+			<action dev="Karl Heinz Marbaise" type="fix" issue="257">Added distributionManagement part to pom.</action>
+		</release>
+	</body>
+</document>

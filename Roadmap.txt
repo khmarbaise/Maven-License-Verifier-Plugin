@@ -1,0 +1,34 @@
+Roadmap of the LicenseVerifier Plugin
+
+
+Take a look at:
+http://www.codeproject.com/info/Licenses.aspx
+
+Check the following site:
+http://www.gnu.org/licenses/license-list.html
+
+
+- Print out artifacts which do not define any license
+  - [WARNING] dependency log4j:log4j:jar:1.2.12 does not contain license information.
+  
+  [INFO] [licensesverifier:print {execution: default}]
+  [WARNING] dependency org.apache.commons:commons-cli2:jar:2.0 does not contain license information.
+  [WARNING] dependency opensymphony:quartz:jar:1.6.4 does not contain license information.
+  [WARNING] dependency bouncycastle:bcmail-jdk14:jar:136 does not contain license information.
+  [WARNING] dependency dom4j:dom4j:jar:1.6.1 does not contain license information.
+  [WARNING] dependency asm:asm:jar:3.1 does not contain license information.
+
+
+- Print out a summary of the different licenses which are used of the
+  artifacts.
+  
+  - Licenses:
+  		Apache...
+  		GPL...
+  		BSD...
+  		
+  		
+- Broke the build if some conditions raise
+
+  1. Empty License (simple?) (does not contain license information!)
+  2. Particular Licenses (not so simple?) 

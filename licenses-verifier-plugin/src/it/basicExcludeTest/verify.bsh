@@ -1,0 +1,53 @@
+import java.io.*;
+import java.util.*;
+
+
+// First we check if the resulted build.log output exists.
+File file = new File( basedir, "build.log" );
+if ( !file.exists() )
+{
+    throw new FileNotFoundException( "Could not find the build.log file.: " + file );
+}
+
+String[] checkedLines = {
+	"[INFO] [licenses-verifier:check {execution: default}]",	
+	"[INFO] ------------------------------------------------------------------------",
+	"[INFO] BUILD SUCCESSFUL",
+	"[INFO] ------------------------------------------------------------------------",
+};
+
+Boolean[] checked = {
+	false,
+	false,
+	false,
+	false,
+};
+
+//
+// Check if we find the following lines in the log file...
+try {
+        BufferedReader in = new BufferedReader(new FileReader(file));
+        String str;
+        while ((str = in.readLine()) != null) {
+        	for(int i=0; i<checkedLines.length; i++) {
+        		if (str.startsWith(checkedLines[i])) {
+        			checked[i] = true;
+        		}
+        	}
+        }
+        in.close();
+} catch (IOException e) {
+	throw e;
+}
+
+// Check to see if every line has occured in the log file.
+// if only one will not appear we will broke the integration test.
+boolean result = true;
+for(int i=0; i<checkedLines.length; i++) {
+	if (checked[i] == false) {
+		System.out.println("Unexpected content: " + checkedLines[i]);
+		result = false;
+	}
+}
+
+return result;

@@ -1,0 +1,171 @@
+ ------
+ Usage
+ ------
+ Karl Heinz Marbaise
+ ------
+ 01 February 2010
+ ------
+
+~~ Licensed to the Apache Software Foundation (ASF) under one
+~~ or more contributor license agreements.  See the NOTICE file
+~~ distributed with this work for additional information
+~~ regarding copyright ownership.  The ASF licenses this file
+~~ to you under the Apache License, Version 2.0 (the
+~~ "License"); you may not use this file except in compliance
+~~ with the License.  You may obtain a copy of the License at
+~~
+~~   http://www.apache.org/licenses/LICENSE-2.0
+~~
+~~ Unless required by applicable law or agreed to in writing,
+~~ software distributed under the License is distributed on an
+~~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~~ KIND, either express or implied.  See the License for the
+~~ specific language governing permissions and limitations
+~~ under the License.
+
+~~ NOTE: For help with the syntax of this file, see:
+~~ http://maven.apache.org/doxia/references/apt-format.html
+
+Roadmap
+
+  The following roadmap will give you an overview of the planned features and their 
+  possible implementation order. Of course i don't guarantee anything ..;-)
+
+* Release 0.X (where x=1)
+
+  Simple usage of a <<license.xml>> file which is read and checking only the license
+  entry of the pom files of their appropriate artifacts.
+
++----
+<configuration>
+  <licenseFile>${basedir}/src/licenses/license.xml</licenseFile>
+</configuration>
++----
+
+  The default folder for the above is <<$\{project.basedir\}/src/main/licenses/licenses.xml>>.
+  That means if you don't give any <<licenseFile>> information in the configuration
+  MLV will search for a licenses.xml file in the defined folder.
+
+  Support of excluding artifacts from being checked against the licenses. This
+  is needed cause some artifacts exist which don't define any license.
+
++----
+<configuration>
+  <excludes>
+    <exclude>log4j:log4j:*</exclude>
+    <exclude>org.apache.*:*:jar</exclude>
+  </excludes>
+</configuration>
++----
+
+* Release 0.X+1
+
+  Usage of different licenses files which can be configured in the configuration
+  section.
+
+  Loading of multiple license files which will be summarized as they have been
+  loaded as a single file. (Simplify maintenance)
+
++----
+<configuration>
+  <licenseRefs>
+    <licenseRef>oss-licenses.xml</licensesRef>
+    <licenseRef>company-licenses.xml</licensesRef>
+  </licenseRefs>
+</configuration>   
++----
+  
+  
+  
+* Release 0.X+2
+
+  Company License defined by an extra artifact.
+
++----
+<plugin>
+  <groupId>${project.groupId}</groupId>
+  <artifactId>${project.artifactId}</artifactId>
+  <version>${project.version}</version>
+  <dependencies>
+    <dependency>
+      <groupId>YouCompanyPackage.licenses</groupId>
+      <artifactId>licenses</artifactId>
+      <version>6</version>
+    </dependency>
+  </dependencies>
+  <configuration>
+    <verbose>true</verbose>
+  </configuration>
+</plugin>
++----
+
+
+* Release 0.X+3
+
+  It should be possible to define particular artifact to have a particular category.
+  This is needed to be able to redefine an artifact without an license to be valid, invalid
+  or warning instead of the unknown category which is automatically selected if no license
+  information is given.
+  Hm. Think about this, cause you can simply exclude the artifact from being checked? Is this
+  enough?
+
++----
+<configuration>
+  <warnings>
+    <artifacts>
+      <artifact>
+
+      <artifact>
+    </artifacts>
+  <warnings>
+
+  <valid>
+    <artifacts>
+      <artifact>
+        <artifactId>log4j</artifactId>
+        <groupId>log4j</groupId>
+        <version>1.2.13</version>
+      <artifact>
+    </artifacts>
+  </valid>
+
+   <invalid>
+   </invalid>
+</configuration>   
++----
+
+* Release 0.X+4
+
+  Read different license via descriptors
+  
++----
+<configuration>
+  <descriptors>
+    <descriptor>Apache-2.0</descriptor>
+    <descriptor>GNU-2.0</descriptor>
+    <descriptor>GNU-3.0</descriptor>
+  </descriptors>
+</configuration>   
++----
+
++----
+<configuration>
+  <descriptors>
+    <descriptor>OSS</descriptor> -> Contains a large list of OSS approved licenses
+  </descriptors>
+</configuration>
++----
+
+* Release 0.X+5
+
+  * Check not only the POM use the artifacts itself, cause it contains license information
+
+  * The idea is to search inside the artifacts which usually contain some kind of license information
+    for example as a single file (LICENSE or LICENSE.txt) etc.
+
+  
+  * An other source of information can be the MANIFEST.MF file.
+
+  * Check the artifacts them selfs (.jar) file and search them for license.txt etc. and may be
+ 
+  * bundles license entries.

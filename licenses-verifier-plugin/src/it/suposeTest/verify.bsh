@@ -1,0 +1,71 @@
+import java.io.*;
+import java.util.*;
+
+
+
+// First we check if the resulted build.log output exists.
+File file = new File( basedir, "build.log" );
+if ( !file.exists() )
+{
+    throw new FileNotFoundException( "Could not find the build.log file.: " + file );
+}
+
+String[] checkedLines = {
+	"[WARNING] /UNKNOWN/ The artifact opensymphony:quartz:jar:1.6.4 has an license which is categorized as unknown",
+	"[WARNING] /UNKNOWN/ The artifact org.antlr:antlr:jar:3.0 has an license which is categorized as unknown",
+	"[WARNING] /UNKNOWN/ The artifact org.antlr:stringtemplate:jar:3.0 has an license which is categorized as unknown",
+	"[WARNING] /UNKNOWN/ The artifact antlr:antlr:jar:2.7.7 has an license which is categorized as unknown",
+	"[WARNING] /UNKNOWN/ The artifact pdfbox:pdfbox:jar:0.7.3 has an license which is categorized as unknown",
+	"[WARNING] /UNKNOWN/ The artifact org.fontbox:fontbox:jar:0.1.0 has an license which is categorized as unknown",
+	"[WARNING] /UNKNOWN/ The artifact org.jempbox:jempbox:jar:0.2.0 has an license which is categorized as unknown",
+	"[WARNING] /UNKNOWN/ The artifact bouncycastle:bcmail-jdk14:jar:136 has an license which is categorized as unknown",
+	"[WARNING] /UNKNOWN/ The artifact bouncycastle:bcprov-jdk14:jar:136 has an license which is categorized as unknown",
+	"[WARNING] /UNKNOWN/ The artifact dom4j:dom4j:jar:1.6.1 has an license which is categorized as unknown",
+	"[WARNING] /UNKNOWN/ The artifact asm:asm:jar:3.1 has an license which is categorized as unknown",
+	"[WARNING] /UNKNOWN/ The artifact com.thoughtworks.xstream:xstream:jar:1.3.1 has an license which is categorized as unknown",
+	"[WARNING] /UNKNOWN/ The artifact xpp3:xpp3_min:jar:1.1.4c has an license which is categorized as unknown",
+	"[INFO] BUILD SUCCESSFUL",
+};
+
+Boolean[] checked = {
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+	false,
+};
+//
+// Check if we find the following four lines in the log file...
+try {
+        BufferedReader in = new BufferedReader(new FileReader(file));
+        String str;
+        while ((str = in.readLine()) != null) {
+        	for(int i=0; i<checkedLines.length; i++) {
+        		if (str.startsWith(checkedLines[i])) {
+        			checked[i] = true;
+        		}
+        	}
+        }
+        in.close();
+} catch (IOException e) {
+	throw e;
+}
+
+// Check to see if every line has occured in the log file.
+boolean result = true;
+for(int i=0; i<checkedLines.length; i++) {
+	if (checked[i] == false) {
+		result = false;
+	}
+}
+
+return result;

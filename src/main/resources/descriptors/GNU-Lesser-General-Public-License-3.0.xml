@@ -1,0 +1,15 @@
+<license>
+	<id>GNU Lesser General Public License, Version 3.0</id>
+	<description>The GNU Lesser General Public License (LGPL), Version 3.0</description>
+	<names>
+		<name>GNU Lesser General Public License, Version 3.0</name>
+	</names>
+	<urls>
+		<url>http://www.opensource.org/licenses/lgpl-3.0.html</url>
+		<url>http://www.gnu.org/licenses/lgpl-3.0.txt</url>
+		<url>http://www.gnu.org/licenses/lgpl-3.0-standalone.html</url>
+		<url>http://www.gnu.org/licenses/lgpl-3.0.dbk</url>
+		<url>http://www.gnu.org/licenses/lgpl-3.0.tex</url>
+		<url>http://www.gnu.org/licenses/lgpl-3.0.texi</url>
+	</urls>
+</license>

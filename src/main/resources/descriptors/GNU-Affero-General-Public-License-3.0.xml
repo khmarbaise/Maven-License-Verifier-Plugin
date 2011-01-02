@@ -1,0 +1,15 @@
+<license>
+	<id>GNU Affero General Public License, Version 3</id>
+	<description>GNU Affero General Public License (AGPL), Version 3</description>
+	<names>
+		<name>GNU Affero General Public License, Version 3</name>
+		<name>GNU Affero General Public License (AGPL), Version 3</name>
+	</names>
+	<urls>
+		<url>http://www.gnu.org/licenses/agpl-3.0.txt</url>
+		<url>http://www.gnu.org/licenses/agpl-3.0.dbk</url>
+		<url>http://www.gnu.org/licenses/agpl-3.0.tex</url>
+		<url>http://www.gnu.org/licenses/agpl-3.0-standalone.html</url>
+		<url>http://www.gnu.org/licenses/agpl-3.0.texi</url>
+	</urls>
+</license>
