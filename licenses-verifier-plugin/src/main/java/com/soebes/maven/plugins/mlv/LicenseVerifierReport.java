@@ -18,7 +18,6 @@ package com.soebes.maven.plugins.mlv;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -179,16 +178,16 @@ public class LicenseVerifierReport
         doGenerateLicenseCategories(bundle, sink);
         sink.section1_();
 
-        sink.section1();
-        doGenerateSummaryReport(bundle, sink);
-        sink.section1_();
+//        sink.section1();
+//        doGenerateSummaryReport(bundle, sink);
+//        sink.section1_();
 
         sink.section1();
         doGenerateItemReport(bundle, sink);
         sink.section1_();
 
         sink.section1();
-        doGenerateUnknownReport(bundle, sink);
+        doGenerateArtifactCategories(bundle, sink);
         sink.section1_();
 
         sink.body_();
@@ -204,6 +203,17 @@ public class LicenseVerifierReport
         doGenerateReportConfigurationValidLicenses(bundle, sink);
         doGenerateReportConfigurationWarningLicenses(bundle, sink);
         doGenerateReportConfigurationInvalidLicenses(bundle, sink);
+    }
+
+    private void doGenerateArtifactCategories(ResourceBundle bundle, Sink sink) {
+    	sink.sectionTitle1();
+        sink.text("Artifact Categories");
+        sink.sectionTitle1_();
+
+        doGenerateValidReport(bundle, sink);
+        doGenerateWarningReport(bundle, sink);
+        doGenerateInvalidReport(bundle, sink);
+        doGenerateUnknownReport(bundle, sink);
     }
 
 	private void doGenerateReportConfigurationValidLicenses(ResourceBundle bundle, Sink sink) {
@@ -373,6 +383,10 @@ public class LicenseVerifierReport
         sink.text( "Artifact License Categories" );
         sink.sectionTitle1_();
 
+		sink.sectionTitle2();
+        sink.text("Overview");
+        sink.sectionTitle2_();
+
         sink.table();
 
         sink.tableRow();
@@ -415,10 +429,115 @@ public class LicenseVerifierReport
         sink.table_();
     }
 
+    private void doGenerateValidReport(ResourceBundle bundle, Sink sink ) {
+		sink.sectionTitle2();
+        sink.text( "Artifacts Catagorized as Valid" );
+        sink.sectionTitle2_();
+
+        sink.table();
+
+        sink.tableRow();
+        headerCell(sink, "Id");
+        headerCell(sink, "Name");
+        headerCell(sink, "URL");
+        sink.tableRow_();
+
+		for (LicenseInformation item : getLicenseInformations()) {
+        	if (licenseValidator.isValid(item.getLicenses())) {
+            	sink.tableRow();
+
+           		cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
+
+        		if (item.getLicenses().isEmpty()) {
+        			cell(sink,"");
+        			cell(sink,"");
+        		} else {
+        			for (License license : item.getLicenses()) {
+        				cell(sink, license.getName());
+        				cell(sink, license.getUrl());
+        			}
+        		}
+            	sink.tableRow_();
+			}
+		}
+
+        sink.table_();
+    }
+
+    private void doGenerateWarningReport(ResourceBundle bundle, Sink sink ) {
+		sink.sectionTitle2();
+        sink.text( "Artifacts Catagorized as Warning" );
+        sink.sectionTitle2_();
+
+        sink.table();
+
+        sink.tableRow();
+        headerCell(sink, "Id");
+        headerCell(sink, "Name");
+        headerCell(sink, "URL");
+        sink.tableRow_();
+
+		for (LicenseInformation item : getLicenseInformations()) {
+        	if (licenseValidator.isWarning(item.getLicenses())) {
+            	sink.tableRow();
+
+           		cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
+
+        		if (item.getLicenses().isEmpty()) {
+        			cell(sink,"");
+        			cell(sink,"");
+        		} else {
+        			for (License license : item.getLicenses()) {
+        				cell(sink, license.getName());
+        				cell(sink, license.getUrl());
+        			}
+        		}
+            	sink.tableRow_();
+			}
+		}
+
+        sink.table_();
+    }
+
+    private void doGenerateInvalidReport(ResourceBundle bundle, Sink sink ) {
+		sink.sectionTitle2();
+        sink.text( "Artifacts Catagorized as Invalid" );
+        sink.sectionTitle2_();
+
+        sink.table();
+
+        sink.tableRow();
+        headerCell(sink, "Id");
+        headerCell(sink, "Name");
+        headerCell(sink, "URL");
+        sink.tableRow_();
+
+		for (LicenseInformation item : getLicenseInformations()) {
+        	if (licenseValidator.isInvalid(item.getLicenses())) {
+            	sink.tableRow();
+
+           		cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
+
+        		if (item.getLicenses().isEmpty()) {
+        			cell(sink,"");
+        			cell(sink,"");
+        		} else {
+        			for (License license : item.getLicenses()) {
+        				cell(sink, license.getName());
+        				cell(sink, license.getUrl());
+        			}
+        		}
+            	sink.tableRow_();
+			}
+		}
+
+        sink.table_();
+    }
+
     private void doGenerateUnknownReport(ResourceBundle bundle, Sink sink ) {
-    	sink.sectionTitle1();
+		sink.sectionTitle2();
         sink.text( "Artifacts Catagorized as Unknown" );
-        sink.sectionTitle1_();
+        sink.sectionTitle2_();
 
         sink.table();
 
@@ -461,149 +580,6 @@ public class LicenseVerifierReport
     	sink.tableCell_();
     }
 
-    /**
-     * method that generates the report for this mojo. This method is overridden by dev-activity and file-activity mojo
-     *
-     * @param changeLogSets changed sets to generate the report from
-     * @param bundle        the resource bundle to retrieve report phrases from
-     * @param sink          the report formatting tool
-     */
-//    protected void doGenerateReport( List changeLogSets, ResourceBundle bundle, Sink sink )
-//    {
-//        sink.head();
-//        sink.title();
-//        sink.text( bundle.getString( "report.changelog.header" ) );
-//        sink.title_();
-//        sink.head_();
-//
-//        sink.body();
-//        sink.section1();
-//
-//        sink.sectionTitle1();
-//        sink.text( bundle.getString( "report.changelog.mainTitle" ) );
-//        sink.sectionTitle1_();
-//
-//        // Summary section
-//        doSummarySection( changeLogSets, bundle, sink );
-//
-//        for ( Iterator sets = changeLogSets.iterator(); sets.hasNext(); )
-//        {
-//            ChangeLogSet changeLogSet = (ChangeLogSet) sets.next();
-//
-//            doChangedSet( changeLogSet, bundle, sink );
-//        }
-//
-//        sink.section1_();
-//        sink.body_();
-//
-//        sink.flush();
-//        sink.close();
-//    }
-//
-//    /**
-//     * generates the report summary section of the report
-//     *
-//     * @param changeLogSets changed sets to generate the report from
-//     * @param bundle        the resource bundle to retrieve report phrases from
-//     * @param sink          the report formatting tool
-//     */
-//    private void doSummarySection( List changeLogSets, ResourceBundle bundle, Sink sink )
-//    {
-//        sink.paragraph();
-//
-//        sink.text( bundle.getString( "report.changelog.ChangedSetsTotal" ) );
-//        sink.text( ": " + changeLogSets.size() );
-//
-//        sink.paragraph_();
-//    }
-//
-//    /**
-//     * generates a section of the report referring to a changeset
-//     *
-//     * @param set    the current ChangeSet to generate this section of the report
-//     * @param bundle the resource bundle to retrieve report phrases from
-//     * @param sink   the report formatting tool
-//     */
-//    private void doChangedSet( ChangeLogSet set, ResourceBundle bundle, Sink sink )
-//    {
-//        sink.section1();
-//
-//        doChangeSetTitle( set, bundle, sink );
-//
-//        doSummary( set, bundle, sink );
-//
-//        doChangedSetTable( set.getChangeSets(), bundle, sink );
-//
-//        sink.section1_();
-//    }
-//
-//    /**
-//     * Generate the title for the report.
-//     *
-//     * @param set    change set to generate the report from
-//     * @param bundle the resource bundle to retrieve report phrases from
-//     * @param sink   the report formatting tool
-//     */
-//    protected void doChangeSetTitle( ChangeLogSet set, ResourceBundle bundle, Sink sink )
-//    {
-//        sink.sectionTitle2();
-//
-//        SimpleDateFormat headingDateFormater = new SimpleDateFormat( headingDateFormat );
-//
-//        if ( "tag".equals( type ) )
-//        {
-//            if ( set.getStartVersion() == null || set.getStartVersion().getName() == null )
-//            {
-//                sink.text( bundle.getString( "report.SetTagCreation" ) );
-//            }
-//            else if ( set.getEndVersion() == null || set.getEndVersion().getName() == null )
-//            {
-//                sink.text( bundle.getString( "report.SetTagSince" ) );
-//                sink.text( " '" + set.getStartVersion() + "'" );
-//            }
-//            else
-//            {
-//                sink.text( bundle.getString( "report.SetTagBetween" ) );
-//                sink.text( " '" + set.getStartVersion() + "' " + bundle.getString( "report.And" ) + " '"
-//                    + set.getEndVersion() + "'" );
-//            }
-//        }
-//        else  if ( set.getStartDate() == null )
-//        {
-//            sink.text( bundle.getString( "report.SetRangeUnknown" ) );
-//        }
-//        else if ( set.getEndDate() == null )
-//        {
-//            sink.text( bundle.getString( "report.SetRangeSince" ) );
-//            sink.text( " " + headingDateFormater.format( set.getStartDate() ) );
-//        }
-//        else
-//        {
-//            sink.text( bundle.getString( "report.SetRangeBetween" ) );
-//            sink.text( " " + headingDateFormater.format( set.getStartDate() )
-//                + " " + bundle.getString( "report.And" ) + " "
-//                + headingDateFormater.format( set.getEndDate() ) );
-//        }
-//        sink.sectionTitle2_();
-//    }
-//
-//    /**
-//     * Generate the summary section of the report.
-//     *
-//     * @param set    change set to generate the report from
-//     * @param bundle the resource bundle to retrieve report phrases from
-//     * @param sink   the report formatting tool
-//     */
-//    protected void doSummary( ChangeLogSet set, ResourceBundle bundle, Sink sink )
-//    {
-//        sink.paragraph();
-//        sink.text( bundle.getString( "report.TotalCommits" ) );
-//        sink.text( ": " + set.getChangeSets().size() );
-//        sink.lineBreak();
-//        sink.text( bundle.getString( "report.changelog.FilesChanged" ) );
-//        sink.text( ": " + countFilesChanged( set.getChangeSets() ) );
-//        sink.paragraph_();
-//    }
 
 	public void setProject(MavenProject project) {
 		this.project = project;
