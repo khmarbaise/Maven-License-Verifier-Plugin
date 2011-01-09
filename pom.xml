@@ -8,7 +8,7 @@
 	<packaging>pom</packaging>
 	<version>0.2-SNAPSHOT</version>
 	<name>Maven License Verifier :: Reactor</name>
-	<url>http://supose.org/projects/show/mlv</url>
+	<url>https://github.com/khmarbaise/Maven-Licenses-Verifier-Plugin</url>
 
 	<organization>
 	    <name>SoftwareEntwicklung Beratung Schulung</name>
@@ -20,7 +20,7 @@
 
 	<issueManagement>
 		<system>default</system>
-		<url>http://www.supose.org/projects/mlv/issues</url>
+		<url>https://github.com/khmarbaise/Maven-Licenses-Verifier-Plugin/issues</url>
 	</issueManagement>    
 
 	<licenses>
@@ -61,8 +61,8 @@
 	</developers>
 
 	<scm>
-		<connection>scm:svn:http://svn.serverix/mlv/</connection>
-		<developerConnection>scm:svn:http://svn.serverix/mlv/trunk/</developerConnection>
+		<connection>scm:git:git@github.com:khmarbaise/Maven-Licenses-Verifier-Plugin.git</connection>
+		<developerConnection>scm:git:git@github.com:khmarbaise/Maven-Licenses-Verifier-Plugin.git</developerConnection>
 		<url>http://supose.org/projects/show/mlv</url>
 	</scm>
 
