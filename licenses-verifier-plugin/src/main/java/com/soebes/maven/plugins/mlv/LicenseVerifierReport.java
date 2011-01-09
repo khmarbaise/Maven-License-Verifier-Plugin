@@ -17,9 +17,8 @@ package com.soebes.maven.plugins.mlv;
  */
 
 import java.io.File;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -178,10 +177,6 @@ public class LicenseVerifierReport
         doGenerateLicenseCategories(bundle, sink);
         sink.section1_();
 
-//        sink.section1();
-//        doGenerateSummaryReport(bundle, sink);
-//        sink.section1_();
-
         sink.section1();
         doGenerateItemReport(bundle, sink);
         sink.section1_();
@@ -196,13 +191,15 @@ public class LicenseVerifierReport
     }
 
     private void doGenerateLicenseCategories(ResourceBundle bundle, Sink sink) {
+//TODO: Use bundles instead of hard coded strings.
     	sink.sectionTitle1();
         sink.text("License Categories");
         sink.sectionTitle1_();
 
-        doGenerateReportConfigurationValidLicenses(bundle, sink);
-        doGenerateReportConfigurationWarningLicenses(bundle, sink);
-        doGenerateReportConfigurationInvalidLicenses(bundle, sink);
+        doGenerateReportLicensesConfiguration(bundle, sink, "Valid", licenseValidator.getValid());
+        doGenerateReportLicensesConfiguration(bundle, sink, "Warning", licenseValidator.getWarning());
+        doGenerateReportLicensesConfiguration(bundle, sink, "Invalid", licenseValidator.getInvalid());
+
     }
 
     private void doGenerateArtifactCategories(ResourceBundle bundle, Sink sink) {
@@ -216,9 +213,9 @@ public class LicenseVerifierReport
         doGenerateUnknownReport(bundle, sink);
     }
 
-	private void doGenerateReportConfigurationValidLicenses(ResourceBundle bundle, Sink sink) {
+	private void doGenerateReportLicensesConfiguration(ResourceBundle bundle, Sink sink, String header, List<LicenseItem> licenseItems) {
 		sink.sectionTitle2();
-        sink.text("Valid");
+        sink.text(header);
         sink.sectionTitle2_();
 
         sink.table();
@@ -230,7 +227,7 @@ public class LicenseVerifierReport
         headerCell(sink, "URL's");
         sink.tableRow_();
 
-        for (LicenseItem item : licenseValidator.getValid()) {
+        for (LicenseItem item : licenseItems) {
         	sink.tableRow();
         	cell(sink, item.getId());
         	cell(sink, item.getDescription());
@@ -263,120 +260,6 @@ public class LicenseVerifierReport
         sink.table_();
 	}
 
-	private void doGenerateReportConfigurationWarningLicenses(ResourceBundle bundle, Sink sink) {
-		sink.sectionTitle2();
-        sink.text("Warning");
-        sink.sectionTitle2_();
-
-        sink.table();
-
-        sink.tableRow();
-        headerCell(sink, "Id");
-        headerCell(sink, "Description");
-        headerCell(sink, "Names");
-        headerCell(sink, "URL's");
-        sink.tableRow_();
-
-        for (LicenseItem item : licenseValidator.getWarning()) {
-        	sink.tableRow();
-        	cell(sink, item.getId());
-        	cell(sink, item.getDescription());
-
-        	sink.tableCell();
-        	//List all names
-        	sink.list();
-        	for (String itemName : item.getNames()) {
-        		sink.listItem();
-        		sink.text(itemName);
-        		sink.listItem_();
-			}
-        	sink.list_();
-        	sink.tableCell_();
-
-        	sink.tableCell();
-        	sink.list();
-        	for (String itemURL : item.getUrls()) {
-        		sink.listItem();
-        		sink.link(itemURL);
-        		sink.text(itemURL);
-        		sink.link_();
-        		sink.listItem_();
-			}
-        	sink.list_();
-        	sink.tableCell_();
-
-        	sink.tableRow_();
-		}
-        sink.table_();
-	}
-
-	private void doGenerateReportConfigurationInvalidLicenses(ResourceBundle bundle, Sink sink) {
-		sink.sectionTitle2();
-        sink.text("Invalid");
-        sink.sectionTitle2_();
-
-        sink.table();
-
-        sink.tableRow();
-        headerCell(sink, "Id");
-        headerCell(sink, "Description");
-        headerCell(sink, "Names");
-        headerCell(sink, "URL's");
-        sink.tableRow_();
-
-        for (LicenseItem item : licenseValidator.getInvalid()) {
-        	sink.tableRow();
-        	cell(sink, item.getId());
-        	cell(sink, item.getDescription());
-
-        	sink.tableCell();
-        	//List all names
-        	sink.list();
-        	for (String itemName : item.getNames()) {
-        		sink.listItem();
-        		sink.text(itemName);
-        		sink.listItem_();
-			}
-        	sink.list_();
-        	sink.tableCell_();
-
-        	sink.tableCell();
-        	sink.list();
-        	for (String itemURL : item.getUrls()) {
-        		sink.listItem();
-        		sink.link(itemURL);
-        		sink.text(itemURL);
-        		sink.link_();
-        		sink.listItem_();
-			}
-        	sink.list_();
-        	sink.tableCell_();
-
-        	sink.tableRow_();
-		}
-        sink.table_();
-	}
-
-    private void doGenerateSummaryReport (ResourceBundle bundle, Sink sink ) {
-    	HashMap<String, LicenseInformation> licenseList = getLicenseList();
-
-    	sink.sectionTitle1();
-        sink.text("Category Overview");
-        sink.sectionTitle1_();
-
-        sink.table();
-
-    	for (Map.Entry<String, LicenseInformation> item : licenseList.entrySet()) {
-    		if (item.getValue().getLicenses().size() > 0) {
-            	sink.tableRow();
-		        	cell(sink, item.getValue().getLicenses().get(0).getName());
-		        	cell(sink, item.getValue().getLicenses().get(0).getUrl());
-	        	sink.tableRow_();
-    		}
-		}
-
-        sink.table_();
-    }
 
     private void doGenerateItemReport(ResourceBundle bundle, Sink sink ) {
     	sink.sectionTitle1();

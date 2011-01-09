@@ -55,7 +55,7 @@ public abstract class AbstractLicenseVerifierPlugIn
     protected MavenProject project;
 
 /* The following warning appear if we compile,install this plubin with maven 3-alpha-5:
- 
+
     [WARNING] Using platform encoding (Cp1252 actually) to read mojo metadata, i.e. build is platform dependent!
     [INFO] Applying mojo extractor for language: java
     [WARNING] com.soebes.maven.plugins.LicenseVerifierMojo#projectBuilder:
@@ -69,17 +69,17 @@ public abstract class AbstractLicenseVerifierPlugIn
     */
     /**
      * Used to build a maven projects from artifacts in the remote repository.
-     * 
+     *
      * @parameter expression="${component.org.apache.maven.project.MavenProjectBuilder}"
      * @required
      * @readonly
      */
     protected DefaultMavenProjectBuilder projectBuilder;
 //    * @component role"org.apache.maven.project.DefaultMavenProjectBuilder" roleHint="default"
-    
+
     /**
      * Location of the local repository.
-     * 
+     *
      * @parameter expression="${localRepository}"
      * @readonly
      * @required
@@ -88,17 +88,17 @@ public abstract class AbstractLicenseVerifierPlugIn
 
     /**
      * List of Remote Repositories used by the resolver
-     * 
+     *
      * @parameter expression="${project.remoteArtifactRepositories}"
      * @readonly
      * @required
      */
     protected java.util.List remoteRepositories;
-  
+
     /**
      * This will turn on verbose behaviour and will print out
      * all information about the artifacts.
-     * 
+     *
      * @parameter expression="${verbose}" default-value="false"
      */
     protected boolean verbose;
@@ -123,8 +123,8 @@ public abstract class AbstractLicenseVerifierPlugIn
     /**
      * The name of the licenses.xml file which will be used to categorize
      * the licenses of the artifacts.
-     * @parameter	expression="${licenseFile}" 
-     * 				default-value="${project.basedir}/src/main/licenses/licenses.xml" 
+     * @parameter	expression="${licenseFile}"
+     * 				default-value="${project.basedir}/src/main/licenses/licenses.xml"
      */
     protected File licenseFile;
 
@@ -138,7 +138,7 @@ public abstract class AbstractLicenseVerifierPlugIn
      * @parameter
      */
     protected List<String> licenseRefs;
-    
+
     /**
      * @parameter
      */
@@ -158,7 +158,7 @@ public abstract class AbstractLicenseVerifierPlugIn
 	/**
 	 * Get all their dependencies and put the information
 	 * into the interims list of licenses.
-	 * 
+	 *
 	 * @param depArtifacts
 	 * @throws MojoExecutionException
 	 */
@@ -167,7 +167,7 @@ public abstract class AbstractLicenseVerifierPlugIn
 
 		PatternExcludeFilter patternExcludeFilter = new PatternExcludeFilter();
 	    ArtifactFilter filter = patternExcludeFilter.createFilter(excludes);
-		
+
 		for (Iterator depArtIter = depArtifacts.iterator(); depArtIter.hasNext(); ) {
            Artifact depArt = (Artifact) depArtIter.next();
 
@@ -177,7 +177,7 @@ public abstract class AbstractLicenseVerifierPlugIn
         	   }
         	   continue;
            }
-           
+
            LicenseInformation li = new LicenseInformation();
 
            // Here we access to the files so we can check if they contain LICENSE file etc. (check for JAR file reading? Other file types ? )
@@ -196,9 +196,10 @@ public abstract class AbstractLicenseVerifierPlugIn
               throw new MojoExecutionException( "Unable to build project: " + depArt.getDependencyConflictId(), e );
            }
 
+           // depArt.getScope() => Can be use eventually
            //Set the project of the current license information
            li.setProject(depProject);
-           getLog().info(":: " + depProject.getArtifactId());
+           getLog().info("(" + depProject.getPackaging() + ") :: " + depProject.getArtifactId());
 
            //Add all licenses of the particular artifact to it's other informations.
            List licenses = depProject.getLicenses();
@@ -222,7 +223,7 @@ public abstract class AbstractLicenseVerifierPlugIn
 
 	/**
 	 * This method will load the licenses.xml file.
-	 * 
+	 *
 	 * @throws MojoExecutionException
 	 */
 	protected void loadLicensesFile() throws MojoExecutionException {
