@@ -286,9 +286,19 @@ public class LicenseVerifierReport
        		cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
 
         	if (licenseValidator.isValid(item.getLicenses())) {
-        		cell(sink, "Yes"); // 2nd column isValid (Yes, No)
+
+        	    sink.tableCell();
+                sink.figure();
+                sink.figureGraphics("images/icon_success_sml.gif");
+                sink.figure_();
+                sink.tableCell_();
 			} else {
-        		cell(sink, "No"); // 2nd column isValid (Yes, No)
+                sink.tableCell();
+                sink.figure();
+                sink.figureGraphics("images/icon_warning_sml.gif");
+                sink.figure_();
+                sink.tableCell_();
+        		//cell(sink, "No"); // 2nd column isValid (Yes, No)
 			}
         	if (licenseValidator.isWarning(item.getLicenses())) {
         		cell(sink, "Yes"); // 3rd column isValid (Yes, No)
