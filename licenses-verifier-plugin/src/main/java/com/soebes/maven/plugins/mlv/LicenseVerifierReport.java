@@ -15,7 +15,6 @@ package com.soebes.maven.plugins.mlv;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import java.io.File;
 import java.util.List;
 import java.util.Locale;
@@ -41,9 +40,8 @@ import com.soebes.maven.plugins.mlv.model.LicenseItem;
  * @author Karl Heinz Marbaise
  */
 public class LicenseVerifierReport
-	extends AbstractLicenseVerifierPlugIn
-	implements MavenReport
-	{
+        extends AbstractLicenseVerifierPlugIn
+        implements MavenReport {
 
     /**
      * The Maven Project Object
@@ -53,7 +51,6 @@ public class LicenseVerifierReport
      * @readonly
      */
     private MavenProject project;
-
     /**
      * The directory where the report will be generated
      *
@@ -62,7 +59,6 @@ public class LicenseVerifierReport
      * @readonly
      */
     private File outputDirectory;
-
     /**
      * The directory where the report will be generated
      *
@@ -72,62 +68,60 @@ public class LicenseVerifierReport
      */
     private File reportOutputDirectory;
 
-
     /**
      * @see org.apache.maven.reporting.AbstractMavenReport#executeReport(java.util.Locale)
      */
-	protected void executeReport(Locale locale) throws MavenReportException {
-		try {
-			getLog().info("LicenseVerifierReport:executeReport()");
-			RenderingContext context = new RenderingContext(getOutputDirectory(), getOutputName() + ".html");
-			SiteRendererSink sink = new SiteRendererSink(context);
-			generate(sink, locale);
-		} catch (MavenReportException e) {
-			getLog().error("An error has occurred in " + getName(Locale.ENGLISH)
-							+ " report generation:" + e.getMessage(), e);
-		} catch (RuntimeException e) {
-			getLog().error(e.getMessage(), e);
-		}
-	}
+    protected void executeReport(Locale locale) throws MavenReportException {
+        try {
+            getLog().info("LicenseVerifierReport:executeReport()");
+            RenderingContext context = new RenderingContext(getOutputDirectory(), getOutputName() + ".html");
+            SiteRendererSink sink = new SiteRendererSink(context);
+            generate(sink, locale);
+        } catch (MavenReportException e) {
+            getLog().error("An error has occurred in " + getName(Locale.ENGLISH)
+                    + " report generation:" + e.getMessage(), e);
+        } catch (RuntimeException e) {
+            getLog().error(e.getMessage(), e);
+        }
+    }
 
-	protected File getOutputDirectory() {
-		if (!outputDirectory.isAbsolute()) {
-			outputDirectory = new File(project.getBasedir(), outputDirectory.getPath());
-		}
-		//Create the folder structure.
-		if (!outputDirectory.exists()) {
-			outputDirectory.mkdirs();
-		}
+    protected File getOutputDirectory() {
+        if (!outputDirectory.isAbsolute()) {
+            outputDirectory = new File(project.getBasedir(), outputDirectory.getPath());
+        }
+        //Create the folder structure.
+        if (!outputDirectory.exists()) {
+            outputDirectory.mkdirs();
+        }
 
-		return outputDirectory.getAbsoluteFile();
-	}
+        return outputDirectory.getAbsoluteFile();
+    }
 
-	protected MavenProject getProject() {
-		return project;
-	}
+    protected MavenProject getProject() {
+        return project;
+    }
 
-	public String getDescription(Locale locale) {
+    public String getDescription(Locale locale) {
         return "Generated License Verifier Report";
-	}
+    }
 
-	public String getName(Locale locale) {
-		return "License Verifier Report";
-	}
+    public String getName(Locale locale) {
+        return "License Verifier Report";
+    }
 
-	public String getOutputName() {
-		return "licenseverifierreport";
-	}
+    public String getOutputName() {
+        return "licenseverifierreport";
+    }
 
-	/**
-	 * @see org.apache.maven.reporting.MavenReport#getOutputName()
-	 */
-	protected ResourceBundle getBundle(Locale locale) {
-		return ResourceBundle.getBundle(
-			"mlvp",
-			locale,
-			this.getClass().getClassLoader()
-		);
-	}
+    /**
+     * @see org.apache.maven.reporting.MavenReport#getOutputName()
+     */
+    protected ResourceBundle getBundle(Locale locale) {
+        return ResourceBundle.getBundle(
+                "mlvp",
+                locale,
+                this.getClass().getClassLoader());
+    }
 
     /**
      * generates an empty report in case there are no sources to generate a report with
@@ -135,12 +129,11 @@ public class LicenseVerifierReport
      * @param bundle the resource bundle to retrieve report phrases from
      * @param sink   the report formatting tool
      */
-    private void doGenerateEmptyReport( ResourceBundle bundle, Sink sink )
-    {
+    private void doGenerateEmptyReport(ResourceBundle bundle, Sink sink) {
         sink.head();
         sink.title();
 
-        sink.text( bundle.getString( "report.mlvp.header" ) );
+        sink.text(bundle.getString("report.mlvp.header"));
         sink.title_();
         sink.head_();
 
@@ -148,11 +141,11 @@ public class LicenseVerifierReport
         sink.section1();
 
         sink.sectionTitle1();
-        sink.text( bundle.getString( "report.mlvp.mainTitle" ) );
+        sink.text(bundle.getString("report.mlvp.mainTitle"));
         sink.sectionTitle1_();
 
         sink.paragraph();
-        sink.text( "No artifacts found to create and licesen verifier report." );
+        sink.text("No artifacts found to create and licesen verifier report.");
         sink.paragraph_();
 
         sink.section1_();
@@ -162,12 +155,12 @@ public class LicenseVerifierReport
         sink.close();
     }
 
-    private void doGenerateReport (ResourceBundle bundle, Sink sink ) {
+    private void doGenerateReport(ResourceBundle bundle, Sink sink) {
 
         sink.head();
         sink.title();
 
-        sink.text( bundle.getString( "report.mlvp.header" ) );
+        sink.text(bundle.getString("report.mlvp.header"));
         sink.title_();
         sink.head_();
 
@@ -192,7 +185,7 @@ public class LicenseVerifierReport
 
     private void doGenerateLicenseCategories(ResourceBundle bundle, Sink sink) {
 //TODO: Use bundles instead of hard coded strings.
-    	sink.sectionTitle1();
+        sink.sectionTitle1();
         sink.text("License Categories");
         sink.sectionTitle1_();
 
@@ -203,7 +196,7 @@ public class LicenseVerifierReport
     }
 
     private void doGenerateArtifactCategories(ResourceBundle bundle, Sink sink) {
-    	sink.sectionTitle1();
+        sink.sectionTitle1();
         sink.text("Artifact Categories");
         sink.sectionTitle1_();
 
@@ -213,8 +206,8 @@ public class LicenseVerifierReport
         doGenerateUnknownReport(bundle, sink);
     }
 
-	private void doGenerateReportLicensesConfiguration(ResourceBundle bundle, Sink sink, String header, List<LicenseItem> licenseItems) {
-		sink.sectionTitle2();
+    private void doGenerateReportLicensesConfiguration(ResourceBundle bundle, Sink sink, String header, List<LicenseItem> licenseItems) {
+        sink.sectionTitle2();
         sink.text(header);
         sink.sectionTitle2_();
 
@@ -228,45 +221,56 @@ public class LicenseVerifierReport
         sink.tableRow_();
 
         for (LicenseItem item : licenseItems) {
-        	sink.tableRow();
-        	cell(sink, item.getId());
-        	cell(sink, item.getDescription());
+            sink.tableRow();
+            cell(sink, item.getId());
+            cell(sink, item.getDescription());
 
-        	sink.tableCell();
-        	//List all names
-        	sink.list();
-        	for (String itemName : item.getNames()) {
-        		sink.listItem();
-        		sink.text(itemName);
-        		sink.listItem_();
-			}
-        	sink.list_();
-        	sink.tableCell_();
+            sink.tableCell();
+            //List all names
+            sink.list();
+            for (String itemName : item.getNames()) {
+                sink.listItem();
+                sink.text(itemName);
+                sink.listItem_();
+            }
+            sink.list_();
+            sink.tableCell_();
 
-        	sink.tableCell();
-        	sink.list();
-        	for (String itemURL : item.getUrls()) {
-        		sink.listItem();
-        		sink.link(itemURL);
-        		sink.text(itemURL);
-        		sink.link_();
-        		sink.listItem_();
-			}
-        	sink.list_();
-        	sink.tableCell_();
+            sink.tableCell();
+            sink.list();
+            for (String itemURL : item.getUrls()) {
+                sink.listItem();
+                sink.link(itemURL);
+                sink.text(itemURL);
+                sink.link_();
+                sink.listItem_();
+            }
+            sink.list_();
+            sink.tableCell_();
 
-        	sink.tableRow_();
-		}
+            sink.tableRow_();
+        }
         sink.table_();
-	}
+    }
 
+    private void createFigure(Sink sink, boolean success) {
+        sink.tableCell();
+        sink.figure();
+        if (success) {
+            sink.figureGraphics("images/icon_success_sml.gif");
+        } else {
+            sink.figureGraphics("images/icon_warning_sml.gif");
+        }
+        sink.figure_();
+        sink.tableCell_();
+    }
 
-    private void doGenerateItemReport(ResourceBundle bundle, Sink sink ) {
-    	sink.sectionTitle1();
-        sink.text( "Artifact License Categories" );
+    private void doGenerateItemReport(ResourceBundle bundle, Sink sink) {
+        sink.sectionTitle1();
+        sink.text("Artifact License Categories");
         sink.sectionTitle1_();
 
-		sink.sectionTitle2();
+        sink.sectionTitle2();
         sink.text("Overview");
         sink.sectionTitle2_();
 
@@ -280,51 +284,28 @@ public class LicenseVerifierReport
         headerCell(sink, "Unknown");
         sink.tableRow_();
 
-		for (LicenseInformation item : getLicenseInformations()) {
-        	sink.tableRow();
+        for (LicenseInformation item : getLicenseInformations()) {
+            sink.tableRow();
 
-       		cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
+            cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
 
-        	if (licenseValidator.isValid(item.getLicenses())) {
+            createFigure(sink, licenseValidator.isValid(item.getLicenses()));
 
-        	    sink.tableCell();
-                sink.figure();
-                sink.figureGraphics("images/icon_success_sml.gif");
-                sink.figure_();
-                sink.tableCell_();
-			} else {
-                sink.tableCell();
-                sink.figure();
-                sink.figureGraphics("images/icon_warning_sml.gif");
-                sink.figure_();
-                sink.tableCell_();
-        		//cell(sink, "No"); // 2nd column isValid (Yes, No)
-			}
-        	if (licenseValidator.isWarning(item.getLicenses())) {
-        		cell(sink, "Yes"); // 3rd column isValid (Yes, No)
-			} else {
-        		cell(sink, "No"); // 3rd column isValid (Yes, No)
-			}
-        	if (licenseValidator.isInvalid(item.getLicenses())) {
-        		cell(sink, "Yes"); // 4th column isValid (Yes, No)
-			} else {
-        		cell(sink, "No"); // 4th column isValid (Yes, No)
-			}
-        	if (licenseValidator.isUnknown(item.getLicenses())) {
-        		cell(sink, "Yes"); // 5th column isValid (Yes, No)
-			} else {
-        		cell(sink, "No"); // 5th  column isValid (Yes, No)
-			}
+            createFigure(sink, !licenseValidator.isWarning(item.getLicenses()));
 
-        	sink.tableRow_();
-		}
+            createFigure(sink, !licenseValidator.isInvalid(item.getLicenses()));
+
+            createFigure(sink, !licenseValidator.isUnknown(item.getLicenses()));
+
+            sink.tableRow_();
+        }
 
         sink.table_();
     }
 
-    private void doGenerateValidReport(ResourceBundle bundle, Sink sink ) {
-		sink.sectionTitle2();
-        sink.text( "Artifacts Catagorized as Valid" );
+    private void doGenerateValidReport(ResourceBundle bundle, Sink sink) {
+        sink.sectionTitle2();
+        sink.text("Artifacts Catagorized as Valid");
         sink.sectionTitle2_();
 
         sink.table();
@@ -335,31 +316,31 @@ public class LicenseVerifierReport
         headerCell(sink, "URL");
         sink.tableRow_();
 
-		for (LicenseInformation item : getLicenseInformations()) {
-        	if (licenseValidator.isValid(item.getLicenses())) {
-            	sink.tableRow();
+        for (LicenseInformation item : getLicenseInformations()) {
+            if (licenseValidator.isValid(item.getLicenses())) {
+                sink.tableRow();
 
-           		cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
+                cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
 
-        		if (item.getLicenses().isEmpty()) {
-        			cell(sink,"");
-        			cell(sink,"");
-        		} else {
-        			for (License license : item.getLicenses()) {
-        				cell(sink, license.getName());
-        				cell(sink, license.getUrl());
-        			}
-        		}
-            	sink.tableRow_();
-			}
-		}
+                if (item.getLicenses().isEmpty()) {
+                    cell(sink, "");
+                    cell(sink, "");
+                } else {
+                    for (License license : item.getLicenses()) {
+                        cell(sink, license.getName());
+                        cell(sink, license.getUrl());
+                    }
+                }
+                sink.tableRow_();
+            }
+        }
 
         sink.table_();
     }
 
-    private void doGenerateWarningReport(ResourceBundle bundle, Sink sink ) {
-		sink.sectionTitle2();
-        sink.text( "Artifacts Catagorized as Warning" );
+    private void doGenerateWarningReport(ResourceBundle bundle, Sink sink) {
+        sink.sectionTitle2();
+        sink.text("Artifacts Catagorized as Warning");
         sink.sectionTitle2_();
 
         sink.table();
@@ -370,31 +351,31 @@ public class LicenseVerifierReport
         headerCell(sink, "URL");
         sink.tableRow_();
 
-		for (LicenseInformation item : getLicenseInformations()) {
-        	if (licenseValidator.isWarning(item.getLicenses())) {
-            	sink.tableRow();
+        for (LicenseInformation item : getLicenseInformations()) {
+            if (licenseValidator.isWarning(item.getLicenses())) {
+                sink.tableRow();
 
-           		cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
+                cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
 
-        		if (item.getLicenses().isEmpty()) {
-        			cell(sink,"");
-        			cell(sink,"");
-        		} else {
-        			for (License license : item.getLicenses()) {
-        				cell(sink, license.getName());
-        				cell(sink, license.getUrl());
-        			}
-        		}
-            	sink.tableRow_();
-			}
-		}
+                if (item.getLicenses().isEmpty()) {
+                    cell(sink, "");
+                    cell(sink, "");
+                } else {
+                    for (License license : item.getLicenses()) {
+                        cell(sink, license.getName());
+                        cell(sink, license.getUrl());
+                    }
+                }
+                sink.tableRow_();
+            }
+        }
 
         sink.table_();
     }
 
-    private void doGenerateInvalidReport(ResourceBundle bundle, Sink sink ) {
-		sink.sectionTitle2();
-        sink.text( "Artifacts Catagorized as Invalid" );
+    private void doGenerateInvalidReport(ResourceBundle bundle, Sink sink) {
+        sink.sectionTitle2();
+        sink.text("Artifacts Catagorized as Invalid");
         sink.sectionTitle2_();
 
         sink.table();
@@ -405,31 +386,31 @@ public class LicenseVerifierReport
         headerCell(sink, "URL");
         sink.tableRow_();
 
-		for (LicenseInformation item : getLicenseInformations()) {
-        	if (licenseValidator.isInvalid(item.getLicenses())) {
-            	sink.tableRow();
+        for (LicenseInformation item : getLicenseInformations()) {
+            if (licenseValidator.isInvalid(item.getLicenses())) {
+                sink.tableRow();
 
-           		cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
+                cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
 
-        		if (item.getLicenses().isEmpty()) {
-        			cell(sink,"");
-        			cell(sink,"");
-        		} else {
-        			for (License license : item.getLicenses()) {
-        				cell(sink, license.getName());
-        				cell(sink, license.getUrl());
-        			}
-        		}
-            	sink.tableRow_();
-			}
-		}
+                if (item.getLicenses().isEmpty()) {
+                    cell(sink, "");
+                    cell(sink, "");
+                } else {
+                    for (License license : item.getLicenses()) {
+                        cell(sink, license.getName());
+                        cell(sink, license.getUrl());
+                    }
+                }
+                sink.tableRow_();
+            }
+        }
 
         sink.table_();
     }
 
-    private void doGenerateUnknownReport(ResourceBundle bundle, Sink sink ) {
-		sink.sectionTitle2();
-        sink.text( "Artifacts Catagorized as Unknown" );
+    private void doGenerateUnknownReport(ResourceBundle bundle, Sink sink) {
+        sink.sectionTitle2();
+        sink.text("Artifacts Catagorized as Unknown");
         sink.sectionTitle2_();
 
         sink.table();
@@ -440,24 +421,24 @@ public class LicenseVerifierReport
         headerCell(sink, "URL");
         sink.tableRow_();
 
-		for (LicenseInformation item : getLicenseInformations()) {
-        	if (licenseValidator.isUnknown(item.getLicenses())) {
-            	sink.tableRow();
+        for (LicenseInformation item : getLicenseInformations()) {
+            if (licenseValidator.isUnknown(item.getLicenses())) {
+                sink.tableRow();
 
-           		cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
+                cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
 
-        		if (item.getLicenses().isEmpty()) {
-        			cell(sink,"");
-        			cell(sink,"");
-        		} else {
-        			for (License license : item.getLicenses()) {
-        				cell(sink, license.getName());
-        				cell(sink, license.getUrl());
-        			}
-        		}
-            	sink.tableRow_();
-			}
-		}
+                if (item.getLicenses().isEmpty()) {
+                    cell(sink, "");
+                    cell(sink, "");
+                } else {
+                    for (License license : item.getLicenses()) {
+                        cell(sink, license.getName());
+                        cell(sink, license.getUrl());
+                    }
+                }
+                sink.tableRow_();
+            }
+        }
 
         sink.table_();
     }
@@ -467,90 +448,82 @@ public class LicenseVerifierReport
         sink.text(text);
         sink.tableHeaderCell_();
     }
+
     private void cell(Sink sink, String text) {
-    	sink.tableCell();
-    	sink.text(text);
-    	sink.tableCell_();
+        sink.tableCell();
+        sink.text(text);
+        sink.tableCell_();
     }
 
+    public void setProject(MavenProject project) {
+        this.project = project;
+    }
 
-	public void setProject(MavenProject project) {
-		this.project = project;
-	}
+    public void setOutputDirectory(File outputDirectory) {
+        this.outputDirectory = outputDirectory;
+    }
 
-	public void setOutputDirectory(File outputDirectory) {
-		this.outputDirectory = outputDirectory;
-	}
+    public boolean canGenerateReport() {
+        return true;
+    }
 
-	public boolean canGenerateReport() {
-		return true;
-	}
+    public void generate(Sink sink, Locale locale) throws MavenReportException {
+        getLog().info("LicenseVerifierReport:generate()");
+        if (project.getArtifacts().isEmpty()) {
+            //If we have no artifacts at all.
+            doGenerateEmptyReport(getBundle(locale), sink);
+        } else {
+            try {
+                loadLicensesFile();
+            } catch (MojoExecutionException e1) {
+                throw new MavenReportException("Failure during load of the license.xml file", e1);
+            }
 
-	public void generate(Sink sink, Locale locale) throws MavenReportException {
-		getLog().info("LicenseVerifierReport:generate()");
-		if (project.getArtifacts().isEmpty()) {
-			//If we have no artifacts at all.
-			doGenerateEmptyReport(getBundle(locale), sink);
-		} else {
-			try {
-				loadLicensesFile();
-			} catch (MojoExecutionException e1) {
-				throw new MavenReportException("Failure during load of the license.xml file", e1);
-			}
+            //Get a set with all dependent artifacts incl.
+            //the transitive dependencies.
+            Set depArtifacts = project.getArtifacts();
 
-	    	//Get a set with all dependent artifacts incl.
-	    	//the transitive dependencies.
-	    	Set depArtifacts = project.getArtifacts();
+            //Get all the informations about the licenses of the artifacts.
+            try {
+                getDependArtifacts(depArtifacts);
 
-	    	//Get all the informations about the licenses of the artifacts.
-	    	try {
-				getDependArtifacts(depArtifacts);
+                doGenerateReport(getBundle(locale), sink);
 
-				doGenerateReport(getBundle(locale), sink);
+            } catch (MojoExecutionException e) {
+                getLog().error("Something wrong (BETTER MESSAGE): ", e);
+            }
+        }
+    }
 
-	    	} catch (MojoExecutionException e) {
-				getLog().error("Something wrong (BETTER MESSAGE): ", e);
-			}
-		}
-	}
-
-	public String getCategoryName() {
+    public String getCategoryName() {
         return MavenReport.CATEGORY_PROJECT_REPORTS;
-	}
+    }
 
+    public File getReportOutputDirectory() {
+        return reportOutputDirectory;
+    }
 
-	public File getReportOutputDirectory() {
-		return reportOutputDirectory;
-	}
+    public boolean isExternalReport() {
+        return false;
+    }
 
+    public void setReportOutputDirectory(File outputDirectory) {
+        this.reportOutputDirectory = outputDirectory;
 
-	public boolean isExternalReport() {
-		return false;
-	}
+    }
 
-	public void setReportOutputDirectory(File outputDirectory) {
-		this.reportOutputDirectory = outputDirectory;
-
-	}
-
-	public void execute() throws MojoExecutionException, MojoFailureException {
-        try
-        {
-			getLog().info("LicenseVerifierReport:execute()");
-            RenderingContext context = new RenderingContext( getOutputDirectory(), getOutputName() + ".html" );
-            SiteRendererSink sink = new SiteRendererSink( context );
+    public void execute() throws MojoExecutionException, MojoFailureException {
+        try {
+            getLog().info("LicenseVerifierReport:execute()");
+            RenderingContext context = new RenderingContext(getOutputDirectory(), getOutputName() + ".html");
+            SiteRendererSink sink = new SiteRendererSink(context);
             Locale locale = Locale.getDefault();
             generate(sink, locale);
+        } catch (MavenReportException e) {
+            getLog().error("An error has occurred in " + getName(Locale.ENGLISH)
+                    + " report generation:" + e.getMessage(), e);
+        } catch (RuntimeException e) {
+            getLog().error(e.getMessage(), e);
         }
-        catch ( MavenReportException e )
-        {
-            getLog().error( "An error has occurred in " + getName( Locale.ENGLISH )
-                    + " report generation:" + e.getMessage(), e );
-        }
-        catch ( RuntimeException e )
-        {
-            getLog().error( e.getMessage(), e );
-        }
-	}
-
+    }
 }
