@@ -53,5 +53,6 @@ The first and simplest usage is to configure the Maven Licenses Verifier Plugin
 Examples
 --------
 
-In My Blog you can see [example outputs](http://blog.soebes.de/index.php?/archives/320-Maven-Licenses-Verifier-Plugin.html)
+You can see examples of the current state of the reports as [part I](http://blog.soebes.de/uploads/Screenshot-Artifact-License-Categories.png)
+ and [Part II](http://blog.soebes.de/uploads/Screenshot-Artifact-Categories.png)
 
