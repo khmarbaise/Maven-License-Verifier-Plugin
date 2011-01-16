@@ -54,5 +54,7 @@ Examples
 --------
 
 You can see examples of the current state of the reports as [part I](http://blog.soebes.de/uploads/Screenshot-Artifact-License-Categories.png)
- and [Part II](http://blog.soebes.de/uploads/Screenshot-Artifact-Categories.png)
+ and [Part II](http://blog.soebes.de/uploads/Screenshot-Artifact-Categories.png) and of course
+of the resulting report the [configuration which is used](http://blog.soebes.de/uploads/Screenshot-License-Configuration.png).
+
 
