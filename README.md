@@ -48,3 +48,10 @@ The first and simplest usage is to configure the Maven Licenses Verifier Plugin
         </execution>
       </executions>
     </plugin>
+
+
+Examples
+--------
+
+In My Blog you can see [example outputs](http://blog.soebes.de/index.php?/archives/320-Maven-Licenses-Verifier-Plugin.html)
+
