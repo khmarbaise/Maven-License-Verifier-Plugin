@@ -29,31 +29,31 @@
 Maven License Verifier Plugin
 
 
-  The basic idea of the Maven License Verifier Plugin (MLV for sort) is to
+  The basic idea of the Maven License Verifier Plugin (MLV for short) is to
   check which licenses are used in your project and give some hints about
-  artifacts which don't define a license at all or artifacts which 
-  use artifact which are not acceptable in your project or company.
-  
+  artifacts which don't define a license at all or artifacts which
+  use artifacts which are not acceptable in your project or company.
+
   This will sometimes called License Compliance Management, but this
-  Plugin will only supports in such area and does not take over the job.
-  
+  plugin will support your work but of course doesn't take the job itself.
+
 * Goals Overview
 
   There are currently two goals (check, report) which can be used to check
   your project and create a report about the used licenses.
-   
+
 * Usage
 
-  If you like to use the MLV Plugin you have to use of the plugin
-  in your pom either in the area of the build to do a check 
-  during the build and on the other hand you can use 
+  If you like to use the MLV plugin you have to use the plugin
+  in your pom either in the area of the build to do a check
+  during the build. On the other hand you can use the
   MLV plugin in the area of the reporting to produce a report
   about the used licenses.
-  
+
   In both cases you have to define the location of a {{{licenses.html}licenses.xml}}
-  file which contains the definition of the different {{{categories.html}}categories}} of
+  file which contains the definition of the different {{{categories.html}categories}} of
   licenses.
- 
+
 +-----
 <project>
   ...
@@ -64,7 +64,7 @@ Maven License Verifier Plugin
         <artifactId>${project.artifactId}</artifactId>
         <version>${project.version}</version>
         <configuration>
-        	<licensesFile>${basedir}/licenses.xml</licensesFile>
+          <licensesFile>${basedir}/licenses.xml</licensesFile>
         </configuration>
       </plugin>
     </plugins>

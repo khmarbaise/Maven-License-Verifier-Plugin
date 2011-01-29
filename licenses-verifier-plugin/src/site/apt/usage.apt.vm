@@ -30,11 +30,12 @@ Maven License Verifier Plugin
 
 * Information
 
-  The goals for the Verifier Plugin are bound to their respective phases in the
+  The goals for the MLV are bound to their respective phases in the
   build lifecycle.
 
-  The default binding is to run the MLV at the test phase. If you like to change
+  The default binding is to run the MLV at the <<prepare-package>> phase. If you like to change
   this you have to make an appropriate configuration.
+
   Hint: Sometimes this does not work, cause at that time the dependencies have not been solved (Check this!)
 
 +-----
@@ -91,5 +92,3 @@ Maven License Verifier Plugin
 +-----
 
 * Check ....
-
-

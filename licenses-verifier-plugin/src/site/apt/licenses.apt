@@ -30,18 +30,18 @@ The Licenses File
 
 * Basics
 
-  The MLV Plugin categorizes the different licenses based on the configuration 
+  The MLV plugin categorizes the different licenses based on the configuration
   file which gives you the freedom to define whatever licenses you wish.
 
 * The License file composition
 
- Basically you have three areas which you have to fill up with appropriate 
- license informations. The first area is the <<valid>> area which contains 
- licenses which will be categorized as <<Valid>>. The second area is the 
- <<invalid>> area which contains the licenses which will be categorizes as 
- <<Invalid>>. And the third area is the <<warning>> area which contains the 
+ Basically you have three areas which you have to fill up with appropriate
+ license informations. The first area is the <<valid>> area which contains
+ licenses which will be categorized as <<Valid>>. The second area is the
+ <<invalid>> area which contains the licenses which will be categorizes as
+ <<Invalid>>. And the third area is the <<warning>> area which contains the
  licenses which will be categorizes as <<Warning>>.
- 
+
 +-----
 <?xml version="1.0" encoding="UTF-8"?>
 <licenses>
@@ -57,29 +57,29 @@ The Licenses File
     <...>
   </warning>
 </licenses>
-+----- 
++-----
 
 * Valid, Invalid, Warning Area
 
- Inside the <<valid>>, <<invalid>> or <<warning>> area you can define as many 
- licenses you wish. This is needed to support any use case, cause different 
+ Inside the <<valid>>, <<invalid>> or <<warning>> area you can define as many
+ licenses you wish. This is needed to support any use case, cause different
  projects use different licenses or use more than one licenses.
- 
- The most important thing to understand is that a license can be known or used 
+
+ The most important thing to understand is that a license can be known or used
  under more than one name or url.
- 
- The following example will give you an impression. The <<description>> tag is 
- only a name for the license which is used to identify it from your point of 
- view. As you can see a license is often known under different names which can 
- be defined in the <<names>> list. The used <<name>> is the name which is given 
- in the {{{http://maven.apache.org/pom.html#Licenses}pom}} for an artifact. 
- Based on the nature that the name is given by the maintainers them self it's 
+
+ The following example will give you an impression. The <<description>> tag is
+ only a name for the license which is used to identify it from your point of
+ view. As you can see a license is often known under different names which can
+ be defined in the <<names>> list. The used <<name>> is the name which is given
+ in the {{{http://maven.apache.org/pom.html#Licenses}pom}} for an artifact.
+ Based on the nature that the name is given by the maintainers them self it's
  not unusual to have different names for the same license.
- 
- The same can happen for the URL, cause it can simply reference a web site or 
+
+ The same can happen for the URL, cause it can simply reference a web site or
  it can reference a particular document or the web site is references with or
  without the prefixing <<www>>.
- 
+
  It is very important to mention that the <<id>> has to be unique over all
  licenses independent if they are <<valid>>, <<invalid>> or <<warning>>.
 
@@ -103,3 +103,98 @@ The Licenses File
 </license>
 +-----
 
+* Real Example
+
+ The following is a real example of a licenses.xml file which you can
+ use a template where you start from.
+
+ (Missing DTD's)
+
++-----
+<?xml version="1.0" encoding="UTF-8"?>
+<licenses>
+  <valid>
+    <license>
+      <id>Apache Software License 2.0</id>
+      <description>Apache Software License 2.0</description>
+      <names>
+        <name>Apache 2</name>
+        <name>Apache Software License 2.0</name>
+        <name>Apache Software License, Version 2.0</name>
+        <name>The Apache Software License, Version 2.0</name>
+      </names>
+      <urls>
+        <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+        <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        <url>http://apache.org/licenses/LICENSE-2.0</url>
+        <url>http://apache.org/licenses/LICENSE-2.0.html</url>
+        <url>http://apache.org/licenses/LICENSE-2.0.txt</url>
+      </urls>
+    </license>
+
+    <license>
+      <id>Common Public License Version 1.0</id>
+      <description>Common Public License Version 1.0</description>
+      <names>
+        <name>Common Public License Version 1.0</name>
+      </names>
+      <urls>
+        <url>http://www.opensource.org/licenses/cpl1.0.txt</url>
+      </urls>
+    </license>
+
+    <license>
+      <id>The TMate Open Source License</id>
+      <description>The TMate Open Source License</description>
+      <names>
+        <name>The TMate Open Source License</name>
+      </names>
+      <urls>
+        <url>http://svnkit.com/license.html</url>
+      </urls>
+    </license>
+    <license>
+      <id>Test License for two Licenses</id>
+      <description>Test License for two Licenses</description>
+      <names>
+        <name>Test License</name>
+        <name>Test License, Version 1.0</name>
+      </names>
+      <urls>
+        <url>http://www.testlicense.org/License-1.0.txt</url>
+        <url>http://www.testlicense.org/License-2.0.txt</url>
+      </urls>
+    </license>
+
+  </valid>
+
+  <invalid>
+    <license>
+      <id>GNU General Public License (GPL)</id>
+      <description>GNU General Public License (GPL)</description>
+      <names>
+        <name>GNU General Public License, version 2</name>
+        <name>GNU General Public License, version 3</name>
+      </names>
+      <urls>
+        <url>http://www.gnu.org/licenses/gpl-2.0.html</url>
+        <url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+      </urls>
+    </license>
+  </invalid>
+
+  <warning>
+    <license>
+      <id>Apache Software License 1.1 (Historic)</id>
+      <description>Apache Software License 1.1 (Historic)</description>
+      <names>
+        <name>Apache License, Version 1.1</name>
+      </names>
+      <urls>
+        <url>http://www.apache.org/licenses/LICENSE-1.1</url>
+      </urls>
+    </license>
+  </warning>
+</licenses>
++-----

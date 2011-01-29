@@ -18,16 +18,20 @@ be checked in more detail (warning) or unknown licenses or invalid licenses.
 
 ## Issue Tracker
 
-[The Issue Tracker](http://supose.org/projects/show/mlv)
+[The Issue Tracker](https://github.com/khmarbaise/Maven-Licenses-Verifier-Plugin/issues)
 
 ## Status
 
- * Report is created.
+ * Reports are created.
+ * Currently only working with Maven 2.2.1 (may be below but not checked!)
+ * Currently no fail of a build indenpendant of the category.
+ ** Later the default will be: failOnInvalid and failOnUnknown.
 
 
 ## TODOs
 
  * Make the reports better.
+ * Get it run on Maven 3 as well.
 
 ## Usage
 
@@ -57,5 +61,4 @@ Examples
 You can see examples of the current state of the reports as [part I](http://blog.soebes.de/uploads/Screenshot-Artifact-License-Categories.png)
  and [Part II](http://blog.soebes.de/uploads/Screenshot-Artifact-Categories.png) and of course
 of the resulting report the [configuration which is used](http://blog.soebes.de/uploads/Screenshot-License-Configuration.png).
-
 

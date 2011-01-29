@@ -28,10 +28,10 @@
 
 Roadmap
 
-  The following roadmap will give you an overview of the planned features and their 
+  The following roadmap will give you an overview of the planned features and their
   possible implementation order. Of course i don't guarantee anything ..;-)
 
-* Release 0.X (where x=1)
+* Release 0.2
 
   Simple usage of a <<license.xml>> file which is read and checking only the license
   entry of the pom files of their appropriate artifacts.
@@ -58,7 +58,7 @@ Roadmap
 </configuration>
 +----
 
-* Release 0.X+1
+* Release 0.3
 
   Usage of different licenses files which can be configured in the configuration
   section.
@@ -72,12 +72,12 @@ Roadmap
     <licenseRef>oss-licenses.xml</licensesRef>
     <licenseRef>company-licenses.xml</licensesRef>
   </licenseRefs>
-</configuration>   
+</configuration>
 +----
-  
-  
-  
-* Release 0.X+2
+
+
+
+* Release 0.4
 
   Company License defined by an extra artifact.
 
@@ -100,7 +100,7 @@ Roadmap
 +----
 
 
-* Release 0.X+3
+* Release 0.5
 
   It should be possible to define particular artifact to have a particular category.
   This is needed to be able to redefine an artifact without an license to be valid, invalid
@@ -131,13 +131,13 @@ Roadmap
 
    <invalid>
    </invalid>
-</configuration>   
+</configuration>
 +----
 
-* Release 0.X+4
+* Release 0.6
 
   Read different license via descriptors
-  
+
 +----
 <configuration>
   <descriptors>
@@ -145,7 +145,7 @@ Roadmap
     <descriptor>GNU-2.0</descriptor>
     <descriptor>GNU-3.0</descriptor>
   </descriptors>
-</configuration>   
+</configuration>
 +----
 
 +----
@@ -156,16 +156,20 @@ Roadmap
 </configuration>
 +----
 
-* Release 0.X+5
+* Release 0.7
 
   * Check not only the POM use the artifacts itself, cause it contains license information
 
   * The idea is to search inside the artifacts which usually contain some kind of license information
     for example as a single file (LICENSE or LICENSE.txt) etc.
 
-  
+
   * An other source of information can be the MANIFEST.MF file.
 
   * Check the artifacts them selfs (.jar) file and search them for license.txt etc. and may be
- 
+
   * bundles license entries.
+
+* Release 1.0
+
+  * Tata ;-)

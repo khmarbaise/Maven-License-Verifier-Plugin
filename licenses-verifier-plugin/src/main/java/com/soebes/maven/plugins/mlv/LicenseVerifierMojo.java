@@ -24,8 +24,8 @@ import org.apache.maven.plugin.MojoExecutionException;
 
 /**
  *
- * @goal check
- * @phase test
+ * @goal verify
+ * @phase prepare-package
  * @author Karl Heinz Marbaise
  */
 public class LicenseVerifierMojo
