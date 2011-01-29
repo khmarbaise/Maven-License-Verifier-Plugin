@@ -58,5 +58,5 @@ The first and simplest usage is to configure the Maven Licenses Verifier Plugin
 Examples
 --------
 
-A real example can be looked at [Maven Licenses Verifier Plugin Example)(http://khmarbaise.github.com/mlvp-example/licenseverifierreport.html)
+A real example can be looked at [Maven Licenses Verifier Plugin Example](http://khmarbaise.github.com/mlvp-example/licenseverifierreport.html)
 
