@@ -12,14 +12,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title>Maven License Verifiery plugin - Introduction</title>
+    <title>Maven License Verifiery plugin - Surefire Report</title>
     <style type="text/css" media="all">
       @import url("./css/maven-base.css");
       @import url("./css/maven-theme.css");
       @import url("./css/site.css");
     </style>
     <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
-          <meta name="author" content="Karl Heinz Marbaise" />
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
       </head>
   <body class="composite">
@@ -72,8 +71,8 @@
             <ul>
               
     <li class="none">
-              <strong>Introduction</strong>
-        </li>
+                    <a href="index.html">Introduction</a>
+          </li>
               
     <li class="none">
                     <a href="plugin-info.html">Goals</a>
@@ -140,11 +139,49 @@
             
       
             
-      
+            
               
-        <li class="collapsed">
+            <li class="expanded">
                     <a href="project-reports.html">Project Reports</a>
-                </li>
+                  <ul>
+                  
+    <li class="none">
+                    <a href="changes-report.html">Changes Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="cobertura/index.html">Cobertura Test Coverage</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="cpd.html">CPD Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="apidocs/index.html">JavaDocs</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="jdepend-report.html">JDepend</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="plugin-info.html">Plugin Documentation</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="pmd.html">PMD Report</a>
+          </li>
+                  
+    <li class="none">
+                    <a href="xref/index.html">Source Xref</a>
+          </li>
+                  
+    <li class="none">
+              <strong>Surefire Report</strong>
+        </li>
+              </ul>
+        </li>
           </ul>
                                            <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
             <img alt="Built by Maven" src="./images/logos/maven-feather.png"></img>
@@ -161,36 +198,43 @@
     </div>
     <div id="bodyColumn">
       <div id="contentBox">
-        <div class="section"><h2>Maven License Verifier Plugin</h2>
-<p>The basic idea of the Maven License Verifier Plugin (MLV for short) is to check which licenses are used in your project and give some hints about artifacts which don't define a license at all or artifacts which use artifacts which are not acceptable in your project or company.</p>
-<p>This will sometimes called License Compliance Management, but this plugin will support your work but of course doesn't take the job itself.</p>
-<div class="section"><h3>Goals Overview</h3>
-<p>There are currently two goals (check, report) which can be used to check your project and create a report about the used licenses.</p>
+        <script type="text/javascript">
+function toggleDisplay(elementId) {
+ var elm = document.getElementById(elementId + 'error');
+ if (elm && typeof elm.style != "undefined") {
+ if (elm.style.display == "none") {
+ elm.style.display = "";
+ document.getElementById(elementId + 'off').style.display = "none";
+ document.getElementById(elementId + 'on').style.display = "inline";
+ } else if (elm.style.display == "") { elm.style.display = "none";
+ document.getElementById(elementId + 'off').style.display = "inline";
+ document.getElementById(elementId + 'on').style.display = "none";
+ } 
+ } 
+ }
+</script><div class="section"><h2>Surefire Report</h2>
 </div>
-<div class="section"><h3>Usage</h3>
-<p>If you like to use the MLV plugin you have to use the plugin in your pom either in the area of the build to do a check during the build. On the other hand you can use the MLV plugin in the area of the reporting to produce a report about the used licenses.</p>
-<p>In both cases you have to define the location of a <a href="licenses.html">licenses.xml</a> file which contains the definition of the different <a href="categories.html">categories</a> of licenses.</p>
-<div class="source"><pre>&lt;project&gt;
-  ...
-  &lt;build&gt;
-    &lt;plugins&gt;
-      &lt;plugin&gt;
-        &lt;groupId&gt;com.soebes.maven.plugins.mlv&lt;/groupId&gt;
-        &lt;artifactId&gt;maven-licenses-verifier-plugin&lt;/artifactId&gt;
-        &lt;version&gt;0.2-SNAPSHOT&lt;/version&gt;
-        &lt;configuration&gt;
-          &lt;licensesFile&gt;${basedir}/licenses.xml&lt;/licensesFile&gt;
-        &lt;/configuration&gt;
-      &lt;/plugin&gt;
-    &lt;/plugins&gt;
-  &lt;/build&gt;
-  ...
-&lt;/project&gt;</pre>
+<div class="section"><h2><a name="Summary"></a>Summary</h2>
+<br />
+<table class="bodyTable"><tr class="a"><th>Tests</th>
+<th>Errors </th>
+<th>Failures</th>
+<th>Skipped</th>
+<th>Success Rate</th>
+<th>Time</th>
+</tr>
+<tr class="b"><td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0%</td>
+<td>0</td>
+</tr>
+</table>
+<br />
+Note: failures are anticipated and checked for with assertions while errors are unanticipated.<br />
 </div>
-</div>
-<div class="section"><h3>Examples</h3>
-</div>
-</div>
+<br />
 
       </div>
     </div>

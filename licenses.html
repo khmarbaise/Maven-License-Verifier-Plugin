@@ -1,0 +1,328 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Maven License Verifiery plugin - Usage</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+          <meta name="author" content="Karl Heinz Marbaise" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                    <span id="bannerLeft">
+    
+            Maven License Verifier Plugin :: Plugin
+    
+            </span>
+                    <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+    
+            <div class="xleft">
+        Last Published: 2011-01-29
+                      </div>
+            <div class="xright">      
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+    
+                   <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Introduction</a>
+          </li>
+              
+    <li class="none">
+                    <a href="plugin-info.html">Goals</a>
+          </li>
+              
+    <li class="none">
+                    <a href="usage.html">Usage</a>
+          </li>
+              
+    <li class="none">
+              <strong>Licenses</strong>
+        </li>
+              
+    <li class="none">
+                    <a href="configuration.html">Configuration</a>
+          </li>
+              
+    <li class="none">
+                    <a href="roadmap.html">Roadmap</a>
+          </li>
+              
+    <li class="none">
+                    <a href="faq.html">FAQ</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+                                           <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
+            <img alt="Built by Maven" src="./images/logos/maven-feather.png"></img>
+          </a>
+                       
+  
+
+  
+    
+  
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2>The Licenses File</h2>
+<div class="section"><h3>Basics</h3>
+<p>The MLV plugin categorizes the different licenses based on the configuration file which gives you the freedom to define whatever licenses you wish.</p>
+</div>
+<div class="section"><h3>The License file composition</h3>
+<p>Basically you have three areas which you have to fill up with appropriate license informations. The first area is the <b>valid</b> area which contains licenses which will be categorized as <b>Valid</b>. The second area is the <b>invalid</b> area which contains the licenses which will be categorizes as <b>Invalid</b>. And the third area is the <b>warning</b> area which contains the licenses which will be categorizes as <b>Warning</b>.</p>
+<div class="source"><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;licenses&gt;
+  &lt;valid&gt;
+    &lt;...&gt;
+  &lt;/valid&gt;
+
+  &lt;invalid&gt;
+    &lt;...&gt;
+  &lt;/invalid&gt;
+
+  &lt;warning&gt;
+    &lt;...&gt;
+  &lt;/warning&gt;
+&lt;/licenses&gt;</pre>
+</div>
+</div>
+<div class="section"><h3>Valid, Invalid, Warning Area</h3>
+<p>Inside the <b>valid</b>, <b>invalid</b> or <b>warning</b> area you can define as many licenses you wish. This is needed to support any use case, cause different projects use different licenses or use more than one licenses.</p>
+<p>The most important thing to understand is that a license can be known or used under more than one name or url.</p>
+<p>The following example will give you an impression. The <b>description</b> tag is only a name for the license which is used to identify it from your point of view. As you can see a license is often known under different names which can be defined in the <b>names</b> list. The used <b>name</b> is the name which is given in the <a class="externalLink" href="http://maven.apache.org/pom.html#Licenses">pom</a> for an artifact. Based on the nature that the name is given by the maintainers them self it's not unusual to have different names for the same license.</p>
+<p>The same can happen for the URL, cause it can simply reference a web site or it can reference a particular document or the web site is references with or without the prefixing <b>www</b>.</p>
+<p>It is very important to mention that the <b>id</b> has to be unique over all licenses independent if they are <b>valid</b>, <b>invalid</b> or <b>warning</b>.</p>
+<div class="source"><pre>&lt;license&gt;
+  &lt;id&gt;Apache Software License 2.0&lt;/id&gt;
+  &lt;description&gt;Apache Software License 2.0&lt;/description&gt;
+  &lt;names&gt;
+    &lt;name&gt;Apache 2&lt;/name&gt;
+    &lt;name&gt;Apache Software License 2.0&lt;/name&gt;
+    &lt;name&gt;Apache Software License, Version 2.0&lt;/name&gt;
+  &lt;/names&gt;
+  &lt;urls&gt;
+    &lt;url&gt;http://www.apache.org/licenses/LICENSE-2.0&lt;/url&gt;
+    &lt;url&gt;http://www.apache.org/licenses/LICENSE-2.0.html&lt;/url&gt;
+    &lt;url&gt;http://www.apache.org/licenses/LICENSE-2.0.txt&lt;/url&gt;
+    &lt;url&gt;http://apache.org/licenses/LICENSE-2.0&lt;/url&gt;
+    &lt;url&gt;http://apache.org/licenses/LICENSE-2.0.html&lt;/url&gt;
+    &lt;url&gt;http://apache.org/licenses/LICENSE-2.0.txt&lt;/url&gt;
+  &lt;/urls&gt;
+&lt;/license&gt;</pre>
+</div>
+</div>
+<div class="section"><h3>Real Example</h3>
+<p>The following is a real example of a licenses.xml file which you can use a template where you start from.</p>
+<p>(Missing DTD's)</p>
+<div class="source"><pre>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;licenses&gt;
+  &lt;valid&gt;
+    &lt;license&gt;
+      &lt;id&gt;Apache Software License 2.0&lt;/id&gt;
+      &lt;description&gt;Apache Software License 2.0&lt;/description&gt;
+      &lt;names&gt;
+        &lt;name&gt;Apache 2&lt;/name&gt;
+        &lt;name&gt;Apache Software License 2.0&lt;/name&gt;
+        &lt;name&gt;Apache Software License, Version 2.0&lt;/name&gt;
+        &lt;name&gt;The Apache Software License, Version 2.0&lt;/name&gt;
+      &lt;/names&gt;
+      &lt;urls&gt;
+        &lt;url&gt;http://www.apache.org/licenses/LICENSE-2.0&lt;/url&gt;
+        &lt;url&gt;http://www.apache.org/licenses/LICENSE-2.0.html&lt;/url&gt;
+        &lt;url&gt;http://www.apache.org/licenses/LICENSE-2.0.txt&lt;/url&gt;
+        &lt;url&gt;http://apache.org/licenses/LICENSE-2.0&lt;/url&gt;
+        &lt;url&gt;http://apache.org/licenses/LICENSE-2.0.html&lt;/url&gt;
+        &lt;url&gt;http://apache.org/licenses/LICENSE-2.0.txt&lt;/url&gt;
+      &lt;/urls&gt;
+    &lt;/license&gt;
+
+    &lt;license&gt;
+      &lt;id&gt;Common Public License Version 1.0&lt;/id&gt;
+      &lt;description&gt;Common Public License Version 1.0&lt;/description&gt;
+      &lt;names&gt;
+        &lt;name&gt;Common Public License Version 1.0&lt;/name&gt;
+      &lt;/names&gt;
+      &lt;urls&gt;
+        &lt;url&gt;http://www.opensource.org/licenses/cpl1.0.txt&lt;/url&gt;
+      &lt;/urls&gt;
+    &lt;/license&gt;
+
+    &lt;license&gt;
+      &lt;id&gt;The TMate Open Source License&lt;/id&gt;
+      &lt;description&gt;The TMate Open Source License&lt;/description&gt;
+      &lt;names&gt;
+        &lt;name&gt;The TMate Open Source License&lt;/name&gt;
+      &lt;/names&gt;
+      &lt;urls&gt;
+        &lt;url&gt;http://svnkit.com/license.html&lt;/url&gt;
+      &lt;/urls&gt;
+    &lt;/license&gt;
+    &lt;license&gt;
+      &lt;id&gt;Test License for two Licenses&lt;/id&gt;
+      &lt;description&gt;Test License for two Licenses&lt;/description&gt;
+      &lt;names&gt;
+        &lt;name&gt;Test License&lt;/name&gt;
+        &lt;name&gt;Test License, Version 1.0&lt;/name&gt;
+      &lt;/names&gt;
+      &lt;urls&gt;
+        &lt;url&gt;http://www.testlicense.org/License-1.0.txt&lt;/url&gt;
+        &lt;url&gt;http://www.testlicense.org/License-2.0.txt&lt;/url&gt;
+      &lt;/urls&gt;
+    &lt;/license&gt;
+
+  &lt;/valid&gt;
+
+  &lt;invalid&gt;
+    &lt;license&gt;
+      &lt;id&gt;GNU General Public License (GPL)&lt;/id&gt;
+      &lt;description&gt;GNU General Public License (GPL)&lt;/description&gt;
+      &lt;names&gt;
+        &lt;name&gt;GNU General Public License, version 2&lt;/name&gt;
+        &lt;name&gt;GNU General Public License, version 3&lt;/name&gt;
+      &lt;/names&gt;
+      &lt;urls&gt;
+        &lt;url&gt;http://www.gnu.org/licenses/gpl-2.0.html&lt;/url&gt;
+        &lt;url&gt;http://www.gnu.org/licenses/gpl-3.0.txt&lt;/url&gt;
+      &lt;/urls&gt;
+    &lt;/license&gt;
+  &lt;/invalid&gt;
+
+  &lt;warning&gt;
+    &lt;license&gt;
+      &lt;id&gt;Apache Software License 1.1 (Historic)&lt;/id&gt;
+      &lt;description&gt;Apache Software License 1.1 (Historic)&lt;/description&gt;
+      &lt;names&gt;
+        &lt;name&gt;Apache License, Version 1.1&lt;/name&gt;
+      &lt;/names&gt;
+      &lt;urls&gt;
+        &lt;url&gt;http://www.apache.org/licenses/LICENSE-1.1&lt;/url&gt;
+      &lt;/urls&gt;
+    &lt;/license&gt;
+  &lt;/warning&gt;
+&lt;/licenses&gt;</pre>
+</div>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2009-2011
+    
+          SoftwareEntwicklung Beratung Schulung
+          
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Maven License Verifiery plugin - licenses-verifier:report</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                    <span id="bannerLeft">
+    
+            Maven License Verifier Plugin :: Plugin
+    
+            </span>
+                    <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+    
+            <div class="xleft">
+        Last Published: 2011-01-29
+                      </div>
+            <div class="xright">      
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+    
+                   <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Introduction</a>
+          </li>
+              
+    <li class="none">
+                    <a href="plugin-info.html">Goals</a>
+          </li>
+              
+    <li class="none">
+                    <a href="usage.html">Usage</a>
+          </li>
+              
+    <li class="none">
+                    <a href="licenses.html">Licenses</a>
+          </li>
+              
+    <li class="none">
+                    <a href="configuration.html">Configuration</a>
+          </li>
+              
+    <li class="none">
+                    <a href="roadmap.html">Roadmap</a>
+          </li>
+              
+    <li class="none">
+                    <a href="faq.html">FAQ</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+                                           <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
+            <img alt="Built by Maven" src="./images/logos/maven-feather.png"></img>
+          </a>
+                       
+  
+
+  
+    
+  
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2><a name="licenses-verifier:report"></a>licenses-verifier:report</h2>
+<p><strong>Note</strong>:This goal should be used as a Maven report.</p>
+<p><strong>Full name</strong>:</p>
+<p>com.soebes.maven.plugins.mlv:maven-licenses-verifier-plugin:0.2-SNAPSHOT:report</p>
+<p><strong>Description</strong>:</p>
+<div>Generate a report about the license verifier report.</div><p><strong>Attributes</strong>:</p>
+<ul><li>Requires a Maven 2.0 project to be executed.</li>
+</ul>
+<div class="section"><h3><a name="Optional_Parameters"></a>Optional Parameters</h3>
+<table class="bodyTable"><tr class="a"><th>Name</th>
+<th>Type</th>
+<th>Since</th>
+<th>Description</th>
+</tr>
+<tr class="b"><td><strong><a href="#excludes">excludes</a></strong></td>
+<td><code>List</code></td>
+<td><code>-</code></td>
+<td>(no description)<br />
+</td>
+</tr>
+<tr class="a"><td><strong><a href="#failOnInvalid">failOnInvalid</a></strong></td>
+<td><code>boolean</code></td>
+<td><code>-</code></td>
+<td>(no description)<br />
+<strong>Default value is</strong>: <code>false</code>.</td>
+</tr>
+<tr class="b"><td><strong><a href="#failOnUnknown">failOnUnknown</a></strong></td>
+<td><code>boolean</code></td>
+<td><code>-</code></td>
+<td>(no description)<br />
+<strong>Default value is</strong>: <code>false</code>.</td>
+</tr>
+<tr class="a"><td><strong><a href="#failOnValid">failOnValid</a></strong></td>
+<td><code>boolean</code></td>
+<td><code>-</code></td>
+<td>(no description)<br />
+<strong>Default value is</strong>: <code>false</code>.</td>
+</tr>
+<tr class="b"><td><strong><a href="#failOnWarning">failOnWarning</a></strong></td>
+<td><code>boolean</code></td>
+<td><code>-</code></td>
+<td>(no description)<br />
+<strong>Default value is</strong>: <code>false</code>.</td>
+</tr>
+<tr class="a"><td><strong><a href="#licenseFile">licenseFile</a></strong></td>
+<td><code>File</code></td>
+<td><code>-</code></td>
+<td>The name of the licenses.xml file which will be used to categorize
+the licenses of the artifacts.<br />
+<strong>Default value is</strong>: <code>${project.basedir}/src/main/licenses/licenses.xml</code>.</td>
+</tr>
+<tr class="b"><td><strong><a href="#licenseRefs">licenseRefs</a></strong></td>
+<td><code>List</code></td>
+<td><code>-</code></td>
+<td>With this you could define the following: &lt;configuration&gt;
+&lt;licenseRefs&gt;
+&lt;licenseRef&gt;Apache-2.0.xml&lt;/licenseRef&gt;
+&lt;licenseRefs&gt; &lt;/configuration&gt;<br />
+</td>
+</tr>
+<tr class="a"><td><strong><a href="#verbose">verbose</a></strong></td>
+<td><code>boolean</code></td>
+<td><code>-</code></td>
+<td>This will turn on verbose behavior and will print out all
+information about the artifacts.<br />
+<strong>Default value is</strong>: <code>false</code>.</td>
+</tr>
+</table>
+</div>
+<div class="section"><h3><a name="Parameter_Details"></a>Parameter Details</h3>
+<p><strong><a name="excludes">excludes</a>:</strong></p>
+<div>(no description)</div><ul><li><strong>Type</strong>: <code>java.util.List</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+</ul>
+<hr />
+<p><strong><a name="failOnInvalid">failOnInvalid</a>:</strong></p>
+<div>(no description)</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${mlv.failOnInvalid}</code></li>
+<li><strong>Default</strong>: <code>false</code></li>
+</ul>
+<hr />
+<p><strong><a name="failOnUnknown">failOnUnknown</a>:</strong></p>
+<div>(no description)</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${mlv.failOnUnknown}</code></li>
+<li><strong>Default</strong>: <code>false</code></li>
+</ul>
+<hr />
+<p><strong><a name="failOnValid">failOnValid</a>:</strong></p>
+<div>(no description)</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${mlv.failOnValid}</code></li>
+<li><strong>Default</strong>: <code>false</code></li>
+</ul>
+<hr />
+<p><strong><a name="failOnWarning">failOnWarning</a>:</strong></p>
+<div>(no description)</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${mlv.failOnWarning}</code></li>
+<li><strong>Default</strong>: <code>false</code></li>
+</ul>
+<hr />
+<p><strong><a name="licenseFile">licenseFile</a>:</strong></p>
+<div>The name of the licenses.xml file which will be used to categorize
+the licenses of the artifacts.</div><ul><li><strong>Type</strong>: <code>java.io.File</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${licenseFile}</code></li>
+<li><strong>Default</strong>: <code>${project.basedir}/src/main/licenses/licenses.xml</code></li>
+</ul>
+<hr />
+<p><strong><a name="licenseRefs">licenseRefs</a>:</strong></p>
+<div>With this you could define the following: &lt;configuration&gt;
+&lt;licenseRefs&gt;
+&lt;licenseRef&gt;Apache-2.0.xml&lt;/licenseRef&gt;
+&lt;licenseRefs&gt; &lt;/configuration&gt;</div><ul><li><strong>Type</strong>: <code>java.util.List</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+</ul>
+<hr />
+<p><strong><a name="verbose">verbose</a>:</strong></p>
+<div>This will turn on verbose behavior and will print out all
+information about the artifacts.</div><ul><li><strong>Type</strong>: <code>boolean</code></li>
+<li><strong>Required</strong>: <code>No</code></li>
+<li><strong>Expression</strong>: <code>${verbose}</code></li>
+<li><strong>Default</strong>: <code>false</code></li>
+</ul>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2009-2011
+    
+          SoftwareEntwicklung Beratung Schulung
+          
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

@@ -12,7 +12,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title>Maven License Verifiery plugin - Introduction</title>
+    <title>Maven License Verifiery plugin - Usage</title>
     <style type="text/css" media="all">
       @import url("./css/maven-base.css");
       @import url("./css/maven-theme.css");
@@ -72,16 +72,16 @@
             <ul>
               
     <li class="none">
-              <strong>Introduction</strong>
-        </li>
+                    <a href="index.html">Introduction</a>
+          </li>
               
     <li class="none">
                     <a href="plugin-info.html">Goals</a>
           </li>
               
     <li class="none">
-                    <a href="usage.html">Usage</a>
-          </li>
+              <strong>Usage</strong>
+        </li>
               
     <li class="none">
                     <a href="licenses.html">Licenses</a>
@@ -162,14 +162,36 @@
     <div id="bodyColumn">
       <div id="contentBox">
         <div class="section"><h2>Maven License Verifier Plugin</h2>
-<p>The basic idea of the Maven License Verifier Plugin (MLV for short) is to check which licenses are used in your project and give some hints about artifacts which don't define a license at all or artifacts which use artifacts which are not acceptable in your project or company.</p>
-<p>This will sometimes called License Compliance Management, but this plugin will support your work but of course doesn't take the job itself.</p>
-<div class="section"><h3>Goals Overview</h3>
-<p>There are currently two goals (check, report) which can be used to check your project and create a report about the used licenses.</p>
+<div class="section"><h3>Information</h3>
+<p>The goals for the MLV are bound to their respective phases in the build lifecycle.</p>
+<p>The default binding is to run the MLV at the test phase. If you like to change this you have to make an appropriate configuration.</p>
+<p>Hint: Sometimes this does not work, cause at that time the dependencies have not been solved (Check this!)</p>
+<div class="source"><pre>&lt;project&gt;
+  ...
+  &lt;build&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;groupId&gt;com.soebes.maven.plugins.mlv&lt;/groupId&gt;
+        &lt;artifactId&gt;maven-licenses-verifier-plugin&lt;/artifactId&gt;
+        &lt;version&gt;0.2-SNAPSHOT&lt;/version&gt;
+        &lt;executions&gt;
+          &lt;execution&gt;
+            &lt;phase&gt;..&lt;/phase&gt;
+            &lt;goals&gt;
+              &lt;goal&gt;verify&lt;/goal&gt;
+            &lt;/goals&gt;
+          &lt;execution&gt;
+        &lt;exectutions&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/build&gt;
+  ...
+&lt;/project&gt;</pre>
 </div>
-<div class="section"><h3>Usage</h3>
-<p>If you like to use the MLV plugin you have to use the plugin in your pom either in the area of the build to do a check during the build. On the other hand you can use the MLV plugin in the area of the reporting to produce a report about the used licenses.</p>
-<p>In both cases you have to define the location of a <a href="licenses.html">licenses.xml</a> file which contains the definition of the different <a href="categories.html">categories</a> of licenses.</p>
+<p>The most important thing you have to do first is to create one or more <a href="licenses.html">licenses.xml</a> files which contain the license information.</p>
+</div>
+<div class="section"><h3>Configuration</h3>
+<p>The most important thing you have to do is to create a <a href="licenses.html">licenses.xml</a> file which comprises of the different categories and give the location of the licenses.xml file in the configuration of the MLV plugin.</p>
 <div class="source"><pre>&lt;project&gt;
   ...
   &lt;build&gt;
@@ -179,7 +201,7 @@
         &lt;artifactId&gt;maven-licenses-verifier-plugin&lt;/artifactId&gt;
         &lt;version&gt;0.2-SNAPSHOT&lt;/version&gt;
         &lt;configuration&gt;
-          &lt;licensesFile&gt;${basedir}/licenses.xml&lt;/licensesFile&gt;
+          &lt;!-- Optional you can put your configurations here --&gt;
         &lt;/configuration&gt;
       &lt;/plugin&gt;
     &lt;/plugins&gt;
@@ -188,7 +210,7 @@
 &lt;/project&gt;</pre>
 </div>
 </div>
-<div class="section"><h3>Examples</h3>
+<div class="section"><h3>Check ....</h3>
 </div>
 </div>
 

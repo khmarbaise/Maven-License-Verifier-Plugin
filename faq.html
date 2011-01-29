@@ -12,14 +12,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title>Maven License Verifiery plugin - Introduction</title>
+    <title>Maven License Verifiery plugin - Frequently Asked Questions</title>
     <style type="text/css" media="all">
       @import url("./css/maven-base.css");
       @import url("./css/maven-theme.css");
       @import url("./css/site.css");
     </style>
     <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
-          <meta name="author" content="Karl Heinz Marbaise" />
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
       </head>
   <body class="composite">
@@ -72,8 +71,8 @@
             <ul>
               
     <li class="none">
-              <strong>Introduction</strong>
-        </li>
+                    <a href="index.html">Introduction</a>
+          </li>
               
     <li class="none">
                     <a href="plugin-info.html">Goals</a>
@@ -96,8 +95,8 @@
           </li>
               
     <li class="none">
-                    <a href="faq.html">FAQ</a>
-          </li>
+              <strong>FAQ</strong>
+        </li>
           </ul>
               <h5>Project Documentation</h5>
             <ul>
@@ -161,36 +160,17 @@
     </div>
     <div id="bodyColumn">
       <div id="contentBox">
-        <div class="section"><h2>Maven License Verifier Plugin</h2>
-<p>The basic idea of the Maven License Verifier Plugin (MLV for short) is to check which licenses are used in your project and give some hints about artifacts which don't define a license at all or artifacts which use artifacts which are not acceptable in your project or company.</p>
-<p>This will sometimes called License Compliance Management, but this plugin will support your work but of course doesn't take the job itself.</p>
-<div class="section"><h3>Goals Overview</h3>
-<p>There are currently two goals (check, report) which can be used to check your project and create a report about the used licenses.</p>
+        <div class="section"><h2><a name="top">Frequently Asked Questions</a></h2>
+<ol type="1"><li><a href="#question">Question?</a></li>
+</ol>
 </div>
-<div class="section"><h3>Usage</h3>
-<p>If you like to use the MLV plugin you have to use the plugin in your pom either in the area of the build to do a check during the build. On the other hand you can use the MLV plugin in the area of the reporting to produce a report about the used licenses.</p>
-<p>In both cases you have to define the location of a <a href="licenses.html">licenses.xml</a> file which contains the definition of the different <a href="categories.html">categories</a> of licenses.</p>
-<div class="source"><pre>&lt;project&gt;
-  ...
-  &lt;build&gt;
-    &lt;plugins&gt;
-      &lt;plugin&gt;
-        &lt;groupId&gt;com.soebes.maven.plugins.mlv&lt;/groupId&gt;
-        &lt;artifactId&gt;maven-licenses-verifier-plugin&lt;/artifactId&gt;
-        &lt;version&gt;0.2-SNAPSHOT&lt;/version&gt;
-        &lt;configuration&gt;
-          &lt;licensesFile&gt;${basedir}/licenses.xml&lt;/licensesFile&gt;
-        &lt;/configuration&gt;
-      &lt;/plugin&gt;
-    &lt;/plugins&gt;
-  &lt;/build&gt;
-  ...
-&lt;/project&gt;</pre>
-</div>
-</div>
-<div class="section"><h3>Examples</h3>
-</div>
-</div>
+<dl><dt><a name="question">Question?</a></dt>
+<dd>
+        <p>
+          Answer
+       </p>
+      <table border="0"><tr><td align="right"><a href="#top">[top]</a></td></tr></table></dd>
+</dl>
 
       </div>
     </div>

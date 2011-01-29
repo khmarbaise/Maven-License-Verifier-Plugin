@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+
+
+
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Maven License Verifiery plugin - Usage</title>
+    <style type="text/css" media="all">
+      @import url("./css/maven-base.css");
+      @import url("./css/maven-theme.css");
+      @import url("./css/site.css");
+    </style>
+    <link rel="stylesheet" href="./css/print.css" type="text/css" media="print" />
+          <meta name="author" content="Karl Heinz Marbaise" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+      </head>
+  <body class="composite">
+    <div id="banner">
+                    <span id="bannerLeft">
+    
+            Maven License Verifier Plugin :: Plugin
+    
+            </span>
+                    <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="breadcrumbs">
+          
+  
+
+  
+    
+  
+  
+    
+            <div class="xleft">
+        Last Published: 2011-01-29
+                      </div>
+            <div class="xright">      
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+    <div id="leftColumn">
+      <div id="navcolumn">
+           
+  
+
+  
+    
+  
+  
+    
+                   <h5>Overview</h5>
+            <ul>
+              
+    <li class="none">
+                    <a href="index.html">Introduction</a>
+          </li>
+              
+    <li class="none">
+                    <a href="plugin-info.html">Goals</a>
+          </li>
+              
+    <li class="none">
+                    <a href="usage.html">Usage</a>
+          </li>
+              
+    <li class="none">
+                    <a href="licenses.html">Licenses</a>
+          </li>
+              
+    <li class="none">
+                    <a href="configuration.html">Configuration</a>
+          </li>
+              
+    <li class="none">
+              <strong>Roadmap</strong>
+        </li>
+              
+    <li class="none">
+                    <a href="faq.html">FAQ</a>
+          </li>
+          </ul>
+              <h5>Project Documentation</h5>
+            <ul>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-info.html">Project Information</a>
+                </li>
+              
+                
+              
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+            
+      
+              
+        <li class="collapsed">
+                    <a href="project-reports.html">Project Reports</a>
+                </li>
+          </ul>
+                                           <a href="http://maven.apache.org/" title="Built by Maven" class="poweredBy">
+            <img alt="Built by Maven" src="./images/logos/maven-feather.png"></img>
+          </a>
+                       
+  
+
+  
+    
+  
+  
+    
+        </div>
+    </div>
+    <div id="bodyColumn">
+      <div id="contentBox">
+        <div class="section"><h2>Roadmap</h2>
+<p>The following roadmap will give you an overview of the planned features and their possible implementation order. Of course i don't guarantee anything ..;-)</p>
+<div class="section"><h3>Release 0.2</h3>
+<p>Simple usage of a <b>license.xml</b> file which is read and checking only the license entry of the pom files of their appropriate artifacts.</p>
+<div class="source"><pre>&lt;configuration&gt;
+  &lt;licenseFile&gt;${basedir}/src/licenses/license.xml&lt;/licenseFile&gt;
+&lt;/configuration&gt;</pre>
+</div>
+<p>The default folder for the above is <b>${project.basedir}/src/main/licenses/licenses.xml</b>. That means if you don't give any <b>licenseFile</b> information in the configuration MLV will search for a licenses.xml file in the defined folder.</p>
+<p>Support of excluding artifacts from being checked against the licenses. This is needed cause some artifacts exist which don't define any license.</p>
+<div class="source"><pre>&lt;configuration&gt;
+  &lt;excludes&gt;
+    &lt;exclude&gt;log4j:log4j:*&lt;/exclude&gt;
+    &lt;exclude&gt;org.apache.*:*:jar&lt;/exclude&gt;
+  &lt;/excludes&gt;
+&lt;/configuration&gt;</pre>
+</div>
+</div>
+<div class="section"><h3>Release 0.3</h3>
+<p>Usage of different licenses files which can be configured in the configuration section.</p>
+<p>Loading of multiple license files which will be summarized as they have been loaded as a single file. (Simplify maintenance)</p>
+<div class="source"><pre>&lt;configuration&gt;
+  &lt;licenseRefs&gt;
+    &lt;licenseRef&gt;oss-licenses.xml&lt;/licensesRef&gt;
+    &lt;licenseRef&gt;company-licenses.xml&lt;/licensesRef&gt;
+  &lt;/licenseRefs&gt;
+&lt;/configuration&gt;</pre>
+</div>
+</div>
+<div class="section"><h3>Release 0.4</h3>
+<p>Company License defined by an extra artifact.</p>
+<div class="source"><pre>&lt;plugin&gt;
+  &lt;groupId&gt;${project.groupId}&lt;/groupId&gt;
+  &lt;artifactId&gt;${project.artifactId}&lt;/artifactId&gt;
+  &lt;version&gt;${project.version}&lt;/version&gt;
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;YouCompanyPackage.licenses&lt;/groupId&gt;
+      &lt;artifactId&gt;licenses&lt;/artifactId&gt;
+      &lt;version&gt;6&lt;/version&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+  &lt;configuration&gt;
+    &lt;verbose&gt;true&lt;/verbose&gt;
+  &lt;/configuration&gt;
+&lt;/plugin&gt;</pre>
+</div>
+</div>
+<div class="section"><h3>Release 0.5</h3>
+<p>It should be possible to define particular artifact to have a particular category. This is needed to be able to redefine an artifact without an license to be valid, invalid or warning instead of the unknown category which is automatically selected if no license information is given. Hm. Think about this, cause you can simply exclude the artifact from being checked? Is this enough?</p>
+<div class="source"><pre>&lt;configuration&gt;
+  &lt;warnings&gt;
+    &lt;artifacts&gt;
+      &lt;artifact&gt;
+
+      &lt;artifact&gt;
+    &lt;/artifacts&gt;
+  &lt;warnings&gt;
+
+  &lt;valid&gt;
+    &lt;artifacts&gt;
+      &lt;artifact&gt;
+        &lt;artifactId&gt;log4j&lt;/artifactId&gt;
+        &lt;groupId&gt;log4j&lt;/groupId&gt;
+        &lt;version&gt;1.2.13&lt;/version&gt;
+      &lt;artifact&gt;
+    &lt;/artifacts&gt;
+  &lt;/valid&gt;
+
+   &lt;invalid&gt;
+   &lt;/invalid&gt;
+&lt;/configuration&gt;</pre>
+</div>
+</div>
+<div class="section"><h3>Release 0.6</h3>
+<p>Read different license via descriptors</p>
+<div class="source"><pre>&lt;configuration&gt;
+  &lt;descriptors&gt;
+    &lt;descriptor&gt;Apache-2.0&lt;/descriptor&gt;
+    &lt;descriptor&gt;GNU-2.0&lt;/descriptor&gt;
+    &lt;descriptor&gt;GNU-3.0&lt;/descriptor&gt;
+  &lt;/descriptors&gt;
+&lt;/configuration&gt;</pre>
+</div>
+<div class="source"><pre>&lt;configuration&gt;
+  &lt;descriptors&gt;
+    &lt;descriptor&gt;OSS&lt;/descriptor&gt; -&gt; Contains a large list of OSS approved licenses
+  &lt;/descriptors&gt;
+&lt;/configuration&gt;</pre>
+</div>
+</div>
+<div class="section"><h3>Release 0.7</h3>
+<ul><li>Check not only the POM use the artifacts itself, cause it contains license information</li>
+<li>The idea is to search inside the artifacts which usually contain some kind of license information for example as a single file (LICENSE or LICENSE.txt) etc.</li>
+<li>An other source of information can be the MANIFEST.MF file.</li>
+<li>Check the artifacts them selfs (.jar) file and search them for license.txt etc. and may be</li>
+<li>bundles license entries.</li>
+</ul>
+</div>
+<div class="section"><h3>Release 1.0</h3>
+<ul><li>Tata ;-)</li>
+</ul>
+</div>
+</div>
+
+      </div>
+    </div>
+    <div class="clear">
+      <hr/>
+    </div>
+    <div id="footer">
+      <div class="xright">&#169;  
+          2009-2011
+    
+          SoftwareEntwicklung Beratung Schulung
+          
+  
+
+  
+    
+  
+  
+    
+  </div>
+      <div class="clear">
+        <hr/>
+      </div>
+    </div>
+  </body>
+</html>

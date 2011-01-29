@@ -12,7 +12,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <title>Maven License Verifiery plugin - Introduction</title>
+    <title>Maven License Verifiery plugin - Usage</title>
     <style type="text/css" media="all">
       @import url("./css/maven-base.css");
       @import url("./css/maven-theme.css");
@@ -72,8 +72,8 @@
             <ul>
               
     <li class="none">
-              <strong>Introduction</strong>
-        </li>
+                    <a href="index.html">Introduction</a>
+          </li>
               
     <li class="none">
                     <a href="plugin-info.html">Goals</a>
@@ -88,8 +88,8 @@
           </li>
               
     <li class="none">
-                    <a href="configuration.html">Configuration</a>
-          </li>
+              <strong>Configuration</strong>
+        </li>
               
     <li class="none">
                     <a href="roadmap.html">Roadmap</a>
@@ -161,25 +161,47 @@
     </div>
     <div id="bodyColumn">
       <div id="contentBox">
-        <div class="section"><h2>Maven License Verifier Plugin</h2>
-<p>The basic idea of the Maven License Verifier Plugin (MLV for short) is to check which licenses are used in your project and give some hints about artifacts which don't define a license at all or artifacts which use artifacts which are not acceptable in your project or company.</p>
-<p>This will sometimes called License Compliance Management, but this plugin will support your work but of course doesn't take the job itself.</p>
-<div class="section"><h3>Goals Overview</h3>
-<p>There are currently two goals (check, report) which can be used to check your project and create a report about the used licenses.</p>
+        <div class="section"><h2>Configuration</h2>
+<div class="section"><h3>Configuration of the licenses.xml file</h3>
+<p>You can simply give a particular <a href="licenses.html">licenses.xml</a> file which contains the different licenses.</p>
+<p>The <a href="licenses.html">licenses.xml</a> is being searched for in the following folder <b>${project.basedir}/src/main/licenses/</b>. That means if you don't give any <b>licenseFile</b> information in the configuration MLV will search for a licenses.xml file in the defined default folder.</p>
+<p>The following configuration is only needed if you don't store the licenses.xml file in the default location.</p>
+<div class="source"><pre>&lt;configuration&gt;
+  &lt;licenseFile&gt;${basedir}/src/etc/license.xml&lt;/licenseFile&gt;
+&lt;/configuration&gt;</pre>
 </div>
-<div class="section"><h3>Usage</h3>
-<p>If you like to use the MLV plugin you have to use the plugin in your pom either in the area of the build to do a check during the build. On the other hand you can use the MLV plugin in the area of the reporting to produce a report about the used licenses.</p>
-<p>In both cases you have to define the location of a <a href="licenses.html">licenses.xml</a> file which contains the definition of the different <a href="categories.html">categories</a> of licenses.</p>
+</div>
+<div class="section"><h3>Exclude artifacts</h3>
+<p>If you have artifacts which do not contain a valid license (e.g. log4j 1.2.12) you can simply exclude those artifacts from being checked during the check cycle.</p>
+<p>The pattern for the check is groupId:artifactId:version:type:classifier. (TODO: Check this!)</p>
+<div class="source"><pre>&lt;configuration&gt;
+  &lt;excludes&gt;
+    &lt;exclude&gt;org.antlr:antlr-runtime:jar:3.3&lt;/exclude&gt;
+  &lt;/excludes&gt;
+&lt;/configuration&gt;</pre>
+</div>
+</div>
+<div class="section"><h3>Company wide setup</h3>
+<p>In a company you have other requirements than in a simple single module project. In a company you would like to setup a single parent pom which contains the configuration for the Maven License Verifier Plugin.</p>
+<p>This can simply be achieved by using a setup like the following.</p>
+<p>(NOT WORKING YET!)</p>
 <div class="source"><pre>&lt;project&gt;
   ...
   &lt;build&gt;
     &lt;plugins&gt;
       &lt;plugin&gt;
-        &lt;groupId&gt;com.soebes.maven.plugins.mlv&lt;/groupId&gt;
-        &lt;artifactId&gt;maven-licenses-verifier-plugin&lt;/artifactId&gt;
-        &lt;version&gt;0.2-SNAPSHOT&lt;/version&gt;
+        &lt;groupId&gt;${project.groupId}&lt;/groupId&gt;
+        &lt;artifactId&gt;${project.artifactId}&lt;/artifactId&gt;
+        &lt;version&gt;${project.version}&lt;/version&gt;
+        &lt;dependencies&gt;
+          &lt;dependency&gt;
+            &lt;groupId&gt;com.company.licenses&lt;/groupId&gt;
+            &lt;artifactId&gt;allprojects&lt;/artifactId&gt;
+            &lt;version&gt;1.0&lt;/version&gt;
+          &lt;/dependency
+        &lt;/dependencies&gt;
         &lt;configuration&gt;
-          &lt;licensesFile&gt;${basedir}/licenses.xml&lt;/licensesFile&gt;
+          &lt;!-- Optional you can put your configurations here --&gt;
         &lt;/configuration&gt;
       &lt;/plugin&gt;
     &lt;/plugins&gt;
@@ -187,8 +209,33 @@
   ...
 &lt;/project&gt;</pre>
 </div>
+<p>The above package (allprojects) can be simply created as a simple maven project which comprises of the following folder structure.</p>
+<div class="source"><pre>  +-- pom.xml
+  +-- src
+        +--- main
+               +--- resources
+                       +---- licenses.xml</pre>
 </div>
-<div class="section"><h3>Examples</h3>
+<p>And the following pom:</p>
+<div class="source"><pre>&lt;groupId&gt;com.soebes.mlv.plugin.licenses&lt;/groupId&gt;
+&lt;artifactId&gt;oss&lt;/artifactId&gt;
+&lt;packaging&gt;jar&lt;/packaging&gt;
+&lt;version&gt;1.0&lt;/version&gt;
+&lt;name&gt;Licenses Configuration Files&lt;/name&gt;
+
+  &lt;build&gt;
+    &lt;plugins&gt;
+      &lt;plugin&gt;
+        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+        &lt;artifactId&gt;maven-resources-plugin&lt;/artifactId&gt;
+        &lt;version&gt;2.3&lt;/version&gt;
+        &lt;configuration&gt;
+          &lt;encoding&gt;UTF-8&lt;/encoding&gt;
+        &lt;/configuration&gt;
+      &lt;/plugin&gt;
+    &lt;/plugins&gt;
+  &lt;/build&gt;</pre>
+</div>
 </div>
 </div>
 
