@@ -10,7 +10,7 @@ allowed licenses in the company?  Or is it a critical license(for example GPL in
 commerical environment)?
 
 This plugin can help you in the above situations. It will check the licenses of
-all artifact during every build against a list of valid licenses or licenses which should
+all artifacts during every build against a list of valid licenses or licenses which should
 be checked in more detail (warning) or unknown licenses or invalid licenses.
 
 License
@@ -37,14 +37,10 @@ Usage
 
 The first and simplest usage is to configure the Maven Licenses Verifier Plugin
 
-
     <plugin>
       <groupId>com.soebes.maven.plugins.mlv</groupId>
       <artifactId>maven-licenses-verifier-plugin</artifactId>
       <version>0.2-SNAPSHOT</version>
-      <configuration>
-        <verbose>true</verbose>
-      </configuration>
       <executions>
         <execution>
           <phase>test</phase>
@@ -54,6 +50,11 @@ The first and simplest usage is to configure the Maven Licenses Verifier Plugin
         </execution>
       </executions>
     </plugin>
+
+Reporting about Licenses
+------------------------
+
+
 
 
 Examples
