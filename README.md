@@ -4,13 +4,14 @@ Maven License Verifier Plugin
 Overview
 ========
 If you are working with Maven it often happens that someone adds a new library to 
-a project cause its needed somehow. The problem with such cases is: What kind
-of license does this library have? Is it one of the allowed licenses in the company?
-Or is it a critical license?
+a project cause its needed somehow (or whatevery the reason is). The problem with 
+such cases is: What kind of license does this library have? Is it one of the 
+allowed licenses in the company?  Or is it a critical license(for example GPL in 
+commerical environment)?
 
-This plugin can help you in the above situations. It will check during every build
-the licenses and check it against a list of valid licenses or licenses which should
-be checked in more detail (warning) or unknown licenses.
+This plugin can help you in the above situations. It will check the licenses of
+all artifact during every build against a list of valid licenses or licenses which should
+be checked in more detail (warning) or unknown licenses or invalid licenses.
 
 License
 -------
@@ -23,8 +24,13 @@ Issue Tracker
 Status
 ------
 
+ * Report is created.
+
+
 TODOs
 -----
+
+ * Make the reports better.
 
 Usage
 -----
