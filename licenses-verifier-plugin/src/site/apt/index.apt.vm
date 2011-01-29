@@ -63,9 +63,18 @@ Maven License Verifier Plugin
         <groupId>${project.groupId}</groupId>
         <artifactId>${project.artifactId}</artifactId>
         <version>${project.version}</version>
-        <configuration>
-          <licensesFile>${basedir}/licenses.xml</licensesFile>
-        </configuration>
+        <executions>
+          <execution>
+            <phase>prepare-package</phase>
+            <goals><goal>verify</goal></goals>
+            <configuration>
+              <verbose>true</verbose>
+              <excludes>
+                <exclude>org.antlr:antlr-runtime:jar:3.3</exclude>
+              </excludes>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
@@ -74,9 +83,32 @@ Maven License Verifier Plugin
 +-----
 
 
-
 * Examples
 
+ Here you can see an example of an execution of the MLV plugin on a particular project:
+
++-----
+[INFO] [licenses-verifier:verify {execution: default}]
+[INFO] Loading /home/kama/ws-git/sapm/src/main/licenses/licenses.xml licenses file.
+[WARNING] The artifact: org.antlr:antlr-runtime:jar:3.3 has been execluded by the configuration.
+[WARNING] ]UNKNOWN[ (compile) The artifact antlr:antlr:jar:2.7.7 has a license which is categorized as unknown
+[WARNING] ]UNKNOWN[ (compile) The artifact org.antlr:stringtemplate:jar:3.2.1 has a license which is categorized as unknown
+[WARNING] ]UNKNOWN[ (test) The artifact aopalliance:aopalliance:jar:1.0 has a license which is categorized as unknown
+[INFO]    ]VALID[   (test) The artifact com.beust:jcommander:jar:1.12 has a license which is categorized as valid
+[INFO]    ]VALID[   (test) The artifact com.google.inject:guice:jar:2.0 has a license which is categorized as valid
+[INFO]    ]VALID[   (test) The artifact junit:junit:jar:3.8.1 has a license which is categorized as valid
+[WARNING] ]UNKNOWN[ (test) The artifact org.beanshell:bsh:jar:2.0b4 has a license which is categorized as unknown
+[INFO]    ]VALID[   (test) The artifact org.testng:testng:jar:5.14.6 has a license which is categorized as valid
+[INFO] [jar:jar {execution: default-jar}]
+[INFO] Building jar: /home/kama/ws-git/sapm/target/sapm-0.4-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESSFUL
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 9 seconds
+[INFO] Finished at: Sat Jan 29 23:33:07 CET 2011
+[INFO] Final Memory: 32M/306M
+[INFO] ------------------------------------------------------------------------
++-----
 
   []
 
