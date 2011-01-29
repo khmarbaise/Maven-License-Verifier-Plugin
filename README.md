@@ -1,8 +1,7 @@
-Maven License Verifier Plugin
-=============================
+# Maven License Verifier Plugin
 
-Overview
-========
+# Overview
+
 If you are working with Maven it often happens that someone adds a new library to 
 a project cause its needed somehow (or whatevery the reason is). The problem with 
 such cases is: What kind of license does this library have? Is it one of the 
@@ -13,27 +12,24 @@ This plugin can help you in the above situations. It will check the licenses of
 all artifacts during every build against a list of valid licenses or licenses which should
 be checked in more detail (warning) or unknown licenses or invalid licenses.
 
-License
--------
+## License
+
 [Apache License, Version 2.0, January 2004](http://www.apache.org/licenses/)
 
-Issue Tracker
--------------
+## Issue Tracker
+
 [The Issue Tracker](http://supose.org/projects/show/mlv)
 
-Status
-------
+## Status
 
  * Report is created.
 
 
-TODOs
------
+## TODOs
 
  * Make the reports better.
 
-Usage
------
+## Usage
 
 The first and simplest usage is to configure the Maven Licenses Verifier Plugin
 
@@ -51,9 +47,7 @@ The first and simplest usage is to configure the Maven Licenses Verifier Plugin
       </executions>
     </plugin>
 
-Reporting about Licenses
-------------------------
-
+## Reporting about Licenses
 
 
 
