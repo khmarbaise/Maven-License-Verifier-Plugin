@@ -1,0 +1,40 @@
+<testng-results>
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="1093" started-at="2011-01-29T21:12:11Z" finished-at="2011-01-29T21:12:12Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="1093" started-at="2011-01-29T21:12:11Z" finished-at="2011-01-29T21:12:12Z">
+      <class name="com.soebes.maven.plugins.mlv.licenses.LicenseRealTest">
+        <test-method status="PASS" signature="beforeClass()" name="beforeClass" is-config="true" duration-ms="52" started-at="2011-01-29T21:12:11Z" finished-at="2011-01-29T21:12:11Z">
+        </test-method>
+        <test-method status="PASS" signature="catagorizeApache11()" name="catagorizeApache11" duration-ms="62" started-at="2011-01-29T21:12:11Z" finished-at="2011-01-29T21:12:11Z">
+        </test-method>
+        <test-method status="PASS" signature="catagorizeApache11OnlyByURL()" name="catagorizeApache11OnlyByURL" duration-ms="38" started-at="2011-01-29T21:12:11Z" finished-at="2011-01-29T21:12:11Z">
+        </test-method>
+        <test-method status="PASS" signature="catagorizeApache20()" name="catagorizeApache20" duration-ms="39" started-at="2011-01-29T21:12:12Z" finished-at="2011-01-29T21:12:12Z">
+        </test-method>
+        <test-method status="PASS" signature="catagorizeArtifactNoLicenses()" name="catagorizeArtifactNoLicenses" duration-ms="38" started-at="2011-01-29T21:12:12Z" finished-at="2011-01-29T21:12:12Z">
+        </test-method>
+        <test-method status="PASS" signature="catagorizeArtifactValidWithTwoLicensesNameAndURL()" name="catagorizeArtifactValidWithTwoLicensesNameAndURL" duration-ms="41" started-at="2011-01-29T21:12:12Z" finished-at="2011-01-29T21:12:12Z">
+        </test-method>
+        <test-method status="PASS" signature="catagorizeArtifactValidWithTwoLicensesNames()" name="catagorizeArtifactValidWithTwoLicensesNames" duration-ms="40" started-at="2011-01-29T21:12:12Z" finished-at="2011-01-29T21:12:12Z">
+        </test-method>
+        <test-method status="PASS" signature="catagorizeArtifactWithTwoLicensesFromNoCategory()" name="catagorizeArtifactWithTwoLicensesFromNoCategory" duration-ms="39" started-at="2011-01-29T21:12:12Z" finished-at="2011-01-29T21:12:12Z">
+        </test-method>
+        <test-method status="PASS" signature="catagorizeArtifactWithTwoLicensesFromTwoCategories()" name="catagorizeArtifactWithTwoLicensesFromTwoCategories" duration-ms="41" started-at="2011-01-29T21:12:12Z" finished-at="2011-01-29T21:12:12Z">
+        </test-method>
+        <test-method status="PASS" signature="catagorizeCPLV10()" name="catagorizeCPLV10" duration-ms="41" started-at="2011-01-29T21:12:12Z" finished-at="2011-01-29T21:12:12Z">
+        </test-method>
+        <test-method status="PASS" signature="catagorizeGPL20()" name="catagorizeGPL20" duration-ms="41" started-at="2011-01-29T21:12:12Z" finished-at="2011-01-29T21:12:12Z">
+        </test-method>
+        <test-method status="PASS" signature="catagorizeUnknown()" name="catagorizeUnknown" duration-ms="41" started-at="2011-01-29T21:12:12Z" finished-at="2011-01-29T21:12:12Z">
+        </test-method>
+        <test-method status="PASS" signature="categorizeApache20WithWrongURL()" name="categorizeApache20WithWrongURL" duration-ms="39" started-at="2011-01-29T21:12:12Z" finished-at="2011-01-29T21:12:12Z">
+        </test-method>
+        <test-method status="PASS" signature="afterClass()" name="afterClass" is-config="true" duration-ms="0" started-at="2011-01-29T21:12:12Z" finished-at="2011-01-29T21:12:12Z">
+        </test-method>
+      </class>
+    </test>
+  </suite>
+</testng-results>

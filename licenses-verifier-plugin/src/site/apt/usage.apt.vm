@@ -47,12 +47,12 @@ Maven License Verifier Plugin
         <artifactId>${project.artifactId}</artifactId>
         <version>${project.version}</version>
         <executions>
-        	<execution>
-              <phase>..</phase>
-        	  <goals>
-        	    <goal>check</goal>
-        	  </goals>
-        	<execution>
+          <execution>
+            <phase>..</phase>
+            <goals>
+              <goal>verify</goal>
+            </goals>
+          <execution>
         <exectutions>
       </plugin>
     </plugins>
@@ -70,7 +70,7 @@ Maven License Verifier Plugin
   The most important thing you have to do is to create a {{{licenses.html}licenses.xml}} file
   which comprises of the different categories and give the location of the licenses.xml
   file in the configuration of the MLV plugin.
- 
+
 +-----
 <project>
   ...

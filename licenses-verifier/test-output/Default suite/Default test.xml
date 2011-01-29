@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite hostname="office" name="com.soebes.maven.plugins.mlv.licenses.LicenseRealTest" tests="12" failures="0" timestamp="29 Jan 2011 20:12:12 GMT" time="1.093" errors="0">
+  <testcase name="catagorizeApache11" time="0.062" classname="com.soebes.maven.plugins.mlv.licenses.LicenseRealTest"/>
+  <testcase name="catagorizeApache11OnlyByURL" time="0.038" classname="com.soebes.maven.plugins.mlv.licenses.LicenseRealTest"/>
+  <testcase name="catagorizeApache20" time="0.039" classname="com.soebes.maven.plugins.mlv.licenses.LicenseRealTest"/>
+  <testcase name="catagorizeArtifactNoLicenses" time="0.038" classname="com.soebes.maven.plugins.mlv.licenses.LicenseRealTest"/>
+  <testcase name="catagorizeArtifactValidWithTwoLicensesNameAndURL" time="0.041" classname="com.soebes.maven.plugins.mlv.licenses.LicenseRealTest"/>
+  <testcase name="catagorizeArtifactValidWithTwoLicensesNames" time="0.04" classname="com.soebes.maven.plugins.mlv.licenses.LicenseRealTest"/>
+  <testcase name="catagorizeArtifactWithTwoLicensesFromNoCategory" time="0.039" classname="com.soebes.maven.plugins.mlv.licenses.LicenseRealTest"/>
+  <testcase name="catagorizeArtifactWithTwoLicensesFromTwoCategories" time="0.041" classname="com.soebes.maven.plugins.mlv.licenses.LicenseRealTest"/>
+  <testcase name="catagorizeCPLV10" time="0.041" classname="com.soebes.maven.plugins.mlv.licenses.LicenseRealTest"/>
+  <testcase name="catagorizeGPL20" time="0.041" classname="com.soebes.maven.plugins.mlv.licenses.LicenseRealTest"/>
+  <testcase name="catagorizeUnknown" time="0.041" classname="com.soebes.maven.plugins.mlv.licenses.LicenseRealTest"/>
+  <testcase name="categorizeApache20WithWrongURL" time="0.039" classname="com.soebes.maven.plugins.mlv.licenses.LicenseRealTest"/>
+</testsuite>
