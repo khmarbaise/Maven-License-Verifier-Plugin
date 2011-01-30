@@ -5,11 +5,10 @@
   <parent>
     <groupId>com.soebes.maven.plugins.mlv</groupId>
     <artifactId>maven-license-verifier</artifactId>
-    <version>0.3-SNAPSHOT</version>
-    <relativePath>..</relativePath>
+    <version>0.2-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
   </parent>
 
-  <groupId>com.soebes.maven.plugins.mlv</groupId>
   <artifactId>licenses-model</artifactId>
   <name>Maven License Verifier :: Licenses Model</name>
 
