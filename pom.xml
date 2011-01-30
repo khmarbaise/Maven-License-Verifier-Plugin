@@ -6,7 +6,7 @@
   <artifactId>maven-license-verifier</artifactId>
   <!-- <packaging>maven-plugin</packaging> -->
   <packaging>pom</packaging>
-  <version>0.2</version>
+  <version>0.3-SNAPSHOT</version>
   <name>Maven License Verifier :: Reactor</name>
   <url>https://github.com/khmarbaise/Maven-Licenses-Verifier-Plugin</url>
 
