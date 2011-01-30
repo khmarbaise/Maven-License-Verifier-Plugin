@@ -64,7 +64,7 @@
 
   <scm>
     <connection>scm:git:git://github.com/khmarbaise/Maven-Licenses-Verifier-Plugin.git</connection>
-    <developerConnection>scm:git:git://github.com/khmarbaise/Maven-Licenses-Verifier-Plugin.git</developerConnection>
+    <developerConnection>scm:git:git@github.com:khmarbaise/Maven-Licenses-Verifier-Plugin.git</developerConnection>
     <url>https://github.com/khmarbaise/Maven-Licenses-Verifier-Plugin</url>
   </scm>
 
