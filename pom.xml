@@ -1,254 +1,255 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.soebes.maven.plugins.mlv</groupId>
-	<artifactId>maven-license-verifier</artifactId>
-	<!-- <packaging>maven-plugin</packaging> -->
-	<packaging>pom</packaging>
-	<version>0.2-SNAPSHOT</version>
-	<name>Maven License Verifier :: Reactor</name>
-	<url>https://github.com/khmarbaise/Maven-Licenses-Verifier-Plugin</url>
+  <groupId>com.soebes.maven.plugins.mlv</groupId>
+  <artifactId>maven-license-verifier</artifactId>
+  <!-- <packaging>maven-plugin</packaging> -->
+  <packaging>pom</packaging>
+  <version>0.2-SNAPSHOT</version>
+  <name>Maven License Verifier :: Reactor</name>
+  <url>https://github.com/khmarbaise/Maven-Licenses-Verifier-Plugin</url>
 
-	<organization>
-	    <name>SoftwareEntwicklung Beratung Schulung</name>
-	    <url>http://www.soebes.com</url>
-	</organization>
+  <organization>
+    <name>SoftwareEntwicklung Beratung Schulung</name>
+    <url>http://www.soebes.com</url>
+  </organization>
 
-	<inceptionYear>2009</inceptionYear>	
-	<description>The Maven License Verifier Plugin is intented to check the different artifacts of a project.</description>
+  <inceptionYear>2009</inceptionYear>
+  <description>The Maven License Verifier Plugin is intented to check the different artifacts of a project.</description>
 
-	<issueManagement>
-		<system>default</system>
-		<url>https://github.com/khmarbaise/Maven-Licenses-Verifier-Plugin/issues</url>
-	</issueManagement>    
+  <issueManagement>
+    <system>default</system>
+    <url>https://github.com/khmarbaise/Maven-Licenses-Verifier-Plugin/issues</url>
+  </issueManagement>
 
-	<licenses>
-		<license>
-			<name>The Apache Software License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
 
-	<properties>
-		<mavenVersion>2.2.1</mavenVersion>
+  <properties>
+    <mavenVersion>2.2.1</mavenVersion>
 
-		<!-- all kind of resources etc. will be UTF-8 encoded --> 
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
+    <!-- all kind of resources etc. will be UTF-8 encoded -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
 
 
-	<modules>
-		<module>licenses-model</module>
-		<module>licenses-verifier</module>
-		<module>licenses-verifier-plugin</module>
-	</modules>
+  <modules>
+    <module>licenses-model</module>
+    <module>licenses-verifier</module>
+    <module>licenses-verifier-plugin</module>
+  </modules>
 
-	<developers>
-		<developer>
-			<id>kama</id>
-			<name>Karl Heinz Marbaise</name>
-			<email>khmarbaise@soebes.com</email>
-			<url>http://blog.soebes.de</url>
-			<organization>SoftwareEntwicklung Beratung Schulung</organization>
-			<organizationUrl>http://www.soebes.de</organizationUrl>
-			<roles>
-				<role>lead</role>
-				<role>developer</role>
-			</roles>
-		</developer>
-	</developers>
+  <developers>
+    <developer>
+      <id>kama</id>
+      <name>Karl Heinz Marbaise</name>
+      <email>khmarbaise@soebes.com</email>
+      <url>http://blog.soebes.de</url>
+      <organization>SoftwareEntwicklung Beratung Schulung</organization>
+      <organizationUrl>http://www.soebes.de</organizationUrl>
+      <roles>
+        <role>lead</role>
+        <role>developer</role>
+      </roles>
+    </developer>
+  </developers>
 
-	<scm>
-		<connection>scm:git:git://github.com/khmarbaise/Maven-Licenses-Verifier-Plugin.git</connection>
-		<developerConnection>scm:git:git://github.com/khmarbaise/Maven-Licenses-Verifier-Plugin.git</developerConnection>
-		<url>https://github.com/khmarbaise/Maven-Licenses-Verifier-Plugin</url>
-	</scm>
+  <scm>
+    <connection>scm:git:git://github.com/khmarbaise/Maven-Licenses-Verifier-Plugin.git</connection>
+    <developerConnection>scm:git:git://github.com/khmarbaise/Maven-Licenses-Verifier-Plugin.git</developerConnection>
+    <url>https://github.com/khmarbaise/Maven-Licenses-Verifier-Plugin</url>
+  </scm>
 
-	<distributionManagement>
-        <repository>
-            <id>ossrh-staging</id>
-            <url>http://oss.sonatype.org/service/local/staging/deploy/maven2</url>
-        </repository>
-        <snapshotRepository>
-            <id>ossrh-snapshots</id>
-            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-		<site>
-			<id>site.supose.org</id>
-			<url>scp://minden205.server4you.de:/usr/local/vhosts/site.supose.org/maven-licenses-verifier-plugin</url>
-		</site>
-	</distributionManagement>
+  <distributionManagement>
+    <!-- <repository> <id>ossrh-staging</id> <url>http://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+      </repository> <snapshotRepository> <id>ossrh-snapshots</id> <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+      </snapshotRepository> <site> <id>site.supose.org</id> <url>scp://minden205.server4you.de:/usr/local/vhosts/site.supose.org/maven-licenses-verifier-plugin</url>
+      </site> -->
+    <repository>
+      <id>mvn.repository.soebes.de</id>
+      <name>SoEBeS Repository</name>
+      <url>scp://h5593.serverkompetenz.net:/usr/local/vhosts/mvn.repository.soebes.de</url>
+    </repository>
+    <site>
+      <id>mvn.supose.soebes.de</id>
+      <url>scp://h5593.serverkompetenz.net:/usr/local/vhosts/mvn.supose.soebes.de</url>
+    </site>
 
-	<build>
-	    <pluginManagement>
-	      <plugins>
-		<plugin>
-		  <groupId>org.apache.maven.plugins</groupId>
-		  <artifactId>maven-surefire-report-plugin</artifactId>
-		  <version>2.4.3</version>
-		</plugin>
-		<plugin>
-		  <groupId>org.apache.maven.plugins</groupId>
-		  <artifactId>maven-surefire-plugin</artifactId>
-		  <version>2.4.3</version>
-		</plugin>
-	      </plugins>
-	    </pluginManagement>
-		<plugins>
-			<plugin>
-			  <groupId>org.apache.maven.plugins</groupId>
-			  <artifactId>maven-surefire-plugin</artifactId>
-			</plugin>
-		      <plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-surefire-report-plugin</artifactId>
-			<version>2.4.3</version>
-		      </plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.1</version>
-				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
-					<debug>false</debug>
-				</configuration>
-			</plugin>
-		</plugins>
-		
-	</build>
+  </distributionManagement>
 
-	<reporting>
-		<plugins>	
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-changes-plugin</artifactId>
-				<version>2.3</version>
-                <configuration>
-                    <issueLinkTemplatePerSystem>
-                        <default>http://www.supose.org/issues/show/%ISSUE%</default>
-                    </issueLinkTemplatePerSystem>
-                </configuration>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>changes-report</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jxr-plugin</artifactId>
-				<version>2.1</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-report-plugin</artifactId>
-				<version>2.4.3</version>
-				<configuration>
-					<reportsDirectory>target/surefire-reports</reportsDirectory>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.6.1</version>
-				<configuration>
-					<quiet>true</quiet>
-					<show>private</show>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-pmd-plugin</artifactId>
-				<version>2.4</version>
-				<configuration>
-					<targetJdk>1.5</targetJdk>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>cobertura-maven-plugin</artifactId>
-				<version>2.3</version>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>jdepend-maven-plugin</artifactId>
-				<version>2.0-beta-2</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jxr-plugin</artifactId>
-				<version>2.1</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>2.1.2</version>
-				<reportSets>
-					<reportSet>
-						<reports>
-							<report>dependencies</report>
-							<report>project-team</report>
-							<report>mailing-list</report>
-							<report>issue-tracking</report>
-							<report>license</report>
-							<report>scm</report>
-							<report>summary</report>
-						</reports>
-					</reportSet>
-				</reportSets>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-plugin-plugin</artifactId>
-				<version>2.5.1</version>
-			</plugin>
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-report-plugin</artifactId>
+          <version>2.4.3</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.4.3</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>2.4.3</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.1</version>
+        <configuration>
+          <source>1.5</source>
+          <target>1.5</target>
+          <debug>false</debug>
+        </configuration>
+      </plugin>
+    </plugins>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-invoker-plugin</artifactId>
-				<version>1.5</version>
-			</plugin>
-		</plugins>
-	</reporting>
-	
+  </build>
 
-	<!--
-		
-		mvn -Darguments="-Dgpg.passphrase=xxxx" release:perform	
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-changes-plugin</artifactId>
+        <version>2.3</version>
+        <configuration>
+          <issueLinkTemplatePerSystem>
+            <default>http://www.supose.org/issues/show/%ISSUE%</default>
+          </issueLinkTemplatePerSystem>
+        </configuration>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>changes-report</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>2.1</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-report-plugin</artifactId>
+        <version>2.4.3</version>
+        <configuration>
+          <reportsDirectory>target/surefire-reports</reportsDirectory>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.6.1</version>
+        <configuration>
+          <quiet>true</quiet>
+          <show>private</show>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>2.4</version>
+        <configuration>
+          <targetJdk>1.5</targetJdk>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>cobertura-maven-plugin</artifactId>
+        <version>2.3</version>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>jdepend-maven-plugin</artifactId>
+        <version>2.0-beta-2</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jxr-plugin</artifactId>
+        <version>2.1</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.1.2</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>dependencies</report>
+              <report>project-team</report>
+              <report>mailing-list</report>
+              <report>issue-tracking</report>
+              <report>license</report>
+              <report>scm</report>
+              <report>summary</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-plugin-plugin</artifactId>
+        <version>2.5.1</version>
+      </plugin>
 
-	 -->
-	<profiles>
-		<profile>
-			<activation>
-				<property>
-					<name>performRelease</name>
-					<value>true</value>
-				</property>
-			</activation>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.1</version>
-						<executions>
-							<execution>
-								<id>sign-artifacts</id>
-								<phase>verify</phase>
-								<goals>
-									<goal>sign</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-invoker-plugin</artifactId>
+        <version>1.5</version>
+      </plugin>
+    </plugins>
+  </reporting>
+
+
+  <!-- mvn -Darguments="-Dgpg.passphrase=xxxx" release:perform -->
+  <profiles>
+    <profile>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.1</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
 </project>

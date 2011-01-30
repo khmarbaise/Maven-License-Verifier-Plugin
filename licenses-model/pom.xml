@@ -1,90 +1,90 @@
 <project
-	xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>com.soebes.maven.plugins.mlv</groupId>
-		<artifactId>maven-license-verifier</artifactId>
-		<version>0.2-SNAPSHOT</version>
-		<relativePath>..</relativePath>
-	</parent>
+  <parent>
+    <groupId>com.soebes.maven.plugins.mlv</groupId>
+    <artifactId>maven-license-verifier</artifactId>
+    <version>0.2-SNAPSHOT</version>
+    <relativePath>..</relativePath>
+  </parent>
 
-	<groupId>com.soebes.maven.plugins.mlv</groupId>
-	<artifactId>licenses-model</artifactId>
-	<name>Maven License Verifier :: Licenses Model</name>
+  <groupId>com.soebes.maven.plugins.mlv</groupId>
+  <artifactId>licenses-model</artifactId>
+  <name>Maven License Verifier :: Licenses Model</name>
 
-	<properties>
-    	<mdoVersion>1.0.0</mdoVersion>
-	</properties>
+  <properties>
+    <mdoVersion>1.0.0</mdoVersion>
+  </properties>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.codehaus.modello</groupId>
-				<artifactId>modello-maven-plugin</artifactId>
-				<version>1.2</version>
-				<configuration>
-					<version>${mdoVersion}</version>
-				</configuration>
-				<executions>
-					<execution>
-						<id>mdo</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>xpp3-reader</goal>
-							<goal>xpp3-writer</goal>
-							<goal>java</goal>
-							<goal>xsd</goal>
-						</goals>
-						<configuration>
-							<models>
-								<model>src/main/mdo/licenses.mdo</model>
-							</models>
-							<useJava5>true</useJava5>
-						</configuration>
-					</execution>
-					<execution>
-						<id>mdo-site</id>
-						<phase>pre-site</phase>
-						<goals>
-							<goal>xsd</goal>
-						</goals>
-						<configuration>
-							<models>
-								<model>src/main/mdo/licenses.mdo</model>
-							</models>
-							<outputDirectory>${basedir}/target/generated-site/resources/xsd</outputDirectory>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.modello</groupId>
+        <artifactId>modello-maven-plugin</artifactId>
+        <version>1.2</version>
+        <configuration>
+          <version>${mdoVersion}</version>
+        </configuration>
+        <executions>
+          <execution>
+            <id>mdo</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>xpp3-reader</goal>
+              <goal>xpp3-writer</goal>
+              <goal>java</goal>
+              <goal>xsd</goal>
+            </goals>
+            <configuration>
+              <models>
+                <model>src/main/mdo/licenses.mdo</model>
+              </models>
+              <useJava5>true</useJava5>
+            </configuration>
+          </execution>
+          <execution>
+            <id>mdo-site</id>
+            <phase>pre-site</phase>
+            <goals>
+              <goal>xsd</goal>
+            </goals>
+            <configuration>
+              <models>
+                <model>src/main/mdo/licenses.mdo</model>
+              </models>
+              <outputDirectory>${basedir}/target/generated-site/resources/xsd</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
 
-		</plugins>
-		
-	</build>
+    </plugins>
 
-	<dependencies>
-		<dependency>
-			<!-- May be we should change to JUnit -->
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
-			<version>5.8</version>
-			<scope>test</scope>
-			<classifier>jdk15</classifier>
-		</dependency>
+  </build>
 
-		<dependency>
-			<groupId>org.apache.maven</groupId>
-			<artifactId>maven-model</artifactId>
-			<version>2.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.plexus</groupId>
-			<artifactId>plexus-utils</artifactId>
-			<version>1.5.7</version>
-		</dependency>
-	</dependencies>
+  <dependencies>
+    <dependency>
+      <!-- May be we should change to JUnit -->
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>5.8</version>
+      <scope>test</scope>
+      <classifier>jdk15</classifier>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-model</artifactId>
+      <version>2.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.codehaus.plexus</groupId>
+      <artifactId>plexus-utils</artifactId>
+      <version>1.5.7</version>
+    </dependency>
+  </dependencies>
 </project>
