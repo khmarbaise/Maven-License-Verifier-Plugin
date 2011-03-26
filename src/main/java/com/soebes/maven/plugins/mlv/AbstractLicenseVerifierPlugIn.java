@@ -24,12 +24,13 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.maven.artifact.Artifact;
+import org.apache.maven.artifact.repository.ArtifactRepository;
 import org.apache.maven.artifact.resolver.filter.ArtifactFilter;
 import org.apache.maven.model.License;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.project.DefaultMavenProjectBuilder;
 import org.apache.maven.project.MavenProject;
+import org.apache.maven.project.MavenProjectBuilder;
 import org.apache.maven.project.ProjectBuildingException;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 
@@ -56,11 +57,9 @@ public abstract class AbstractLicenseVerifierPlugIn
     /**
      * Used to build a maven projects from artifacts in the remote repository.
      *
-     * @component role="${org.apache.maven.project.MavenProjectBuilder}"
-     * @required
-     * @readonly
+     * @component
      */
-    protected DefaultMavenProjectBuilder projectBuilder;
+    protected MavenProjectBuilder projectBuilder;
 
     /**
      * Location of the local repository.
@@ -69,7 +68,7 @@ public abstract class AbstractLicenseVerifierPlugIn
      * @readonly
      * @required
      */
-    protected org.apache.maven.artifact.repository.ArtifactRepository localRepository;
+    protected ArtifactRepository localRepository;
 
     /**
      * List of Remote Repositories used by the resolver
@@ -78,7 +77,7 @@ public abstract class AbstractLicenseVerifierPlugIn
      * @readonly
      * @required
      */
-    protected java.util.List remoteRepositories;
+    protected List<ArtifactRepository> remoteRepositories;
 
     /**
      * This will turn on verbose behavior and will print out
