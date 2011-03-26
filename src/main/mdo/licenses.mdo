@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+
+<!--
+  ~ Copyright 2010 The Apache Software Foundation.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<model
+	xsd.namespace="http://modello.codehaus.org/xsd/modello-1.2.0.xsd"
+	xsd.targetNamespace="http://modello.codehaus.org/xsd/modello-1.2.0.xsd">
+
+	<id>licenses</id>
+	<name>Licenses</name>
+	<defaults>
+		<default>
+			<key>package</key>
+			<value>com.soebes.maven.plugins.mlv.model</value>
+		</default>
+	</defaults>
+	<classes>
+		<class rootElement="true" xml.tagName="licenses">
+			<name>LicensesContainer</name>
+			<version>1.0.0</version>
+			<description>
+	        <![CDATA[
+	        	The Licenses file defines the three categories which are
+		        used to categorize the different licenses of the artifacts.
+	   	    ]]>
+			</description>
+			<fields>
+				<field>
+					<name>valid</name>
+					<version>1.0.0</version>
+					<description>
+						<![CDATA[
+							The valid category defines licenses which are
+							assumed to be ok.
+						]]>
+					</description>
+					<association xml.itemsStyle="wrapped"> 
+						<type>LicensesList</type>
+						<multiplicity>1</multiplicity>
+					</association>
+				</field>
+				<field>
+					<name>invalid</name>
+					<version>1.0.0</version>
+					<description>
+						<![CDATA[
+							The invalid category defines licenses which are
+							not ok.
+						]]>
+					</description>
+					<association xml.itemsStyle="wrapped"> 
+						<type>LicensesList</type>
+						<multiplicity>1</multiplicity>
+					</association>
+				</field>
+				<field>
+					<name>warning</name>
+					<version>1.0.0</version>
+					<description>
+						<![CDATA[
+							The warning category defines licenses which are
+							defined to be warning.
+						]]>
+					</description>
+					<association xml.itemsStyle="wrapped"> 
+						<type>LicensesList</type>
+						<multiplicity>1</multiplicity>
+					</association>
+				</field>
+			</fields>
+		</class>
+
+		<class xsd.compositor="sequence">
+			<name>LicensesList</name>
+			<version>1.0.0</version>
+			<fields>
+				<field>
+					<name>licenses</name>
+					<version>1.0.0</version>
+					<association xml.itemsStyle="flat">
+						<type>LicenseItem</type>
+						<multiplicity>*</multiplicity>
+					</association>
+				</field>
+			</fields>
+		</class>
+
+		<class>
+			<name>LicenseItem</name>
+			<version>1.0.0</version>
+			<fields>
+				<field>
+					<description>
+						<![CDATA[
+							The id field is used as unique identifier.
+						]]>
+					</description>
+					<required>true</required>
+					<identifier>true</identifier>
+					<name>id</name>
+					<type>String</type>
+				</field>
+				<field>
+					<description>
+						<![CDATA[
+							The description field can be used to describe the particular 
+							license or give supplemental information about the license.
+						]]>
+					</description>
+					<name>description</name>
+					<type>String</type>
+				</field>
+				<field>
+					<description>
+						<![CDATA[
+							The list of names give the possible names of a license. 
+						]]>
+					</description>
+					<name>names</name>
+					<version>1.0.0</version>
+					<association xml.itemsStyle="wrapped">
+						<name>name</name>
+						<type>String</type>
+						<multiplicity>*</multiplicity>
+					</association>
+				</field>
+				<field>
+					<description>
+						<![CDATA[
+							The list of urls gives the possible URL's under which
+							a license can be reached. 
+						]]>
+					</description>
+					<name>urls</name>
+					<version>1.0.0</version>
+					<association xml.itemsStyle="wrapped">
+						<name>url</name>
+						<type>String</type>
+						<multiplicity>*</multiplicity>
+					</association>
+				</field>
+			</fields>
+		</class>
+	</classes>
+</model>

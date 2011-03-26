@@ -1,5 +1,3 @@
-package com.soebes.maven.plugins.mlv;
-
 /*
  * Copyright 2010 The Apache Software Foundation.
  *
@@ -15,6 +13,7 @@ package com.soebes.maven.plugins.mlv;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.soebes.maven.plugins.mlv;
 
 import java.util.ArrayList;
 
@@ -23,38 +22,43 @@ import org.apache.maven.model.License;
 import org.apache.maven.project.MavenProject;
 
 /**
- * This class will hold together the information
- * about <b>Project</b>, <b>artifact</b> and the
- * <b>Licenses</b>.
+ * This class will hold together the information about <b>Project</b>,
+ * <b>artifact</b> and the <b>Licenses</b>.
+ *
  * @author Karl Heinz Marbaise
  *
  */
 public class LicenseInformation {
 
-	private Artifact artifact;
-	private MavenProject project;
-	private ArrayList<License> licenses = new ArrayList<License>();
+    private Artifact artifact;
+    private MavenProject project;
+    private ArrayList<License> licenses = new ArrayList<License>();
 
-	public void setArtifact(Artifact artifact) {
-		this.artifact = artifact;
-	}
-	public Artifact getArtifact() {
-		return artifact;
-	}
-	public void setLicenses(ArrayList<License> licenses) {
-		this.licenses = licenses;
-	}
-	public ArrayList<License> getLicenses() {
-		return licenses;
-	}
-	
-	public void addLicense(License license) {
-		getLicenses().add(license);
-	}
-	public void setProject(MavenProject project) {
-		this.project = project;
-	}
-	public MavenProject getProject() {
-		return project;
-	}
+    public void setArtifact(Artifact artifact) {
+        this.artifact = artifact;
+    }
+
+    public Artifact getArtifact() {
+        return artifact;
+    }
+
+    public void setLicenses(ArrayList<License> licenses) {
+        this.licenses = licenses;
+    }
+
+    public ArrayList<License> getLicenses() {
+        return licenses;
+    }
+
+    public void addLicense(License license) {
+        getLicenses().add(license);
+    }
+
+    public void setProject(MavenProject project) {
+        this.project = project;
+    }
+
+    public MavenProject getProject() {
+        return project;
+    }
 }

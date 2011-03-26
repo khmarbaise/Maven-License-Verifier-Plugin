@@ -1,0 +1,21 @@
+<licenses>
+	<warning>
+		<license>
+			<id>Apache Software License 2.0</id>
+			<description>Apache Software License 2.0</description>
+			<names>
+				<name>Apache 2</name>
+				<name>Apache Software License 2.0</name>
+				<name>Apache Software License, Version 2.0</name>
+			</names>
+			<urls>
+				<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+				<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+				<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+				<url>http://apache.org/licenses/LICENSE-2.0</url>
+				<url>http://apache.org/licenses/LICENSE-2.0.html</url>
+				<url>http://apache.org/licenses/LICENSE-2.0.txt</url>
+			</urls>
+		</license>
+	</warning>
+</licenses>

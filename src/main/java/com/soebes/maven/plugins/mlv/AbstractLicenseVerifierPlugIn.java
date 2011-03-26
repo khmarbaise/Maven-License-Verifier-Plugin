@@ -1,5 +1,3 @@
-package com.soebes.maven.plugins.mlv;
-
 /*
  * Copyright 2010 The Apache Software Foundation.
  *
@@ -15,6 +13,7 @@ package com.soebes.maven.plugins.mlv;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.soebes.maven.plugins.mlv;
 
 import java.io.File;
 import java.io.IOException;
@@ -54,28 +53,14 @@ public abstract class AbstractLicenseVerifierPlugIn
      */
     protected MavenProject project;
 
-/* The following warning appear if we compile,install this plubin with maven 3-alpha-5:
-
-    [WARNING] Using platform encoding (Cp1252 actually) to read mojo metadata, i.e. build is platform dependent!
-    [INFO] Applying mojo extractor for language: java
-    [WARNING] com.soebes.maven.plugins.LicenseVerifierMojo#projectBuilder:
-    [WARNING]   The syntax
-    [WARNING]     @parameter expression="${component.<role>#<roleHint>}"
-    [WARNING]   is deprecated, please use
-    [WARNING]     @component role="<role>" roleHint="<roleHint>"
-    [WARNING]   instead.
-    [INFO] Mojo extractor for language: java found 1 mojo descriptors.
-
-    */
     /**
      * Used to build a maven projects from artifacts in the remote repository.
      *
-     * @parameter expression="${component.org.apache.maven.project.MavenProjectBuilder}"
+     * @component role="${org.apache.maven.project.MavenProjectBuilder}"
      * @required
      * @readonly
      */
     protected DefaultMavenProjectBuilder projectBuilder;
-//    * @component role"org.apache.maven.project.DefaultMavenProjectBuilder" roleHint="default"
 
     /**
      * Location of the local repository.

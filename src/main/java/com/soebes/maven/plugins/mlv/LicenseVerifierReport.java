@@ -1,5 +1,3 @@
-package com.soebes.maven.plugins.mlv;
-
 /*
  * Copyright 2010 The Apache Software Foundation.
  *
@@ -15,6 +13,8 @@ package com.soebes.maven.plugins.mlv;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.soebes.maven.plugins.mlv;
+
 import java.io.File;
 import java.util.Collections;
 import java.util.List;
