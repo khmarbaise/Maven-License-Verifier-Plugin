@@ -91,7 +91,9 @@ public class LicenseVerifierMojo
              * ]UNKNOWN[ XXX
              */
             if (licenseValidator.isValid(item.getLicenses())) {
-                getLog().info("   ]VALID[   (" + item.getArtifact().getScope() + ") The artifact " + item.getProject().getId() + " has a license which is categorized as valid");
+                if (isVerbose()) {
+                    getLog().info("   ]VALID[   (" + item.getArtifact().getScope() + ") The artifact " + item.getProject().getId() + " has a license which is categorized as valid");
+                }
                 isValid = true;
             } else if (licenseValidator.isInvalid(item.getLicenses())) {
                 getLog().error("  ]INVALID[ (" + item.getArtifact().getScope() + ") The artifact " + item.getProject().getId() + " has a license which is categorized as invalid");

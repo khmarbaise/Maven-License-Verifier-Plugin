@@ -85,7 +85,7 @@ public abstract class AbstractLicenseVerifierPlugIn
      *
      * @parameter expression="${verbose}" default-value="false"
      */
-    protected boolean verbose;
+    private boolean verbose;
 
     /**
      * @parameter expression="${mlv.failOnValid}" default-value="false"
@@ -156,7 +156,7 @@ public abstract class AbstractLicenseVerifierPlugIn
            Artifact depArt = (Artifact) depArtIter.next();
 
            if (!filter.include(depArt)) {
-               if (verbose) {
+               if (isVerbose()) {
                    getLog().warn("The artifact: " + depArt.getId() + " has been execluded by the configuration.");
                }
                continue;
@@ -232,5 +232,13 @@ public abstract class AbstractLicenseVerifierPlugIn
                 "The LicenseFile is wrong, " +
                 "cause we couldn't read it " + e);
         }
+    }
+
+    public void setVerbose(boolean verbose) {
+        this.verbose = verbose;
+    }
+
+    public boolean isVerbose() {
+        return verbose;
     }
 }
