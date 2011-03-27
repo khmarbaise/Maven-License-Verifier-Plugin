@@ -10,7 +10,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <mavenVersion>3.0.3</mavenVersion>
+    <mavenVersion>3.0-alpha-5</mavenVersion>
   </properties>
 
   <build>

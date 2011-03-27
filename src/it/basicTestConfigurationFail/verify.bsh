@@ -10,43 +10,69 @@ if ( !file.exists() )
 }
 
 String[] checkedLines = {
-	"[INFO] [licenses-verifier:check {execution: default}]",
-	"[INFO] Checking artifact: org.apache.maven:maven-core:jar:3.0-alpha-5",
-	"[INFO] Checking artifact: org.apache.maven:maven-model:jar:3.0-alpha-5",
-	"[INFO] Checking artifact: org.codehaus.plexus:plexus-utils:jar:2.0.1",
-	"[INFO] Checking artifact: org.apache.maven:maven-settings:jar:3.0-alpha-5",
-	"[INFO] Checking artifact: org.apache.maven:maven-artifact:jar:3.0-alpha-5",
-	"[INFO] Checking artifact: org.apache.maven:maven-plugin-api:jar:3.0-alpha-5",
-	"[INFO] Checking artifact: org.codehaus.plexus:plexus-container-default:jar:1.5.1",
-	"[INFO] Checking artifact: org.codehaus.plexus:plexus-classworlds:jar:2.2.2",
-	"[INFO] Checking artifact: org.apache.xbean:xbean-reflect:jar:3.4",
-	"[INFO] Checking artifact: log4j:log4j:jar:1.2.12",
-	"[WARNING] /UNKNOWN/ The artifact log4j:log4j:jar:1.2.12 has an license which is categorized as unknown",
-	"[INFO] ------------------------------------------------------------------------",
-	"[ERROR] BUILD ERROR",
-	"[INFO] ------------------------------------------------------------------------",
-	"[INFO] Based on the configuration an unknown license has been found.",
-	"[INFO] ------------------------------------------------------------------------",
+    "[INFO] [license-verifier:verify {execution: default}]",
+    "[INFO]    ]VALID[   (compile) The artifact com.google.code.google-collections:google-collect:jar:snapshot-20080530 has a license which is categorized as valid",
+    "[INFO]    ]VALID[   (compile) The artifact commons-logging:commons-logging-api:jar:1.1 has a license which is categorized as valid",
+    "[WARNING] ]UNKNOWN[ (compile) The artifact log4j:log4j:jar:1.2.12 has a license which is categorized as unknown",
+    "[INFO]    ]VALID[   (compile) The artifact org.apache.maven.shared:maven-dependency-tree:jar:1.2 has a license which is categorized as valid",
+    "[INFO]    ]VALID[   (compile) The artifact org.apache.maven.wagon:wagon-provider-api:jar:1.0-beta-2 has a license which is categorized as valid",
+    "[INFO]    ]VALID[   (compile) The artifact org.apache.maven:maven-artifact-manager:jar:2.0.8 has a license which is categorized as valid",
+    "[INFO]    ]VALID[   (compile) The artifact org.apache.maven:maven-artifact:jar:3.0-alpha-5 has a license which is categorized as valid",
+    "[INFO]    ]VALID[   (compile) The artifact org.apache.maven:maven-core:jar:3.0-alpha-5 has a license which is categorized as valid",
+    "[INFO]    ]VALID[   (compile) The artifact org.apache.maven:maven-model-builder:jar:3.0-alpha-5 has a license which is categorized as valid",
+    "[INFO]    ]VALID[   (compile) The artifact org.apache.maven:maven-model:jar:3.0-alpha-5 has a license which is categorized as valid",
+    "[INFO]    ]VALID[   (compile) The artifact org.apache.maven:maven-plugin-api:jar:3.0-alpha-5 has a license which is categorized as valid",
+    "[INFO]    ]VALID[   (compile) The artifact org.apache.maven:maven-plugin-registry:jar:2.0.8 has a license which is categorized as valid",
+    "[INFO]    ]VALID[   (compile) The artifact org.apache.maven:maven-profile:jar:2.0.8 has a license which is categorized as valid",
+    "[INFO]    ]VALID[   (compile) The artifact org.apache.maven:maven-project:jar:2.0.8 has a license which is categorized as valid",
+    "[INFO]    ]VALID[   (compile) The artifact org.apache.maven:maven-repository-metadata:jar:2.0.8 has a license which is categorized as valid",
+    "[INFO]    ]VALID[   (compile) The artifact org.apache.maven:maven-settings:jar:3.0-alpha-5 has a license which is categorized as valid",
+    "[INFO]    ]VALID[   (compile) The artifact org.apache.xbean:xbean-reflect:bundle:3.4 has a license which is categorized as valid",
+    "[INFO]    ]VALID[   (compile) The artifact org.codehaus.plexus:plexus-classworlds:jar:2.2.2 has a license which is categorized as valid",
+    "[INFO]    ]VALID[   (compile) The artifact org.codehaus.plexus:plexus-component-annotations:jar:1.5.1 has a license which is categorized as valid",
+    "[INFO]    ]VALID[   (compile) The artifact org.codehaus.plexus:plexus-container-default:jar:1.5.1 has a license which is categorized as valid",
+    "[INFO]    ]VALID[   (compile) The artifact org.codehaus.plexus:plexus-interpolation:jar:1.11 has a license which is categorized as valid",
+    "[INFO]    ]VALID[   (compile) The artifact org.codehaus.plexus:plexus-utils:jar:2.0.1 has a license which is categorized as valid",
+    "[INFO]    ]VALID[   (compile) The artifact org.sonatype.plexus:plexus-cipher:jar:1.4 has a license which is categorized as valid",
+    "[INFO]    ]VALID[   (compile) The artifact org.sonatype.plexus:plexus-sec-dispatcher:jar:1.3 has a license which is categorized as valid",
+    "[INFO] ------------------------------------------------------------------------",
+    "[ERROR] BUILD ERROR",
+    "[INFO] ------------------------------------------------------------------------",
+    "[INFO] A license which is categorized as UNKNOWN has been found.",
+    "[INFO] ------------------------------------------------------------------------",
 };
 
 Boolean[] checked = {
-	false,
-	false,
-	false,
-	false,
-	false,
-	false,
-	false,
-	false,
-	false,
-	false,
-	false,
-	false,
-	false,
-	false,
-	false,
-	false,
-	false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
 };
 
 //
@@ -55,25 +81,25 @@ try {
         BufferedReader in = new BufferedReader(new FileReader(file));
         String str;
         while ((str = in.readLine()) != null) {
-        	for(int i=0; i<checkedLines.length; i++) {
-        		if (str.startsWith(checkedLines[i])) {
-        			checked[i] = true;
-        		}
-        	}
+            for(int i=0; i<checkedLines.length; i++) {
+                if (str.startsWith(checkedLines[i])) {
+                    checked[i] = true;
+                }
+            }
         }
         in.close();
 } catch (IOException e) {
-	throw e;
+    throw e;
 }
 
 // Check to see if every line has occured in the log file.
 // if only one will not appear we will broke the integration test.
 boolean result = true;
 for(int i=0; i<checkedLines.length; i++) {
-	if (checked[i] == false) {
-		System.out.println("Unexpected content: " + checkedLines[i]);
-		result = false;
-	}
+    if (checked[i] == false) {
+        System.out.println("Unexpected content: " + checkedLines[i]);
+        result = false;
+    }
 }
 
 return result;

@@ -29,7 +29,7 @@
           <execution>
             <phase>test</phase>
             <goals>
-              <goal>check</goal>
+              <goal>verify</goal>
             </goals>
           </execution>
         </executions>
