@@ -35,7 +35,7 @@
 
         <executions>
           <execution>
-            <phase>test</phase>
+            <phase>verify</phase>
             <goals>
               <goal>verify</goal>
             </goals>

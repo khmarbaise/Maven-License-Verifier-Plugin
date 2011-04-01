@@ -58,6 +58,8 @@ public abstract class AbstractLicenseVerifierPlugIn
      * Used to build a maven projects from artifacts in the remote repository.
      *
      * @component
+     * @required
+     * @readonly
      */
     protected MavenProjectBuilder projectBuilder;
 
@@ -78,6 +80,7 @@ public abstract class AbstractLicenseVerifierPlugIn
      * @required
      */
     protected List<ArtifactRepository> remoteRepositories;
+
 
     /**
      * This will turn on verbose behavior and will print out
@@ -146,7 +149,7 @@ public abstract class AbstractLicenseVerifierPlugIn
      * @param depArtifacts
      * @throws MojoExecutionException
      */
-    protected void getDependArtifacts(Set depArtifacts)
+    protected void getDependArtifacts(Set<?> depArtifacts)
             throws MojoExecutionException {
 
         PatternExcludeFilter patternExcludeFilter = new PatternExcludeFilter();
@@ -175,7 +178,7 @@ public abstract class AbstractLicenseVerifierPlugIn
            MavenProject depProject = null;
            try
            {
-              depProject = projectBuilder.buildFromRepository(depArt, remoteRepositories, localRepository);
+              depProject = projectBuilder.buildFromRepository(depArt, remoteRepositories, localRepository, true);
            }
            catch (ProjectBuildingException e)
            {
@@ -187,8 +190,8 @@ public abstract class AbstractLicenseVerifierPlugIn
            li.setProject(depProject);
 
            //Add all licenses of the particular artifact to it's other informations.
-           List licenses = depProject.getLicenses();
-           Iterator licenseIter = licenses.iterator();
+           List<?> licenses = depProject.getLicenses();
+           Iterator<?> licenseIter = licenses.iterator();
            while (licenseIter.hasNext())
            {
               License license = (License) licenseIter.next();

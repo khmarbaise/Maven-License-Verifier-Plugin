@@ -21,7 +21,7 @@
         <version>@project.version@</version>
         <executions>
           <execution>
-            <phase>test</phase>
+            <phase>prepare-package</phase>
             <goals>
               <goal>verify</goal>
             </goals>

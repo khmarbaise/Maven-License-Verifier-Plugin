@@ -31,7 +31,6 @@ public class LicenseVerifierMojo
     extends AbstractLicenseVerifierPlugIn
 {
 
-    @SuppressWarnings("unchecked")
     public void execute()
         throws MojoExecutionException
     {
@@ -60,7 +59,7 @@ public class LicenseVerifierMojo
 
         //Get a set with all dependent artifacts incl.
         //the transitive dependencies.
-        Set depArtifacts = project.getArtifacts();
+        Set<?> depArtifacts = this.project.getArtifacts();
 
         //Check if we have to do something.
         if (depArtifacts.isEmpty()) {

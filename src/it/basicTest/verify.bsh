@@ -10,10 +10,9 @@ if ( !file.exists() )
 }
 
 String[] checkedLines = {
-    "[INFO] [license-verifier:verify {execution: default}]",
+    "[INFO] --- maven-license-verifier:",
     "[WARNING] ]UNKNOWN[ (compile) The artifact log4j:log4j:jar:1.2.12 has a license which is categorized as unknown",
-    "[INFO] BUILD SUCCESSFUL",
-
+    "[INFO] BUILD SUCCESS",
 };
 
 Boolean[] checked = {

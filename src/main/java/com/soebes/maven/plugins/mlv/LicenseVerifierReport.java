@@ -22,6 +22,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import org.apache.maven.artifact.Artifact;
 import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
 import org.apache.maven.doxia.siterenderer.sink.SiteRendererSink;
 import org.apache.maven.model.License;
@@ -44,14 +45,6 @@ public class LicenseVerifierReport
         extends AbstractLicenseVerifierPlugIn
         implements MavenReport {
 
-    /**
-     * The Maven Project Object
-     *
-     * @parameter expression="${project}"
-     * @required
-     * @readonly
-     */
-    private MavenProject project;
     /**
      * The directory where the report will be generated
      *
@@ -176,31 +169,27 @@ public class LicenseVerifierReport
         sink.section1_();
 
 //The different scopes should be seen only if we have artifacts with an appropriately scope otherwise no headlines etc.
-        if (hasScope("compile")) {
+        if (hasScope(Artifact.SCOPE_COMPILE)) {
             sink.section1();
-            //FIXME: Removed hard code scopes
-            doGenerateArtifactCategories(bundle, sink, "compile");
+            doGenerateArtifactCategories(bundle, sink, Artifact.SCOPE_COMPILE);
             sink.section1_();
         }
 
-        if (hasScope("test")) {
+        if (hasScope(Artifact.SCOPE_TEST)) {
             sink.section1();
-            //FIXME: Removed hard code scopes
-            doGenerateArtifactCategories(bundle, sink, "test");
+            doGenerateArtifactCategories(bundle, sink, Artifact.SCOPE_TEST);
             sink.section1_();
         }
 
-        if (hasScope("provided")) {
+        if (hasScope(Artifact.SCOPE_PROVIDED)) {
             sink.section1();
-            //FIXME: Removed hard code scopes
-            doGenerateArtifactCategories(bundle, sink, "provided");
+            doGenerateArtifactCategories(bundle, sink, Artifact.SCOPE_PROVIDED);
             sink.section1_();
         }
 
-        if (hasScope("runtime")) {
+        if (hasScope(Artifact.SCOPE_RUNTIME)) {
             sink.section1();
-            //FIXME: Removed hard code scopes
-            doGenerateArtifactCategories(bundle, sink, "runtime");
+            doGenerateArtifactCategories(bundle, sink, Artifact.SCOPE_RUNTIME);
             sink.section1_();
         }
 
