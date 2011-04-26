@@ -10,9 +10,9 @@ if ( !file.exists() )
 }
 
 String[] checkedLines = {
-    "[INFO] [license-verifier:verify {execution: default}]",
+	"[INFO] --- maven-license-verifier:",
     "[INFO] ------------------------------------------------------------------------",
-    "[INFO] BUILD SUCCESSFUL",
+    "[INFO] BUILD SUCCESS",
     "[INFO] ------------------------------------------------------------------------",
 };
 

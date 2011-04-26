@@ -41,6 +41,7 @@ import com.soebes.maven.plugins.mlv.model.LicensesContainer;
 
 /**
  * @author Karl Heinz Marbaise
+ * @requiresDependencyResolution test
  */
 public abstract class AbstractLicenseVerifierPlugIn
     extends AbstractMojo
