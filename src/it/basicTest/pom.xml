@@ -1,6 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
+
   <groupId>com.soebes.maven.plugins</groupId>
   <artifactId>basicTest</artifactId>
   <packaging>jar</packaging>
@@ -10,7 +14,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <mavenVersion>3.0-alpha-5</mavenVersion>
+    <mavenVersion>3.0.3</mavenVersion>
   </properties>
 
   <build>
@@ -19,14 +23,14 @@
         <groupId>@project.groupId@</groupId>
         <artifactId>@project.artifactId@</artifactId>
         <version>@project.version@</version>
-        <executions>
-          <execution>
-            <phase>prepare-package</phase>
-            <goals>
-              <goal>verify</goal>
-            </goals>
-          </execution>
-        </executions>
+<!--        <executions>-->
+<!--          <execution>-->
+<!--            <phase>prepare-package</phase>-->
+<!--            <goals>-->
+<!--              <goal>verify</goal>-->
+<!--            </goals>-->
+<!--          </execution>-->
+<!--        </executions>-->
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -41,14 +45,14 @@
     </plugins>
 
   </build>
-  <dependencies>
 
+  <dependencies>
     <dependency>
-        <groupId>log4j</groupId>
-        <artifactId>log4j</artifactId>
-        <version>1.2.12</version>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.12</version>
     </dependency>
-    <!-- Maven -->
+
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-core</artifactId>
