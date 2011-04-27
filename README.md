@@ -23,7 +23,6 @@ be checked in more detail (warning) or unknown licenses or invalid licenses.
 ## Status
 
  * Reports are created.
- * Currently only working with Maven 2.2.1 (may be below but not checked!)
  * Currently no fail of a build indenpendant of the category.
  ** Later the default will be: failOnInvalid and failOnUnknown.
 
@@ -31,7 +30,6 @@ be checked in more detail (warning) or unknown licenses or invalid licenses.
 ## TODOs
 
  * Make the reports better.
- * Get it run on Maven 3 as well.
  * http://www.sonatype.com/people/2011/01/how-to-use-aether-in-maven-plugins/
 
 ## Usage
@@ -41,7 +39,7 @@ The first and simplest usage is to configure the Maven Licenses Verifier Plugin
     <plugin>
       <groupId>com.soebes.maven.plugins.mlv</groupId>
       <artifactId>maven-licenses-verifier-plugin</artifactId>
-      <version>0.2-SNAPSHOT</version>
+      <version>0.3</version>
       <executions>
         <execution>
           <phase>test</phase>

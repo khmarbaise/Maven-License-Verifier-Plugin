@@ -31,7 +31,11 @@ Roadmap
   The following roadmap will give you an overview of the planned features and their
   possible implementation order. Of course i don't guarantee anything ..;-)
 
-* Release 0.2
+* Release 0.3
+
+  Get it running on Maven 3.0
+
+* Release 0.4
 
   Simple usage of a <<license.xml>> file which is read and checking only the license
   entry of the pom files of their appropriate artifacts.
@@ -58,7 +62,7 @@ Roadmap
 </configuration>
 +----
 
-* Release 0.3
+* Release 0.5
 
   Usage of different licenses files which can be configured in the configuration
   section.
@@ -77,7 +81,7 @@ Roadmap
 
 
 
-* Release 0.4
+* Release 0.6
 
   Company License defined by an extra artifact.
 
@@ -100,7 +104,7 @@ Roadmap
 +----
 
 
-* Release 0.5
+* Release 0.7
 
   It should be possible to define particular artifact to have a particular category.
   This is needed to be able to redefine an artifact without an license to be valid, invalid
@@ -134,7 +138,7 @@ Roadmap
 </configuration>
 +----
 
-* Release 0.6
+* Release 0.8
 
   Read different license via descriptors
 
@@ -156,7 +160,7 @@ Roadmap
 </configuration>
 +----
 
-* Release 0.7
+* Release 0.9
 
   * Check not only the POM use the artifacts itself, cause it contains license information
 
