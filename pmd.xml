@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="4.2.2" timestamp="2011-04-30T22:06:55.977">
+<file name="/home/kama/ws-git/Maven-License-Verifier-Plugin/target/checkout/src/main/java/com/soebes/maven/plugins/mlv/LicenseVerifierReport.java">
+<violation beginline="216" endline="218" begincolumn="17" endcolumn="17" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.soebes.maven.plugins.mlv" class="LicenseVerifierReport" method="hasValidEntries" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="227" endline="229" begincolumn="17" endcolumn="17" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.soebes.maven.plugins.mlv" class="LicenseVerifierReport" method="hasInvalidEntries" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="238" endline="240" begincolumn="17" endcolumn="17" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.soebes.maven.plugins.mlv" class="LicenseVerifierReport" method="hasWarningEntries" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="249" endline="251" begincolumn="17" endcolumn="17" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.soebes.maven.plugins.mlv" class="LicenseVerifierReport" method="hasUnknownEntries" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="290" endline="335" begincolumn="13" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv" class="LicenseVerifierReport" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused method parameters such as 'bundle'.
+</violation>
+<violation beginline="354" endline="412" begincolumn="13" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv" class="LicenseVerifierReport" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused method parameters such as 'bundle'.
+</violation>
+<violation beginline="415" endline="455" begincolumn="13" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv" class="LicenseVerifierReport" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused method parameters such as 'bundle'.
+</violation>
+<violation beginline="431" endline="450" begincolumn="17" endcolumn="17" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.soebes.maven.plugins.mlv" class="LicenseVerifierReport" method="doGenerateValidReport" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="457" endline="496" begincolumn="13" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv" class="LicenseVerifierReport" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused method parameters such as 'bundle'.
+</violation>
+<violation beginline="473" endline="491" begincolumn="17" endcolumn="17" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.soebes.maven.plugins.mlv" class="LicenseVerifierReport" method="doGenerateWarningReport" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="498" endline="538" begincolumn="13" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv" class="LicenseVerifierReport" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused method parameters such as 'bundle'.
+</violation>
+<violation beginline="515" endline="533" begincolumn="17" endcolumn="17" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.soebes.maven.plugins.mlv" class="LicenseVerifierReport" method="doGenerateInvalidReport" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="540" endline="579" begincolumn="13" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv" class="LicenseVerifierReport" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused method parameters such as 'bundle'.
+</violation>
+<violation beginline="556" endline="574" begincolumn="17" endcolumn="17" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.soebes.maven.plugins.mlv" class="LicenseVerifierReport" method="doGenerateUnknownReport" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+</file>
+<file name="/home/kama/ws-git/Maven-License-Verifier-Plugin/target/checkout/src/main/java/com/soebes/maven/plugins/mlv/licenses/LicenseValidator.java">
+<violation beginline="250" endline="252" begincolumn="21" endcolumn="21" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.soebes.maven.plugins.mlv.licenses" class="LicenseValidator" method="getValidIds" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="267" endline="269" begincolumn="21" endcolumn="21" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.soebes.maven.plugins.mlv.licenses" class="LicenseValidator" method="getInvalidIds" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="284" endline="286" begincolumn="21" endcolumn="21" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.soebes.maven.plugins.mlv.licenses" class="LicenseValidator" method="getWarningIds" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+</file>
+<file name="/home/kama/ws-git/Maven-License-Verifier-Plugin/target/checkout/target/generated-sources/modello/com/soebes/maven/plugins/mlv/model/io/xpp3/LicensesXpp3Reader.java">
+<violation beginline="119" endline="119" begincolumn="58" endcolumn="59" rule="EmptyWhileStmt" ruleset="Basic Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" method="checkUnknownElement" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyWhileStmt" priority="3">
+Avoid empty while statements
+</violation>
+<violation beginline="141" endline="141" begincolumn="21" endcolumn="87" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" method="getBooleanValue" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedPrivateMethod" priority="3">
+Avoid unused private methods such as 'getBooleanValue(String,String,XmlPullParser)'.
+</violation>
+<violation beginline="157" endline="169" begincolumn="13" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused method parameters such as 'attribute'.
+</violation>
+<violation beginline="157" endline="169" begincolumn="13" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused method parameters such as 'parser'.
+</violation>
+<violation beginline="181" endline="181" begincolumn="18" endcolumn="97" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" method="getByteValue" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedPrivateMethod" priority="3">
+Avoid unused private methods such as 'getByteValue(String,String,XmlPullParser,boolean)'.
+</violation>
+<violation beginline="210" endline="218" begincolumn="13" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused method parameters such as 'attribute'.
+</violation>
+<violation beginline="210" endline="218" begincolumn="13" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused method parameters such as 'parser'.
+</violation>
+<violation beginline="210" endline="210" begincolumn="18" endcolumn="86" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" method="getCharacterValue" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedPrivateMethod" priority="3">
+Avoid unused private methods such as 'getCharacterValue(String,String,XmlPullParser)'.
+</violation>
+<violation beginline="229" endline="229" begincolumn="28" endcolumn="91" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" method="getDateValue" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedPrivateMethod" priority="3">
+Avoid unused private methods such as 'getDateValue(String,String,XmlPullParser)'.
+</violation>
+<violation beginline="245" endline="280" begincolumn="13" endcolumn="5" rule="UnusedFormalParameter" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedFormalParameter" priority="3">
+Avoid unused method parameters such as 'attribute'.
+</violation>
+<violation beginline="292" endline="292" begincolumn="20" endcolumn="101" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" method="getDoubleValue" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedPrivateMethod" priority="3">
+Avoid unused private methods such as 'getDoubleValue(String,String,XmlPullParser,boolean)'.
+</violation>
+<violation beginline="322" endline="322" begincolumn="19" endcolumn="99" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" method="getFloatValue" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedPrivateMethod" priority="3">
+Avoid unused private methods such as 'getFloatValue(String,String,XmlPullParser,boolean)'.
+</violation>
+<violation beginline="352" endline="352" begincolumn="17" endcolumn="99" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" method="getIntegerValue" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedPrivateMethod" priority="3">
+Avoid unused private methods such as 'getIntegerValue(String,String,XmlPullParser,boolean)'.
+</violation>
+<violation beginline="382" endline="382" begincolumn="18" endcolumn="97" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" method="getLongValue" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedPrivateMethod" priority="3">
+Avoid unused private methods such as 'getLongValue(String,String,XmlPullParser,boolean)'.
+</violation>
+<violation beginline="412" endline="412" begincolumn="20" endcolumn="112" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" method="getRequiredAttributeValue" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedPrivateMethod" priority="3">
+Avoid unused private methods such as 'getRequiredAttributeValue(String,String,XmlPullParser,boolean)'.
+</violation>
+<violation beginline="417" endline="420" begincolumn="13" endcolumn="13" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" method="getRequiredAttributeValue" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
+These nested if statements could be combined
+</violation>
+<violation beginline="435" endline="435" begincolumn="19" endcolumn="99" rule="UnusedPrivateMethod" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" method="getShortValue" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedPrivateMethod" priority="3">
+Avoid unused private methods such as 'getShortValue(String,String,XmlPullParser,boolean)'.
+</violation>
+<violation beginline="487" endline="487" begincolumn="20" endcolumn="24" rule="UnusedLocalVariable" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" method="parseLicenseItem" variable="value" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedLocalVariable" priority="3">
+Avoid unused local variables such as 'value'.
+</violation>
+<violation beginline="490" endline="492" begincolumn="13" endcolumn="13" rule="EmptyIfStmt" ruleset="Basic Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" method="parseLicenseItem" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyIfStmt" priority="3">
+Avoid empty if statements
+</violation>
+<violation beginline="566" endline="566" begincolumn="20" endcolumn="24" rule="UnusedLocalVariable" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" method="parseLicensesContainer" variable="value" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedLocalVariable" priority="3">
+Avoid unused local variables such as 'value'.
+</violation>
+<violation beginline="569" endline="571" begincolumn="13" endcolumn="13" rule="EmptyIfStmt" ruleset="Basic Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" method="parseLicensesContainer" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyIfStmt" priority="3">
+Avoid empty if statements
+</violation>
+<violation beginline="573" endline="575" begincolumn="13" endcolumn="13" rule="EmptyIfStmt" ruleset="Basic Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" method="parseLicensesContainer" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyIfStmt" priority="3">
+Avoid empty if statements
+</violation>
+<violation beginline="621" endline="621" begincolumn="20" endcolumn="24" rule="UnusedLocalVariable" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" method="parseLicensesList" variable="value" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedLocalVariable" priority="3">
+Avoid unused local variables such as 'value'.
+</violation>
+<violation beginline="624" endline="626" begincolumn="13" endcolumn="13" rule="EmptyIfStmt" ruleset="Basic Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" method="parseLicensesList" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#EmptyIfStmt" priority="3">
+Avoid empty if statements
+</violation>
+<violation beginline="632" endline="632" begincolumn="23" endcolumn="28" rule="UnusedLocalVariable" ruleset="Unused Code Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" class="LicensesXpp3Reader" method="parseLicensesList" variable="parsed" externalInfoUrl="http://pmd.sourceforge.net/rules/unusedcode.html#UnusedLocalVariable" priority="3">
+Avoid unused local variables such as 'parsed'.
+</violation>
+</file>
+<file name="/home/kama/ws-git/Maven-License-Verifier-Plugin/target/checkout/target/generated-sources/modello/com/soebes/maven/plugins/mlv/model/io/xpp3/LicensesXpp3Writer.java">
+<violation beginline="18" endline="18" begincolumn="1" endcolumn="28" rule="UnusedImports" ruleset="Import Statement Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#UnusedImports" priority="4">
+Avoid unused imports such as 'java.text.DateFormat'
+</violation>
+<violation beginline="20" endline="20" begincolumn="1" endcolumn="24" rule="UnusedImports" ruleset="Import Statement Rules" package="com.soebes.maven.plugins.mlv.model.io.xpp3" externalInfoUrl="http://pmd.sourceforge.net/rules/imports.html#UnusedImports" priority="4">
+Avoid unused imports such as 'java.util.Locale'
+</violation>
+</file>
+</pmd>

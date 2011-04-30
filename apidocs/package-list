@@ -1,2 +1,5 @@
 com.soebes.maven.plugins.mlv
 com.soebes.maven.plugins.mlv.filter
+com.soebes.maven.plugins.mlv.licenses
+com.soebes.maven.plugins.mlv.model
+com.soebes.maven.plugins.mlv.model.io.xpp3

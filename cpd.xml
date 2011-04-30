@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd-cpd>
+<duplication lines="42" tokens="228">
+<file line="111" path="/home/kama/ws-git/Maven-License-Verifier-Plugin/target/checkout/target/generated-sources/plugin/com/soebes/maven/plugins/mlv/HelpMojo.java"/>
+<file line="155" path="/home/kama/ws-git/Maven-License-Verifier-Plugin/target/checkout/target/generated-sources/plugin/com/soebes/maven/plugins/mlv/HelpMojo.java"/>
+<codefragment>
+<![CDATA[
+            append( sb, "This goal is intended to check the artifacts during the prepare-package phase and print out warnings etc. based on the given configuration for the plugin.", 1 );
+            append( sb, "", 0 );
+            if ( detail )
+            {
+                append( sb, "Available parameters:", 1 );
+                append( sb, "", 0 );
+
+                append( sb, "excludes", 2 );
+                append( sb, "By using excludes you can exclude particular artifacts from being checked by the Maven Licenses Verifier Plugin.\n\u00a0\u00a0<excludes>\n\u00a0\u00a0\u00a0\u00a0\u00a0<exclude>groupId:artifactId:type:version</exclude>\n\u00a0\u00a0\u00a0\u00a0\u00a0..\n\u00a0\u00a0</excludes>\n", 3 );
+                append( sb, "", 0 );
+
+                append( sb, "failOnInvalid (Default: false)", 2 );
+                append( sb, "The build will fail if a license with the category Invalid has been found.", 3 );
+                append( sb, "", 0 );
+
+                append( sb, "failOnUnknown (Default: false)", 2 );
+                append( sb, "The build will fail if a license can not be categorized in any of the categories.", 3 );
+                append( sb, "", 0 );
+
+                append( sb, "failOnValid (Default: false)", 2 );
+                append( sb, "The build will fail if a license with the category Valid has been found.", 3 );
+                append( sb, "", 0 );
+
+                append( sb, "failOnWarning (Default: false)", 2 );
+                append( sb, "The build will fail if a license with the category Warning has been found.", 3 );
+                append( sb, "", 0 );
+
+                append( sb, "licenseFile (Default: ${project.basedir}/src/licenses/licenses.xml)", 2 );
+                append( sb, "The name of the licenses.xml file which will be used to categorize the licenses of the artifacts.", 3 );
+                append( sb, "", 0 );
+
+                append( sb, "stricktChecking (Default: false)", 2 );
+                append( sb, "This will turn on strictChecking behavior which will check URL and Name of a license instead of only URL or Name.", 3 );
+                append( sb, "", 0 );
+
+                append( sb, "verbose (Default: false)", 2 );
+                append( sb, "This will turn on verbose behavior and will print out all information about the artifacts.", 3 );
+                append( sb, "", 0 );
+            }
+        }
+
+        if ( getLog().isInfoEnabled() )
+]]>
+</codefragment>
+</duplication>
+<duplication lines="26" tokens="130">
+<file line="431" path="/home/kama/ws-git/Maven-License-Verifier-Plugin/target/checkout/src/main/java/com/soebes/maven/plugins/mlv/LicenseVerifierReport.java"/>
+<file line="473" path="/home/kama/ws-git/Maven-License-Verifier-Plugin/target/checkout/src/main/java/com/soebes/maven/plugins/mlv/LicenseVerifierReport.java"/>
+<file line="515" path="/home/kama/ws-git/Maven-License-Verifier-Plugin/target/checkout/src/main/java/com/soebes/maven/plugins/mlv/LicenseVerifierReport.java"/>
+<file line="556" path="/home/kama/ws-git/Maven-License-Verifier-Plugin/target/checkout/src/main/java/com/soebes/maven/plugins/mlv/LicenseVerifierReport.java"/>
+<codefragment>
+<![CDATA[
+                if (licenseValidator.isUnknown(item.getLicenses())) {
+                    sink.tableRow();
+
+                    cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
+                    sink.tableCell();
+                    sink.text(item.getArtifact().getScope());
+                    sink.tableCell_();
+
+                    if (item.getLicenses().isEmpty()) {
+                        cell(sink, "");
+                        cell(sink, "");
+                    } else {
+                        for (License license : item.getLicenses()) {
+                            cell(sink, license.getName());
+                            cell(sink, license.getUrl());
+                        }
+                    }
+                    sink.tableRow_();
+                }
+            }
+        }
+
+        sink.table_();
+    }
+
+    private void headerCell(Sink sink, String text) {
+]]>
+</codefragment>
+</duplication>
+</pmd-cpd>
