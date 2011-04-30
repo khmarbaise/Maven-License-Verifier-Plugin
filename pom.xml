@@ -61,17 +61,15 @@
   </developers>
 
   <scm>
-    <connection>scm:git:git://github.com/khmarbaise/Maven-Licenses-Verifier-Plugin.git</connection>
-    <developerConnection>scm:git:git@github.com:khmarbaise/Maven-Licenses-Verifier-Plugin.git</developerConnection>
-    <url>https://github.com/khmarbaise/Maven-Licenses-Verifier-Plugin
-    </url>
+    <connection>scm:git:git://github.com/khmarbaise/Maven-License-Verifier-Plugin.git</connection>
+    <developerConnection>scm:git:git@github.com:khmarbaise/Maven-License-Verifier-Plugin.git</developerConnection>
+    <url>https://github.com/khmarbaise/Maven-License-Verifier-Plugin</url>
   </scm>
 
   <distributionManagement>
     <repository>
       <id>ossrh-staging</id>
-      <url>http://oss.sonatype.org/service/local/staging/deploy/maven2
-      </url>
+      <url>http://oss.sonatype.org/service/local/staging/deploy/maven2</url>
     </repository>
     <snapshotRepository>
       <id>ossrh-snapshots</id>
