@@ -112,7 +112,7 @@ public abstract class AbstractLicenseVerifierPlugIn
      * The name of the licenses.xml file which will be used to categorize
      * the licenses of the artifacts.
      * @parameter	expression="${licenseFile}"
-     * 				default-value="${project.basedir}/src/main/licenses/licenses.xml"
+     * 				default-value="${project.basedir}/src/licenses/licenses.xml"
      */
     protected File licenseFile;
 

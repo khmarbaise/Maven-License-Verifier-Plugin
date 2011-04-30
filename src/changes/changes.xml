@@ -8,6 +8,12 @@
         <action
             dev="Karl Heinz Marbaise"
             type="update">
+            Changed the default location of the licenses.xml file from src/main/licenses/licenses.xml
+            to src/licenses/licenses.xml and changed the integration tests accordingly.
+        </action>
+        <action
+            dev="Karl Heinz Marbaise"
+            type="update">
             Changed the artifactId to maven-license-verifier-plugin
         </action>
         <action

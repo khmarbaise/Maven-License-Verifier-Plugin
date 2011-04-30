@@ -13,8 +13,7 @@
   <packaging>maven-plugin</packaging>
   <version>0.3-SNAPSHOT</version>
   <name>Maven License Verifier Plugin</name>
-  <url>https://github.com/khmarbaise/Maven-Licenses-Verifier-Plugin
-  </url>
+  <url>https://github.com/khmarbaise/Maven-License-Verifier-Plugin</url>
 
   <inceptionYear>2009</inceptionYear>
   <description>The Maven License Verifier Plugin is intented to check
@@ -22,8 +21,7 @@
 
   <issueManagement>
     <system>default</system>
-    <url>https://github.com/khmarbaise/Maven-Licenses-Verifier-Plugin/issues
-    </url>
+    <url>https://github.com/khmarbaise/Maven-License-Verifier-Plugin/issues</url>
   </issueManagement>
 
   <licenses>
@@ -78,8 +76,7 @@
     </snapshotRepository>
     <site>
       <id>site.supose.org</id>
-      <url>scp://minden205.server4you.de:/usr/local/vhosts/site.supose.org/maven-licenses-verifier-plugin
-      </url>
+      <url>scp://minden205.server4you.de:/usr/local/vhosts/site.supose.org/maven-license-verifier-plugin</url>
     </site>
   </distributionManagement>
 
