@@ -10,7 +10,7 @@ if ( !file.exists() )
 }
 
 String[] checkedLines = {
-	"[INFO] --- maven-license-verifier:",
+    "[INFO] --- maven-license-verifier-plugin:",
     "[INFO] ------------------------------------------------------------------------",
     "[INFO] BUILD SUCCESS",
     "[INFO] ------------------------------------------------------------------------",

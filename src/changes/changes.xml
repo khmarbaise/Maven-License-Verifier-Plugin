@@ -8,6 +8,11 @@
         <action
             dev="Karl Heinz Marbaise"
             type="update">
+            Changed the artifactId to maven-license-verifier-plugin
+        </action>
+        <action
+            dev="Karl Heinz Marbaise"
+            type="update">
             Get it running with Maven 3.0.3
         </action>
         <action

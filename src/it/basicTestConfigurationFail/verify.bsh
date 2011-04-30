@@ -10,7 +10,7 @@ if ( !file.exists() )
 }
 
 String[] checkedLines = {
-	"[INFO] --- maven-license-verifier:",
+    "[INFO] --- maven-license-verifier-plugin:",
     "[INFO]    ]VALID[   (compile) The artifact com.google.code.google-collections:google-collect:jar:snapshot-20080530 has a license which is categorized as valid",
     "[INFO]    ]VALID[   (compile) The artifact commons-logging:commons-logging-api:jar:1.1 has a license which is categorized as valid",
     "[WARNING] ]UNKNOWN[ (compile) The artifact log4j:log4j:jar:1.2.12 has a license which is categorized as unknown",
@@ -38,7 +38,7 @@ String[] checkedLines = {
     "[INFO] ------------------------------------------------------------------------",
     "[INFO] BUILD FAILURE",
     "[INFO] ------------------------------------------------------------------------",
-    "[ERROR] Failed to execute goal com.soebes.maven.plugins.mlv:maven-license-verifier:",
+    "[ERROR] Failed to execute goal com.soebes.maven.plugins.mlv:maven-license-verifier-plugin:",
 };
 
 Boolean[] checked = {
