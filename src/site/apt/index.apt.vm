@@ -39,8 +39,9 @@ Maven License Verifier Plugin
 
 * Goals Overview
 
-  There are currently two goals <verify> and <report> which can be used to check
-  your project during build time or create a report about the used licenses.
+  There are currently two goals <{{{./verify-mojo.html}verify}}> and
+  <{{{./report-mojo.html}report}}> which can be used to check your project
+  during build time or create a report about the used licenses.
 
 * Usage
 

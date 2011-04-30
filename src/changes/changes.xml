@@ -7,7 +7,19 @@
     <release version="0.3" date="30.04.2011" desc="Second Release">
         <action
             dev="Karl Heinz Marbaise"
+            type="add">
+            Added example licenses.xml file which is available as download into
+            src/site/resources folder.
+        </action>
+        <action
+            dev="Karl Heinz Marbaise"
             type="update">
+            Changed the name of the verbose property into mlv.verbose and
+            added new integration test to check the system property mlv.verbose
+        </action>
+        <action
+            dev="Karl Heinz Marbaise"
+            type="add">
             Added large amount of documentation and set the prerequisite to Maven 2.2.1
         </action>
         <action
@@ -32,7 +44,7 @@
             Refactored code into a single module to get a simpler release cycle.
         </action>
     </release>
-    <release version="0.2" date="xx.xx.2010" desc="First Release">
+    <release version="0.2" date="xx.xx.2010" desc="Never Published">
       <action
         dev="Karl Heinz Marbaise"
         type="fix"

@@ -36,7 +36,7 @@ Examples
 
 +-----
   <plugin>
-    <groupId>${proejct.groupId}</groupId>
+    <groupId>${project.groupId}</groupId>
     <artifactId>${project.artifactId}</artifactId>
     <version>${project.version}</version>
     <executions>
@@ -116,7 +116,6 @@ Examples
   </warning>
 </licenses>
 +-----
-
 
   This will produce an output like the following the during a <<<mvn clean package>>>
   call (The output contains only an excerpt of the original output).

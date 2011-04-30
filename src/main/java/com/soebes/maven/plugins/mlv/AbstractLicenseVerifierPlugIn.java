@@ -87,9 +87,18 @@ public abstract class AbstractLicenseVerifierPlugIn
      * This will turn on verbose behavior and will print out
      * all information about the artifacts.
      *
-     * @parameter expression="${verbose}" default-value="false"
+     * @parameter expression="${mlv.verbose}" default-value="false"
      */
     private boolean verbose;
+
+    /**
+     * This will turn on strictChecking behavior which
+     * will check URL and Name of a license instead of
+     * only URL or Name.
+     *
+     * @parameter expression="${mlv.strickChecking}" default-value="false"
+     */
+    private boolean stricktChecking;
 
     /**
      * The build will fail if a license with the category <b>Valid</b>
@@ -230,6 +239,7 @@ public abstract class AbstractLicenseVerifierPlugIn
             getLog().info("Loading " + licenseFile.getAbsolutePath() + " licenses file.");
             licensesContainer = LicensesFile.getLicenses(licenseFile);
             licenseValidator = new LicenseValidator(licensesContainer);
+            licenseValidator.setStrictChecking(stricktChecking);
         } catch (IOException e) {
             //Use the internal licenses.xml file.???
             throw new MojoExecutionException(

@@ -84,6 +84,7 @@ The Licenses File
  It is very important to mention that the <<id>> has to be unique over all
  licenses independent if they are <<valid>>, <<invalid>> or <<warning>>.
 
+
 +-----
 <license>
   <id>Apache Software License 2.0</id>
@@ -110,6 +111,8 @@ The Licenses File
  use as template where you start from.
 
  (Missing DTD's)
+
+  The following file can be downloaded {{{./licenses.xml}here}}.
 
 +-----
 <?xml version="1.0" encoding="UTF-8"?>
