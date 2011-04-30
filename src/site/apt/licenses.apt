@@ -30,8 +30,9 @@ The Licenses File
 
 * Basics
 
-  The MLV plugin categorizes the different licenses based on the configuration
-  file which gives you the freedom to define whatever licenses you wish.
+  The MLVP plugin categorizes the different licenses based on the configuration
+  file which gives you the freedom to define whatever licenses you wish and categorize
+  them by your needs.
 
 * The License file composition
 
@@ -66,10 +67,10 @@ The Licenses File
  projects use different licenses or use more than one licenses.
 
  The most important thing to understand is that a license can be known or used
- under more than one name or url.
+ under more than one name or URL.
 
  The following example will give you an impression. The <<description>> tag is
- only a name for the license which is used to identify it from your point of
+ only a name for the license which is used to identify it from the user point of
  view. As you can see a license is often known under different names which can
  be defined in the <<names>> list. The used <<name>> is the name which is given
  in the {{{http://maven.apache.org/pom.html#Licenses}pom}} for an artifact.
@@ -77,8 +78,8 @@ The Licenses File
  not unusual to have different names for the same license.
 
  The same can happen for the URL, cause it can simply reference a web site or
- it can reference a particular document or the web site is references with or
- without the prefixing <<www>>.
+ a particular document or the web site is references with or
+ without the prefixing <<www>> etc.
 
  It is very important to mention that the <<id>> has to be unique over all
  licenses independent if they are <<valid>>, <<invalid>> or <<warning>>.
@@ -105,8 +106,8 @@ The Licenses File
 
 * Real Example
 
- The following is a real example of a licenses.xml file which you can
- use a template where you start from.
+ The following is a real example of a <<<licenses.xml>>> file which you can
+ use as template where you start from.
 
  (Missing DTD's)
 
@@ -198,3 +199,5 @@ The Licenses File
   </warning>
 </licenses>
 +-----
+
+  []

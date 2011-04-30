@@ -22,6 +22,8 @@ import org.apache.maven.plugin.MojoExecutionException;
 
 
 /**
+ * This goal is intended to check the artifacts during the prepare-package phase and
+ * print out warnings etc. based on the given configuration for the plugin.
  *
  * @goal verify
  * @phase prepare-package

@@ -92,18 +92,26 @@ public abstract class AbstractLicenseVerifierPlugIn
     private boolean verbose;
 
     /**
+     * The build will fail if a license with the category <b>Valid</b>
+     * has been found.
      * @parameter expression="${mlv.failOnValid}" default-value="false"
      */
     protected boolean failOnValid;
     /**
+     * The build will fail if a license with the category <b>Invalid</b>
+     * has been found.
      * @parameter expression="${mlv.failOnInvalid}" default-value="false"
      */
     protected boolean failOnInvalid;
     /**
+     * The build will fail if a license with the category <b>Warning</b>
+     * has been found.
      * @parameter expression="${mlv.failOnWarning}" default-value="false"
      */
     protected boolean failOnWarning;
     /**
+     * The build will fail if a license can not be categorized
+     * in any of the categories.
      * @parameter expression="${mlv.failOnUnknown}" default-value="false"
      */
     protected boolean failOnUnknown;
@@ -111,23 +119,20 @@ public abstract class AbstractLicenseVerifierPlugIn
     /**
      * The name of the licenses.xml file which will be used to categorize
      * the licenses of the artifacts.
-     * @parameter	expression="${licenseFile}"
+     * @parameter	expression="${mlv.licenseFile}"
      * 				default-value="${project.basedir}/src/licenses/licenses.xml"
      */
     protected File licenseFile;
 
     /**
-     * With this you could define the following:
-     * &lt;configuration&gt;
-     *   &lt;licenseRefs&gt;
-     *     &lt;licenseRef&gt;Apache-2.0.xml&lt;/licenseRef&gt;
-     *   &lt;licenseRefs&gt;
-     * &lt;/configuration&gt;
-     * @parameter
-     */
-    protected List<String> licenseRefs;
-
-    /**
+     * By using excludes you can exclude particular artifacts from being checked
+     * by the Maven Licenses Verifier Plugin.
+     * <pre>
+     *   &lt;excludes&gt;
+     *      &lt;exclude&gt;groupId:artifactId:type:version&lt;/exclude&gt;
+     *      ..
+     *   &lt;/excludes&gt;
+     * </pre>
      * @parameter
      */
     protected List<String> excludes;

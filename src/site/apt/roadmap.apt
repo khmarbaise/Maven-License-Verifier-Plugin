@@ -33,25 +33,19 @@ Roadmap
 
 * Release 0.3
 
-  Get it running on Maven 3.0
+  * Get it running on Maven 3.0
 
-* Release 0.4
-
-  Simple usage of a <<license.xml>> file which is read and checking only the license
-  entry of the pom files of their appropriate artifacts.
+  * Change the default location of the <<<licenses.xml>>> file if
+    you like to do this and don't accept the defaults.
 
 +----
 <configuration>
-  <licenseFile>${basedir}/src/licenses/license.xml</licenseFile>
+  <licenseFile>${basedir}/licenses/license.xml</licenseFile>
 </configuration>
 +----
 
-  The default folder for the above is <<$\{project.basedir\}/src/main/licenses/licenses.xml>>.
-  That means if you don't give any <<licenseFile>> information in the configuration
-  MLV will search for a licenses.xml file in the defined folder.
-
-  Support of excluding artifacts from being checked against the licenses. This
-  is needed cause some artifacts exist which don't define any license.
+  * Support of excluding artifacts from being checked against the licenses.
+    This is needed cause some artifacts exist which don't define any license.
 
 +----
 <configuration>
@@ -62,7 +56,8 @@ Roadmap
 </configuration>
 +----
 
-* Release 0.5
+
+* Release 0.4
 
   Usage of different licenses files which can be configured in the configuration
   section.
@@ -81,7 +76,7 @@ Roadmap
 
 
 
-* Release 0.6
+* Release 0.5
 
   Company License defined by an extra artifact.
 
@@ -104,7 +99,7 @@ Roadmap
 +----
 
 
-* Release 0.7
+* Release 0.6
 
   It should be possible to define particular artifact to have a particular category.
   This is needed to be able to redefine an artifact without an license to be valid, invalid
@@ -138,7 +133,7 @@ Roadmap
 </configuration>
 +----
 
-* Release 0.8
+* Release 0.7
 
   Read different license via descriptors
 
@@ -160,7 +155,7 @@ Roadmap
 </configuration>
 +----
 
-* Release 0.9
+* Release 0.8
 
   * Check not only the POM use the artifacts itself, cause it contains license information
 
@@ -173,6 +168,11 @@ Roadmap
   * Check the artifacts them selfs (.jar) file and search them for license.txt etc. and may be
 
   * bundles license entries.
+
+
+* Release 0.9
+
+  * May be i find something useful before 1.0 or users have good ideas.
 
 * Release 1.0
 

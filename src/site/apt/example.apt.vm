@@ -1,0 +1,316 @@
+ ------
+ Introduction
+ ------
+ Karl Heinz Marbaise
+ ------
+ 02 January 2010
+ ------
+
+~~ Licensed to the Apache Software Foundation (ASF) under one
+~~ or more contributor license agreements.  See the NOTICE file
+~~ distributed with this work for additional information
+~~ regarding copyright ownership.  The ASF licenses this file
+~~ to you under the Apache License, Version 2.0 (the
+~~ "License"); you may not use this file except in compliance
+~~ with the License.  You may obtain a copy of the License at
+~~
+~~   http://www.apache.org/licenses/LICENSE-2.0
+~~
+~~ Unless required by applicable law or agreed to in writing,
+~~ software distributed under the License is distributed on an
+~~ "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+~~ KIND, either express or implied.  See the License for the
+~~ specific language governing permissions and limitations
+~~ under the License.
+
+~~ NOTE: For help with the syntax of this file, see:
+~~ http://maven.apache.org/doxia/references/apt-format.html
+
+Examples
+
+
+* Usage Example
+
+  If we take a real project and add the configuration for the
+  Maven License Verifier Plugin into its pom like the following:
+
++-----
+  <plugin>
+    <groupId>${proejct.groupId}</groupId>
+    <artifactId>${project.artifactId}</artifactId>
+    <version>${project.version}</version>
+    <executions>
+      <execution>
+        <id>license-verifier</id>
+        <goals>
+          <goal>verify</goal>
+        </goals>
+      </execution>
+    </exectuions>
+  </plugin>
++-----
+
+  And of course create a <<<licenses.xml>>> file with the following contents:
+
++-----
+<?xml version="1.0" encoding="UTF-8"?>
+<licenses>
+  <valid>
+    <license>
+      <id>Apache Software License 2.0</id>
+      <description>Apache Software License 2.0</description>
+      <names>
+        <name>Apache 2</name>
+        <name>Apache Software License 2.0</name>
+        <name>Apache Software License, Version 2.0</name>
+        <name>The Apache Software License, Version 2.0</name>
+      </names>
+      <urls>
+        <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+        <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        <url>http://apache.org/licenses/LICENSE-2.0</url>
+        <url>http://apache.org/licenses/LICENSE-2.0.html</url>
+        <url>http://apache.org/licenses/LICENSE-2.0.txt</url>
+        <url>LICENSE.txt</url>
+      </urls>
+    </license>
+    <license>
+      <id>Common Public License Version 1.0</id>
+      <description>Common Public License Version 1.0</description>
+      <names>
+        <name>Common Public License Version 1.0</name>
+      </names>
+      <urls>
+        <url>http://www.opensource.org/licenses/cpl1.0.txt</url>
+      </urls>
+    </license>
+  </valid>
+
+  <invalid>
+    <license>
+      <id>GNU General Public License (GPL)</id>
+      <description>GNU General Public License (GPL)</description>
+      <names>
+        <name>GNU General Public License, version 2</name>
+        <name>GNU General Public License, version 3</name>
+      </names>
+      <urls>
+        <url>http://www.gnu.org/licenses/gpl-2.0.html</url>
+        <url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+      </urls>
+    </license>
+  </invalid>
+
+  <warning>
+    <license>
+      <id>Apache Software License 1.1 (Historic)</id>
+      <description>Apache Software License 1.1 (Historic)</description>
+      <names>
+        <name>Apache License, Version 1.1</name>
+      </names>
+      <urls>
+        <url>http://www.apache.org/licenses/LICENSE-1.1</url>
+      </urls>
+    </license>
+  </warning>
+</licenses>
++-----
+
+
+  This will produce an output like the following the during a <<<mvn clean package>>>
+  call (The output contains only an excerpt of the original output).
+
++-----
+[INFO]
+[INFO] --- maven-license-verifier-plugin:${project.version}:verify (license-verifier) @ sapm ---
+[INFO] Loading /home/kama/ws-git/sapm/src/licenses/licenses.xml licenses file.
+[WARNING] ]UNKNOWN[ (compile) The artifact antlr:antlr:jar:2.7.7 has a license which is categorized as unknown
+[WARNING] ]UNKNOWN[ (compile) The artifact org.antlr:antlr-runtime:jar:3.3 has a license which is categorized as unknown
+[WARNING] ]UNKNOWN[ (compile) The artifact org.antlr:stringtemplate:jar:3.2.1 has a license which is categorized as unknown
+[WARNING] ]UNKNOWN[ (test) The artifact org.beanshell:bsh:jar:2.0b4 has a license which is categorized as unknown
+[INFO]
+[INFO] --- maven-jar-plugin:2.3.1:jar (default-jar) @ sapm ---
+[INFO] Building jar: /home/kama/ws-git/sapm/target/sapm-0.5-SNAPSHOT.jar
+[INFO]
+[INFO] --- maven-site-plugin:3.0-beta-3:attach-descriptor (attach-descriptor) @ sapm ---
+[INFO] Parent project loaded from repository.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 14.103s
+[INFO] Finished at: Sat Apr 30 16:49:48 CEST 2011
+[INFO] Final Memory: 21M/212M
+[INFO] ------------------------------------------------------------------------
++-----
+
+  Taking a closer look to the artifacts like the <antlr:antlr:jar:2.7.7> you
+  will find out that this artifact has a <<BSD License>> which is currently not
+  in the <<<licenses.xml>>> file. This means in other words if we will accept the
+  <<BSD license>> we have to add that license to the <<<licenses.xml>>> file in
+  an appropriate category. The following will show you an appropriate excerpt
+  of the <<<licenses.xml>>> file. In this case we put the license into <Valid>
+  category.
+
++----
+  <valid>
+    [...]
+    <license>
+      <id>BSD License</id>
+      <description>BSD License</description>
+      <names>
+        <name>BSD License</name>
+      </names>
+      <urls>
+        <url>http://www.antlr.org/license.html</url>
+      </urls>
+    </license>
+    [...]
+  </valid>
++----
+
+  The result of the above change is the following output:
+
++----
+[INFO]
+[INFO] --- maven-license-verifier-plugin:${project.version}:verify (license-verifier) @ sapm ---
+[INFO] Loading /home/kama/ws-git/sapm/src/licenses/licenses.xml licenses file.
+[WARNING] ]UNKNOWN[ (compile) The artifact org.antlr:antlr-runtime:jar:3.3 has a license which is categorized as unknown
+[WARNING] ]UNKNOWN[ (compile) The artifact org.antlr:stringtemplate:jar:3.2.1 has a license which is categorized as unknown
+[WARNING] ]UNKNOWN[ (test) The artifact org.beanshell:bsh:jar:2.0b4 has a license which is categorized as unknown
+[INFO]
+[INFO] --- maven-jar-plugin:2.3.1:jar (default-jar) @ sapm ---
+[INFO] Building jar: /home/kama/ws-git/sapm/target/sapm-0.5-SNAPSHOT.jar
+[INFO]
+[INFO] --- maven-site-plugin:3.0-beta-3:attach-descriptor (attach-descriptor) @ sapm ---
+[INFO] Parent project loaded from repository.
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 13.933s
+[INFO] Finished at: Sat Apr 30 17:08:20 CEST 2011
+[INFO] Final Memory: 21M/257M
+[INFO] ------------------------------------------------------------------------
++----
+
+  This will just remove only a single warning in this case for the
+  <antlr:antlr:jar:2.7.7> artifact. To get rid of the warnings for the other
+  artifacts we have to added appropriate entries in to the <<<licenses.xml>>>
+  files as well.
+
+  If you take a look at the <org.antlr:antlr-runtime:jar:3.3> artifact you will
+  find out that this artifact itself does not have a license entry nor its
+  parent has one. This means this artifact does not contain a licens eat all.
+  In this case you have to exclude this artifact from being checked which
+  simply means to enhance the configuration section of the plugin like
+  the following:
+
++-------
+  <plugin>
+    <groupId>${project.groupId}</groupId>
+    <artifactId>${project.artifactId}</artifactId>
+    <version>${project.version}</version>
+    <executions>
+      <execution>
+        <id>license-verifier</id>
+        <goals>
+          <goal>verify</goal>
+        </goals>
+        <configuration>
+          <excludes>
+            <exclude>org.antlr:antlr-runtime:jar:3.3</exclude>
+          </excludes>
+        </configuration>
+      </execution>
+    </exectuions>
+  </plugin>
++-------
+
+  After changing the configuration the output of a <<<mvn clean package>>>
+  looks like this:
+
++-------
+[INFO]
+[INFO] --- maven-license-verifier-plugin:${project.version}:verify (license-verifier) @ sapm ---
+[INFO] Loading /home/kama/ws-git/sapm/src/licenses/licenses.xml licenses file.
+[WARNING] ]UNKNOWN[ (compile) The artifact org.antlr:stringtemplate:jar:3.2.1 has a license which is categorized as unknown
+[WARNING] ]UNKNOWN[ (test) The artifact org.beanshell:bsh:jar:2.0b4 has a license which is categorized as unknown
+[INFO]
++-------
+
+  So we have to continue and check the artifact <org.antlr:stringtemplate:jar:3.2.1>.
+  This artifact has a <BSD License> as well, but why hasn't it been categorized
+  as being <valid>? The simple answer is: It has a different URL <<<http://antlr.org/license.html>>>
+  instead of <<<http://www.antlr.org/license.html>>>. So we have to add the
+  other URL into the <<<licenses.xml>>>.
+
++----
+  <valid>
+    [...]
+    <license>
+      <id>BSD License</id>
+      <description>BSD License</description>
+      <names>
+        <name>BSD License</name>
+      </names>
+      <urls>
+        <url>http://www.antlr.org/license.html</url>
+        <url>http://antlr.org/license.html</url>
+      </urls>
+    </license>
+    [...]
+  </valid>
++----
+
+  After this change the output looks now like the following:
+
++-----
+[INFO]
+[INFO] --- maven-license-verifier-plugin:0.3-SNAPSHOT:verify (license-verifier) @ sapm ---
+[INFO] Loading /home/kama/ws-git/sapm/src/licenses/licenses.xml licenses file.
+[WARNING] ]UNKNOWN[ (test) The artifact org.beanshell:bsh:jar:2.0b4 has a license which is categorized as unknown
+[INFO]
++-----
+
+  The final artifact itself does not contain the license only it's parent
+  contains the license which it this case is (excerpt from the parents pom.xml).
+
++-----
+ <licenses>
+    <license>
+      <name>GNU LESSER GENERAL PUBLIC LICENSE</name>
+      <url>http://www.gnu.org/licenses/lgpl.txt</url>
+    </license>
+  </licenses>
++-----
+
+  Now finally we have to add this license to our <<<licenses.xml>>> file.
+
++-----
+  <valid>
+    [...]
+    <license>
+      <id>GNU LESSER GENERAL PUBLIC LICENSE</id>
+      <description>GNU LESSER GENERAL PUBLIC LICENSE</description>
+      <names>
+       <name>GNU LESSER GENERAL PUBLIC LICENSE</name>
+      </names>
+      <urls>
+        <url>http://www.gnu.org/licenses/lglp.txt</url>
+      </urls>
+    </license>
+    [...]
+ </valid>
++-----
+
+  And now finally the output of the <<<mvn clean package>>> looks like this:
+
++----
+[INFO]
+[INFO] --- maven-license-verifier-plugin:0.3-SNAPSHOT:verify (license-verifier) @ sapm ---
+[INFO] Loading /home/kama/ws-git/sapm/src/licenses/licenses.xml licenses file.
+[INFO]
++----
+
+  []
+

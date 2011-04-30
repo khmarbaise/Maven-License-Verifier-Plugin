@@ -30,13 +30,11 @@ Maven License Verifier Plugin
 
 * Information
 
-  The goals for the MLV are bound to their respective phases in the
+  The goals for the MLVP are bound to their respective phases in the
   build lifecycle.
 
-  The default binding is to run the MLV at the <<prepare-package>> phase. If you like to change
+  The default binding is to run the MLVP at the <<prepare-package>> phase. If you like to change
   this you have to make an appropriate configuration.
-
-  Hint: Sometimes this does not work, cause at that time the dependencies have not been solved (Check this!)
 
 +-----
 <project>
@@ -49,12 +47,12 @@ Maven License Verifier Plugin
         <version>${project.version}</version>
         <executions>
           <execution>
-            <phase>..</phase>
+            <phase>verify</phase>
             <goals>
               <goal>verify</goal>
             </goals>
           <execution>
-        <exectutions>
+        <executions>
       </plugin>
     </plugins>
   </build>
@@ -63,14 +61,12 @@ Maven License Verifier Plugin
 +-----
 
 
-  The most important thing you have to do first is to create one or more {{{licenses.html}licenses.xml}} files
-  which contain the license information.
-
 * Configuration
 
-  The most important thing you have to do is to create a {{{licenses.html}licenses.xml}} file
-  which comprises of the different categories and give the location of the licenses.xml
-  file in the configuration of the MLV plugin.
+  The most important thing you have to do is to create a {{{./licenses.html}licenses.xml}}
+  file which contains the different categories. The default location where the MLVP
+  will check if a <<<licenses.xml>>> exists is in the <<<src/licenses>>> folder.
+  It can be {{{./verify-mojo.html#licenseFile}configured}} if you need to.
 
 +-----
 <project>
@@ -91,4 +87,5 @@ Maven License Verifier Plugin
 </project>
 +-----
 
-* Check ....
+
+  []

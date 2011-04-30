@@ -29,29 +29,28 @@
 Maven License Verifier Plugin
 
 
-  The basic idea of the Maven License Verifier Plugin (MLV for short) is to
-  check which licenses are used in your project and give some hints about
-  artifacts which don't define a license at all or artifacts which
-  use artifacts which are not acceptable in your project or company.
+  The basic idea of the Maven License Verifier Plugin (MLVP for short) is to
+  check which licenses are used by your projects artifacts and give some hints
+  about artifacts which don't define a license at all or artifacts which
+  use a license which is not acceptable in your project or company.
 
-  This will sometimes called License Compliance Management, but this
+  This will sometimes be called License Compliance Management, but this
   plugin will support your work but of course doesn't take the job itself.
 
 * Goals Overview
 
-  There are currently two goals (check, report) which can be used to check
-  your project and create a report about the used licenses.
+  There are currently two goals <verify> and <report> which can be used to check
+  your project during build time or create a report about the used licenses.
 
 * Usage
 
-  If you like to use the MLV plugin you have to use the plugin
-  in your pom either in the area of the build to do a check
-  during the build. On the other hand you can use the
-  MLV plugin in the area of the reporting to produce a report
-  about the used licenses.
+  If you like to use the MLVP plugin you have to define the plugin in your
+  <<<pom.xml>>> either in the area of the build to do a verification during
+  the build. On the other hand you can use the MLVP plugin in the <reporting>
+  area of the to produce a report during site generation about the used licenses.
 
-  In both cases you have to define the location of a {{{licenses.html}licenses.xml}}
-  file which contains the definition of the different {{{categories.html}categories}} of
+  In both cases you have to define the location of a {{{./licenses.html}licenses.xml}}
+  file which contains the definition of the different {{{./categories.html}categories}} of
   licenses.
 
 +-----
@@ -65,14 +64,9 @@ Maven License Verifier Plugin
         <version>${project.version}</version>
         <executions>
           <execution>
-            <phase>prepare-package</phase>
-            <goals><goal>verify</goal></goals>
-            <configuration>
-              <verbose>true</verbose>
-              <excludes>
-                <exclude>org.antlr:antlr-runtime:jar:3.3</exclude>
-              </excludes>
-            </configuration>
+            <goals>
+              <goal>verify</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>
@@ -83,32 +77,7 @@ Maven License Verifier Plugin
 +-----
 
 
-* Examples
-
- Here you can see an example of an execution of the MLV plugin on a particular project:
-
-+-----
-[INFO] [licenses-verifier:verify {execution: default}]
-[INFO] Loading /home/kama/ws-git/sapm/src/main/licenses/licenses.xml licenses file.
-[WARNING] The artifact: org.antlr:antlr-runtime:jar:3.3 has been execluded by the configuration.
-[WARNING] ]UNKNOWN[ (compile) The artifact antlr:antlr:jar:2.7.7 has a license which is categorized as unknown
-[WARNING] ]UNKNOWN[ (compile) The artifact org.antlr:stringtemplate:jar:3.2.1 has a license which is categorized as unknown
-[WARNING] ]UNKNOWN[ (test) The artifact aopalliance:aopalliance:jar:1.0 has a license which is categorized as unknown
-[INFO]    ]VALID[   (test) The artifact com.beust:jcommander:jar:1.12 has a license which is categorized as valid
-[INFO]    ]VALID[   (test) The artifact com.google.inject:guice:jar:2.0 has a license which is categorized as valid
-[INFO]    ]VALID[   (test) The artifact junit:junit:jar:3.8.1 has a license which is categorized as valid
-[WARNING] ]UNKNOWN[ (test) The artifact org.beanshell:bsh:jar:2.0b4 has a license which is categorized as unknown
-[INFO]    ]VALID[   (test) The artifact org.testng:testng:jar:5.14.6 has a license which is categorized as valid
-[INFO] [jar:jar {execution: default-jar}]
-[INFO] Building jar: /home/kama/ws-git/sapm/target/sapm-0.4-SNAPSHOT.jar
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESSFUL
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time: 9 seconds
-[INFO] Finished at: Sat Jan 29 23:33:07 CET 2011
-[INFO] Final Memory: 32M/306M
-[INFO] ------------------------------------------------------------------------
-+-----
+  Real world examples can be found in the {{{./example.html}Example}} area.
 
   []
 
