@@ -34,12 +34,6 @@ public class LicenseVerifierMojo
     public void execute()
         throws MojoExecutionException
     {
-//		getLog().info("LicenseVerifierMojo:execute()");
-//		getLog().info("LicenseVerifierMojo:execute(): isExecutionRoot(): " + project.isExecutionRoot());
-//		getLog().info("LicenseVerifierMojo:execute(): name:" + project.getName());
-//		getLog().info("LicenseVerifierMojo:execute(): basedir:" + project.getBasedir().getAbsolutePath());
-
-
 // The following code can be later used if we load a license.xml file from an
 // different package.
 //		ClassLoader sysClassLoader = this.getClass().getClassLoader();
