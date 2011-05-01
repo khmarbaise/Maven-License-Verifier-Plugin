@@ -335,6 +335,7 @@
               </cloneProjectsTo>
               <setupIncludes>
                 <setupInclude>mlv-setup/pom.xml</setupInclude>
+                <setupInclude>mlv-setup-different-location/pom.xml</setupInclude>
               </setupIncludes>
 
               <pomIncludes>

@@ -59,25 +59,6 @@ Roadmap
 
 * Release 0.4
 
-  Usage of different licenses files which can be configured in the configuration
-  section.
-
-  Loading of multiple license files which will be summarized as they have been
-  loaded as a single file. (Simplify maintenance)
-
-+----
-<configuration>
-  <licenseRefs>
-    <licenseRef>oss-licenses.xml</licensesRef>
-    <licenseRef>company-licenses.xml</licensesRef>
-  </licenseRefs>
-</configuration>
-+----
-
-
-
-* Release 0.5
-
   Company License defined by an extra artifact.
 
 +----
@@ -96,6 +77,23 @@ Roadmap
     <verbose>true</verbose>
   </configuration>
 </plugin>
++----
+
+* Release 0.5
+
+  Usage of different licenses files which can be configured in the configuration
+  section.
+
+  Loading of multiple license files which will be summarized as they have been
+  loaded as a single file. (Simplify maintenance)
+
++----
+<configuration>
+  <licenseRefs>
+    <licenseRef>oss-licenses.xml</licensesRef>
+    <licenseRef>company-licenses.xml</licensesRef>
+  </licenseRefs>
+</configuration>
 +----
 
 

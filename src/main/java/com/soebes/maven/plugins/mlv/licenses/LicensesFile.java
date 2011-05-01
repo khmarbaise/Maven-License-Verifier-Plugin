@@ -18,6 +18,7 @@ package com.soebes.maven.plugins.mlv.licenses;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.StringWriter;
 
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
@@ -39,13 +40,26 @@ public class LicensesFile {
      * LicenseContainer class to have the information of the licenses.xml
      * file available.
      * @param licenseFile
-     * @return CheckLicenses instance.
+     * @return LicensesContainer instance.
      * @throws XmlPullParserException
      * @throws IOException
      */
     public static LicensesContainer getLicenses(File licenseFile) throws IOException, XmlPullParserException {
+        return getLicenses(new FileInputStream(licenseFile));
+    }
+
+    /**
+     * Load the licenses.xml file from an InputStream which
+     * usually means via getResourceAsStream().
+     *
+     * @param licensesInputStream The input stream where to load the license file from.
+     * @return LicensesContainer instance.
+     * @throws XmlPullParserException
+     * @throws IOException
+     */
+    public static LicensesContainer getLicenses(InputStream licensesInputStream) throws IOException, XmlPullParserException {
         LicensesXpp3Reader read = new LicensesXpp3Reader();
-        LicensesContainer licenses = read.read(new FileInputStream(licenseFile));
+        LicensesContainer licenses = read.read(licensesInputStream);
         return licenses;
     }
 

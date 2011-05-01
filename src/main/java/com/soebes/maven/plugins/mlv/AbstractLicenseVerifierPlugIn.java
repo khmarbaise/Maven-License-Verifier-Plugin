@@ -17,6 +17,8 @@ package com.soebes.maven.plugins.mlv;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -236,10 +238,28 @@ public abstract class AbstractLicenseVerifierPlugIn
             return;
         }
         try {
-            getLog().info("Loading " + licenseFile.getAbsolutePath() + " licenses file.");
-            licensesContainer = LicensesFile.getLicenses(licenseFile);
+            getLog().debug("Trying to find " + licenseFile.getAbsolutePath() + " in file system.");
+            if (licenseFile.exists()) {
+                getLog().debug("Found licenses file in file system.");
+                getLog().info("Loading " + licenseFile.getAbsolutePath() + " licenses file.");
+                licensesContainer = LicensesFile.getLicenses(licenseFile);
+            } else {
+                getLog().info("Loading license file via classpath.");
+                URL licenseURL = this.getClass().getResource(licenseFile.getPath());
+                InputStream inputStream = null;
+                if (licenseURL == null) {
+                    inputStream = this.getClass().getResourceAsStream("/licenses/licenses.xml");
+                    licenseURL = this.getClass().getResource("/licenses/licenses.xml");
+                } else {
+                    inputStream = this.getClass().getResourceAsStream(licenseFile.getPath());
+                    licenseURL = this.getClass().getResource(licenseFile.getPath());
+                }
+                getLog().debug("Loading licenses.xml from " + licenseURL);
+                licensesContainer = LicensesFile.getLicenses(inputStream);
+            }
             licenseValidator = new LicenseValidator(licensesContainer);
             licenseValidator.setStrictChecking(stricktChecking);
+
         } catch (IOException e) {
             //Use the internal licenses.xml file.???
             throw new MojoExecutionException(

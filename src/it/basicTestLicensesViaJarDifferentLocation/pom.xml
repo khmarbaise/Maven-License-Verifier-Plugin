@@ -19,7 +19,15 @@
         <groupId>@project.groupId@</groupId>
         <artifactId>@project.artifactId@</artifactId>
         <version>@project.version@</version>
+        <dependencies>
+          <dependency>
+            <groupId>com.soebes.mlv.plugin.licenses</groupId>
+            <artifactId>oss-different-location</artifactId>
+            <version>1.0</version>
+          </dependency>
+        </dependencies>
         <configuration>
+          <licenseFile>/different/location/licenses.xml</licenseFile>
           <verbose>true</verbose>
         </configuration>
         <executions>

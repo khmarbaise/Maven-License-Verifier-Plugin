@@ -8,6 +8,14 @@
         <action
             dev="Karl Heinz Marbaise"
             type="fixed"
+            issue="8">
+            Load the licenses.xml file as a resource from the classpath which
+            mean we can define a particular dependency which contains the licenses.xml
+            file instead of having every project it's own licenses.xml file.
+        </action>
+        <action
+            dev="Karl Heinz Marbaise"
+            type="fixed"
             issue="6">
             Fxied warnings during JavaDoc creation
         </action>

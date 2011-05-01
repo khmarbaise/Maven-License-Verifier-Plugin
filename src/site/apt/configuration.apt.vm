@@ -30,13 +30,13 @@ Configuration
 
 * Configuration of the licenses.xml file
 
-  You can simply give a particular {{{licenses.html}licenses.xml}} file which contains the
+  You can simply give a particular {{{./licenses.html}licenses.xml}} file which contains the
   different licenses.
 
-  The {{{licenses.html}licenses.xml}} is being searched for in the following folder
-  <<$\{project.basedir\}/src/main/licenses/>>.
+  The {{{./licenses.html}licenses.xml}} is being searched for in the following folder
+  <<$\{project.basedir\}/src/licenses/licenses.xml>>.
   That means if you don't give any <<licenseFile>> information in the configuration
-  MLV will search for a licenses.xml file in the defined default folder.
+  MLV will search for a <<<licenses.xml>>> file in the defined default folder.
 
   The following configuration is only needed if you don't store the licenses.xml file
   in the default location.
@@ -52,7 +52,7 @@ Configuration
   If you have artifacts which do not contain a valid license (e.g. log4j 1.2.12) you can simply exclude
   those artifacts from being checked during the check cycle.
 
-  The pattern for the check is groupId:artifactId:version:type:classifier. (TODO: Check this!)
+  The pattern for the check is groupId:artifactId:version:type:classifier.
 
 +----
 <configuration>
@@ -64,13 +64,14 @@ Configuration
 
 * Company wide setup
 
-  In a company you have other requirements than in a simple single module project.
-  In a company you would like to setup a single parent pom which contains the configuration
-  for the Maven License Verifier Plugin.
+  In a company you have other requirements than in a simple single module
+  project. In a company you would like to setup a single parent pom which
+  contains the configuration for the Maven License Verifier Plugin and also
+  a different package which contains the <<<licenses.xml>>> file which contains
+  the accepted licenses for the company. This can be achieved by using a
+  supplemental dependency which contains only the licenses.xml file.
 
   This can simply be achieved by using a setup like the following.
-
-  (NOT WORKING YET!)
 
 +----
 <project>
@@ -98,18 +99,22 @@ Configuration
 </project>
 +----
 
-  The above package (allprojects) can be simply created as a simple maven project which
-  comprises of the following folder structure.
+  The above package (allprojects) can be simply created as a simple Maven
+  project which comprises of the following folder structure.
 
 +----
-  +-- pom.xml
-  +-- src
-        +--- main
-               +--- resources
-                       +---- licenses.xml
+.
+|-- pom.xml
+`-- src
+    `-- main
+        `-- resources
+            `-- licenses
+                `-- licenses.xml
 +----
 
-  And the following pom:
+  To create such a project you need the following pom. The only thing which
+  is more or less fixed is the location of the <<<licenses.xml>>> file, but
+  the naming of the artifact and of course the package is your turn.
 
 +----
 <groupId>com.soebes.mlv.plugin.licenses</groupId>
@@ -118,16 +123,16 @@ Configuration
 <version>1.0</version>
 <name>Licenses Configuration Files</name>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-resources-plugin</artifactId>
-        <version>2.3</version>
-        <configuration>
-          <encoding>UTF-8</encoding>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+<build>
+  <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-resources-plugin</artifactId>
+      <version>2.3</version>
+      <configuration>
+        <encoding>UTF-8</encoding>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
 +----
