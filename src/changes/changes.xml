@@ -4,6 +4,14 @@
     <title>Feature Additions, Fixes, and Updates</title>
   </properties>
   <body>
+    <release version="0.4" date="XX.XX.2011" desc="Second Release">
+        <action
+            dev="Karl Heinz Marbaise"
+            type="fixed"
+            issue="6">
+            Fxied warnings during JavaDoc creation
+        </action>
+    </release>
     <release version="0.3" date="30.04.2011" desc="Second Release">
         <action
             dev="Karl Heinz Marbaise"

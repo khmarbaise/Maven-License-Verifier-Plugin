@@ -102,6 +102,11 @@
             <autoVersionSubmodules>true</autoVersionSubmodules>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>2.7</version>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -263,6 +268,48 @@
 
   <reporting>
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.7</version>
+        <!-- All the following tags are Mojo specific -->
+        <configuration>
+          <tags>
+            <tag>
+              <name>goal</name>
+              <placement>X</placement>
+            </tag>
+            <tag>
+              <name>phase</name>
+              <placement>X</placement>
+            </tag>
+            <tag>
+              <name>requiresDependencyResolution</name>
+              <placement>X</placement>
+            </tag>
+            <tag>
+              <name>parameter</name>
+              <placement>X</placement>
+            </tag>
+            <tag>
+              <name>required</name>
+              <placement>X</placement>
+            </tag>
+            <tag>
+              <name>readonly</name>
+              <placement>X</placement>
+            </tag>
+            <tag>
+              <name>requiresProject</name>
+              <placement>X</placement>
+            </tag>
+            <tag>
+              <name>component</name>
+              <placement>X</placement>
+            </tag>
+          </tags>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-plugin-plugin</artifactId>
