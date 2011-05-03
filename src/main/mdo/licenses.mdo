@@ -23,11 +23,14 @@
 
 -->
 <model
-	xsd.namespace="http://modello.codehaus.org/xsd/modello-1.2.0.xsd"
-	xsd.targetNamespace="http://modello.codehaus.org/xsd/modello-1.2.0.xsd">
+	xsd.namespace="http://modello.codehaus.org/xsd/modello-1.4.0.xsd"
+	xsd.targetNamespace="http://modello.codehaus.org/xsd/modello-1.4.0.xsd">
 
 	<id>licenses</id>
 	<name>Licenses</name>
+	<description>This defines the file which contains a list of licenses
+	which are categorized into different categories.
+	</description>
 	<defaults>
 		<default>
 			<key>package</key>
@@ -57,6 +60,11 @@
 					<association xml.itemsStyle="wrapped"> 
 						<type>LicensesList</type>
 						<multiplicity>1</multiplicity>
+						<description>
+							<![CDATA[
+							The definition.
+							]]>
+						</description>
 					</association>
 				</field>
 				<field>
@@ -78,10 +86,8 @@
 					<name>warning</name>
 					<version>1.0.0</version>
 					<description>
-						<![CDATA[
-							The warning category defines licenses which are
-							defined to be warning.
-						]]>
+						The warning category defines licenses which are
+						defined to be warning.
 					</description>
 					<association xml.itemsStyle="wrapped"> 
 						<type>LicensesList</type>

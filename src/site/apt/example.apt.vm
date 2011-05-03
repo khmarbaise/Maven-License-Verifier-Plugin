@@ -55,7 +55,8 @@ Examples
   </plugin>
 +-----
 
-  And of course create a <<<licenses.xml>>> file with the following contents:
+  And of course create a <<<licenses.xml>>> file based on the 
+  {{{./licenses-modell.html}modell}} with the following contents. 
 
 +-----
 <?xml version="1.0" encoding="UTF-8"?>

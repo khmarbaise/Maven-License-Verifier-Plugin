@@ -114,7 +114,8 @@ The Licenses File
 
  (Missing DTD's)
 
-  The following file can be downloaded {{{./licenses.xml}here}}.
+  The following file can be downloaded {{{./licenses.xml}here}}. The
+  detailed description of the modell can be found in the {{{./licenses-modello.html}modello description}}.
 
 +-----
 <?xml version="1.0" encoding="UTF-8"?>

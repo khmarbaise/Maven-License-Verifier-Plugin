@@ -40,7 +40,7 @@ Configuration
   That means if you don't give any <<licenseFile>> information in the configuration
   MLV will search for a <<<licenses.xml>>> file in the defined default folder.
 
-  The following configuration is only needed if you don't store the licenses.xml file
+  The following configuration is only needed if you don't store the <<<licenses.xml>>> file
   in the default location.
 
 +----
