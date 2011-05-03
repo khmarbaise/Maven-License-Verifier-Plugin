@@ -36,7 +36,7 @@ import com.soebes.maven.plugins.mlv.model.io.xpp3.LicensesXpp3Writer;
 /**
  * This class will serve methods for loading the licenses.xml file.
  *
- * @author Karl Heinz Marbaise
+ * @author <a href="mailto:kama@soebes.de">Karl Heinz Marbaise</a>
  *
  */
 public class LicensesFile {

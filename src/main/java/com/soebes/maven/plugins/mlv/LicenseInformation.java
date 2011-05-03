@@ -31,7 +31,7 @@ import org.apache.maven.project.MavenProject;
  * This class will hold together the information about <b>Project</b>,
  * <b>artifact</b> and the <b>Licenses</b>.
  *
- * @author Karl Heinz Marbaise
+ * @author <a href="mailto:kama@soebes.de">Karl Heinz Marbaise</a>
  *
  */
 public class LicenseInformation {

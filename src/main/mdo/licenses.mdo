@@ -71,6 +71,7 @@
 					<association xml.itemsStyle="wrapped"> 
 						<type>LicensesList</type>
 						<multiplicity>1</multiplicity>
+					  <version>1.0.0</version>
 					</association>
 				</field>
 				<field>
@@ -85,6 +86,7 @@
 					<association xml.itemsStyle="wrapped"> 
 						<type>LicensesList</type>
 						<multiplicity>1</multiplicity>
+					  <version>1.0.0</version>
 					</association>
 				</field>
 			</fields>
@@ -119,6 +121,7 @@
 					<identifier>true</identifier>
 					<name>id</name>
 					<type>String</type>
+				  <version>1.0.0</version>
 				</field>
 				<field>
 					<description>
@@ -129,6 +132,7 @@
 					</description>
 					<name>description</name>
 					<type>String</type>
+				  <version>1.0.0</version>
 				</field>
 				<field>
 					<description>

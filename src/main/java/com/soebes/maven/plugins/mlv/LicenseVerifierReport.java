@@ -45,7 +45,7 @@ import com.soebes.maven.plugins.mlv.model.LicenseItem;
  * Generate a report about the license verifier report.
  *
  * @goal report
- * @author Karl Heinz Marbaise
+ * @author <a href="mailto:kama@soebes.de">Karl Heinz Marbaise</a>
  */
 public class LicenseVerifierReport
         extends AbstractLicenseVerifierPlugIn

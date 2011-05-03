@@ -23,6 +23,12 @@ package com.soebes.maven.plugins.mlv;
 
 import java.util.Comparator;
 
+/**
+ * The comparator for the artifacts.
+ *
+ * @author <a href="mailto:kama@soebes.de">Karl Heinz Marbaise</a>
+ *
+ */
 public class ArtifactComperator implements Comparator<LicenseInformation> {
 
     public int compare(LicenseInformation o1, LicenseInformation o2) {

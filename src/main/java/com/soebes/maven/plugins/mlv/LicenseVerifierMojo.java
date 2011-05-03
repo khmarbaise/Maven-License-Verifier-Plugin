@@ -34,7 +34,7 @@ import org.apache.maven.plugin.MojoExecutionException;
  * @goal verify
  * @phase prepare-package
  * @requiresDependencyResolution test
- * @author Karl Heinz Marbaise
+ * @author <a href="mailto:kama@soebes.de">Karl Heinz Marbaise</a>
  */
 public class LicenseVerifierMojo
     extends AbstractLicenseVerifierPlugIn

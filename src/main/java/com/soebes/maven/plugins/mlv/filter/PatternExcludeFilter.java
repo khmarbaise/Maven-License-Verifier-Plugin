@@ -26,6 +26,12 @@ import java.util.List;
 import org.apache.maven.artifact.resolver.filter.ArtifactFilter;
 import org.apache.maven.shared.artifact.filter.PatternExcludesArtifactFilter;
 
+/**
+ * This class is intended to exclude artifacts from being checked.
+ * 
+ * @author <a href="mailto:kama@soebes.de">Karl Heinz Marbaise</a>
+ *
+ */
 public class PatternExcludeFilter {
     public ArtifactFilter createFilter(List<String> patterns) {
         return new PatternExcludesArtifactFilter(patterns);

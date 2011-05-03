@@ -48,7 +48,7 @@ import com.soebes.maven.plugins.mlv.licenses.LicensesFile;
 import com.soebes.maven.plugins.mlv.model.LicensesContainer;
 
 /**
- * @author Karl Heinz Marbaise
+ * @author <a href="mailto:kama@soebes.de">Karl Heinz Marbaise</a>
  * @requiresDependencyResolution test
  */
 public abstract class AbstractLicenseVerifierPlugIn
@@ -178,7 +178,7 @@ public abstract class AbstractLicenseVerifierPlugIn
         PatternExcludeFilter patternExcludeFilter = new PatternExcludeFilter();
         ArtifactFilter filter = patternExcludeFilter.createFilter(excludes);
 
-        for (Iterator depArtIter = depArtifacts.iterator(); depArtIter.hasNext(); ) {
+        for (Iterator<?> depArtIter = depArtifacts.iterator(); depArtIter.hasNext(); ) {
            Artifact depArt = (Artifact) depArtIter.next();
 
            if (!filter.include(depArt)) {

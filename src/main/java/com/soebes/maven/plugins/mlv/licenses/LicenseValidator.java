@@ -33,7 +33,7 @@ import com.soebes.maven.plugins.mlv.model.LicensesContainer;
  * This class offers you methods to categorize licenses into the different
  * categories.
  *
- * @author Karl Heinz Marbaise
+ * @author <a href="mailto:kama@soebes.de">Karl Heinz Marbaise</a>
  */
 public class LicenseValidator {
 
