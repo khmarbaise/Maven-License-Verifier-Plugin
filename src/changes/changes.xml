@@ -35,14 +35,14 @@
         </action>
         <action
             dev="Karl Heinz Marbaise"
-            type="fixed">
+            type="fix">
             Plugin configuration done in pluginManagement (maven-compiler-plugin, maven-modell-plugin,
             maven-plugin-plugin, maven-license-plugin). Maven License Plugin added with configuration
             of the license header template.
         </action>
         <action
             dev="Karl Heinz Marbaise"
-            type="fixed"
+            type="fix"
             issue="8">
             Load the licenses.xml file as a resource from the classpath which
             mean we can define a particular dependency which contains the licenses.xml
@@ -50,7 +50,7 @@
         </action>
         <action
             dev="Karl Heinz Marbaise"
-            type="fixed"
+            type="fix"
             issue="6">
             Fxied warnings during JavaDoc creation
         </action>
