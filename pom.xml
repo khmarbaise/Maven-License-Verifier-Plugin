@@ -33,6 +33,7 @@
   </licenses>
 
   <properties>
+    <maven-license-plugin.version>1.9.0</maven-license-plugin.version>
     <mdoVersion>1.0.0</mdoVersion>
 
     <mavenVersion>2.2.1</mavenVersion>
@@ -107,6 +108,26 @@
           <artifactId>maven-javadoc-plugin</artifactId>
           <version>2.7</version>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>2.3.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-plugin-plugin</artifactId>
+          <version>2.5.1</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.modello</groupId>
+          <artifactId>modello-maven-plugin</artifactId>
+          <version>1.2</version>
+        </plugin>
+        <plugin>
+          <groupId>com.mycila.maven-license-plugin</groupId>
+          <artifactId>maven-license-plugin</artifactId>
+          <version>${maven-license-plugin.version}</version>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -121,12 +142,10 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-report-plugin</artifactId>
-        <version>2.4.3</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.1</version>
         <configuration>
           <source>1.5</source>
           <target>1.5</target>
@@ -136,7 +155,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-plugin-plugin</artifactId>
-        <version>2.5.1</version>
         <executions>
           <execution>
             <id>generated-helpmojo</id>
@@ -150,7 +168,6 @@
       <plugin>
         <groupId>org.codehaus.modello</groupId>
         <artifactId>modello-maven-plugin</artifactId>
-        <version>1.2</version>
         <configuration>
           <version>${mdoVersion}</version>
         </configuration>
@@ -183,6 +200,43 @@
               </models>
               <outputDirectory>${basedir}/target/generated-site/resources/xsd</outputDirectory>
             </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      
+      <plugin>
+        <groupId>com.mycila.maven-license-plugin</groupId>
+        <artifactId>maven-license-plugin</artifactId>
+        <configuration>
+          <header>src/etc/header.txt</header>
+          <quiet>false</quiet>
+          <aggregate>true</aggregate>
+          <failIfMissing>false</failIfMissing>
+          <includes>
+            <include>src/**</include>
+          </includes>
+          <excludes>
+            <exclude>src/main/resources/**</exclude>
+            <exclude>src/test/resources/**</exclude>
+            <exclude>target/**</exclude>
+          </excludes>
+          <mapping>
+            <g>DOUBLESLASH_STYLE</g>
+            <apt.vm>DOUBLETILDE_STYLE</apt.vm>
+            <apt>DOUBLETILDE_STYLE</apt>
+            <mdo>XML_STYLE</mdo>
+            <bsh>JAVA_STYLE</bsh>
+          </mapping>
+          <properties>
+            <year>2009, 2010, 2011</year>
+            <email>mlvp@soebes.de</email>
+          </properties>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>

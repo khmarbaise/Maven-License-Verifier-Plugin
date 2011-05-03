@@ -7,6 +7,13 @@
     <release version="0.4" date="XX.XX.2011" desc="Second Release">
         <action
             dev="Karl Heinz Marbaise"
+            type="fixed">
+            Plugin configuration done in pluginManagement (maven-compiler-plugin, maven-modell-plugin,
+            maven-plugin-plugin, maven-license-plugin). Maven License Plugin added with configuration
+            of the license header template.
+        </action>
+        <action
+            dev="Karl Heinz Marbaise"
             type="fixed"
             issue="8">
             Load the licenses.xml file as a resource from the classpath which
