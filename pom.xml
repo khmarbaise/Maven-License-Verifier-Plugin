@@ -169,7 +169,6 @@
         <groupId>org.codehaus.modello</groupId>
         <artifactId>modello-maven-plugin</artifactId>
         <configuration>
-          <version>${mdoVersion}</version>
           <models>
             <model>src/main/mdo/licenses.mdo</model>
           </models>
@@ -186,6 +185,7 @@
             </goals>
             <configuration>
               <useJava5>true</useJava5>
+              <version>${mdoVersion}</version>
             </configuration>
           </execution>
           <execution>
@@ -196,6 +196,7 @@
             </goals>
             <configuration>
               <outputDirectory>${basedir}/target/generated-site/resources/xsd</outputDirectory>
+              <version>${mdoVersion}</version>
             </configuration>
           </execution>
           <execution>
@@ -206,10 +207,12 @@
             </goals>
             <configuration>
               <xdocFileName>licenses-modello.xml</xdocFileName>
+              <version>${mdoVersion}</version>
             </configuration>
           </execution>
         </executions>
       </plugin>
+
       
       <plugin>
         <groupId>com.mycila.maven-license-plugin</groupId>

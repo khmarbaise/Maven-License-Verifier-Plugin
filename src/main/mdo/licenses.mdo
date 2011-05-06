@@ -40,51 +40,43 @@
 	<classes>
 		<class rootElement="true" xml.tagName="licenses">
 			<name>LicensesContainer</name>
-			<version>1.0.0</version>
+			<version>1.0.0+</version>
 			<description>
-	        <![CDATA[
 	        	The Licenses file defines the three categories which are
 		        used to categorize the different licenses of the artifacts.
-	   	    ]]>
 			</description>
 			<fields>
 				<field>
 					<name>valid</name>
-					<version>1.0.0</version>
+					<version>1.0.0+</version>
 					<description>
-						<![CDATA[
-							The valid category defines licenses which are
-							assumed to be ok.
-						]]>
+						The valid category defines licenses which are
+						assumed to be ok.
 					</description>
 					<association xml.itemsStyle="wrapped"> 
 						<type>LicensesList</type>
 						<multiplicity>1</multiplicity>
 						<description>
-							<![CDATA[
 							The definition.
-							]]>
 						</description>
 					</association>
 				</field>
 				<field>
 					<name>invalid</name>
-					<version>1.0.0</version>
+					<version>1.0.0+</version>
 					<description>
-						<![CDATA[
 							The invalid category defines licenses which are
 							not ok.
-						]]>
 					</description>
 					<association xml.itemsStyle="wrapped"> 
 						<type>LicensesList</type>
 						<multiplicity>1</multiplicity>
-					  <version>1.0.0</version>
+					  <version>1.0.0+</version>
 					</association>
 				</field>
 				<field>
 					<name>warning</name>
-					<version>1.0.0</version>
+					<version>1.0.0+</version>
 					<description>
 						The warning category defines licenses which are
 						defined to be warning.
@@ -92,7 +84,7 @@
 					<association xml.itemsStyle="wrapped"> 
 						<type>LicensesList</type>
 						<multiplicity>1</multiplicity>
-					  <version>1.0.0</version>
+					  <version>1.0.0+</version>
 					</association>
 				</field>
 			</fields>
@@ -100,11 +92,14 @@
 
 		<class xsd.compositor="sequence">
 			<name>LicensesList</name>
-			<version>1.0.0</version>
+			<version>1.0.0+</version>
 			<fields>
 				<field>
 					<name>licenses</name>
-					<version>1.0.0</version>
+					<version>1.0.0+</version>
+					<description>
+						Licenses (sequence)
+					</description>
 					<association xml.itemsStyle="flat">
 						<type>LicenseItem</type>
 						<multiplicity>*</multiplicity>
@@ -115,7 +110,7 @@
 
 		<class>
 			<name>LicenseItem</name>
-			<version>1.0.0</version>
+			<version>1.0.0+</version>
 			<fields>
 				<field>
 					<description>
@@ -127,7 +122,7 @@
 					<identifier>true</identifier>
 					<name>id</name>
 					<type>String</type>
-				  <version>1.0.0</version>
+				  <version>1.0.0+</version>
 				</field>
 				<field>
 					<description>
@@ -138,7 +133,7 @@
 					</description>
 					<name>description</name>
 					<type>String</type>
-				  <version>1.0.0</version>
+				  <version>1.0.0+</version>
 				</field>
 				<field>
 					<description>
@@ -147,7 +142,7 @@
 						]]>
 					</description>
 					<name>names</name>
-					<version>1.0.0</version>
+					<version>1.0.0+</version>
 					<association xml.itemsStyle="wrapped">
 						<name>name</name>
 						<type>String</type>
@@ -162,7 +157,7 @@
 						]]>
 					</description>
 					<name>urls</name>
-					<version>1.0.0</version>
+					<version>1.0.0+</version>
 					<association xml.itemsStyle="wrapped">
 						<name>url</name>
 						<type>String</type>

@@ -481,6 +481,30 @@ public class LicenseValidator {
         return result;
     }
 
+    public enum Category {
+        VALID,
+        INVALID,
+        WARNING,
+        UNKNOWN
+    }
+    public boolean isCategory(ArrayList<License> licenses, Category category) {
+        boolean result = false;
+        switch(category) {
+            case INVALID:
+                result = isInvalid(licenses);
+                break;
+            case VALID:
+                result = isValid(licenses);
+                break;
+            case UNKNOWN:
+                result = isUnknown(licenses);
+                break;
+            case WARNING:
+                result = isWarning(licenses);
+                break;
+        }
+        return result;
+    }
     public void setStrictChecking(boolean strictChecking) {
         this.strictChecking = strictChecking;
     }
