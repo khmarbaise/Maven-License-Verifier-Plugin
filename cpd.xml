@@ -51,10 +51,10 @@
 </codefragment>
 </duplication>
 <duplication lines="26" tokens="130">
-<file line="431" path="/home/kama/ws-git/Maven-License-Verifier-Plugin/target/checkout/src/main/java/com/soebes/maven/plugins/mlv/LicenseVerifierReport.java"/>
-<file line="473" path="/home/kama/ws-git/Maven-License-Verifier-Plugin/target/checkout/src/main/java/com/soebes/maven/plugins/mlv/LicenseVerifierReport.java"/>
-<file line="515" path="/home/kama/ws-git/Maven-License-Verifier-Plugin/target/checkout/src/main/java/com/soebes/maven/plugins/mlv/LicenseVerifierReport.java"/>
-<file line="556" path="/home/kama/ws-git/Maven-License-Verifier-Plugin/target/checkout/src/main/java/com/soebes/maven/plugins/mlv/LicenseVerifierReport.java"/>
+<file line="437" path="/home/kama/ws-git/Maven-License-Verifier-Plugin/target/checkout/src/main/java/com/soebes/maven/plugins/mlv/LicenseVerifierReport.java"/>
+<file line="479" path="/home/kama/ws-git/Maven-License-Verifier-Plugin/target/checkout/src/main/java/com/soebes/maven/plugins/mlv/LicenseVerifierReport.java"/>
+<file line="521" path="/home/kama/ws-git/Maven-License-Verifier-Plugin/target/checkout/src/main/java/com/soebes/maven/plugins/mlv/LicenseVerifierReport.java"/>
+<file line="562" path="/home/kama/ws-git/Maven-License-Verifier-Plugin/target/checkout/src/main/java/com/soebes/maven/plugins/mlv/LicenseVerifierReport.java"/>
 <codefragment>
 <![CDATA[
                 if (licenseValidator.isUnknown(item.getLicenses())) {
@@ -83,6 +83,33 @@
     }
 
     private void headerCell(Sink sink, String text) {
+]]>
+</codefragment>
+</duplication>
+<duplication lines="19" tokens="105">
+<file line="792" path="/home/kama/ws-git/Maven-License-Verifier-Plugin/target/checkout/target/generated-sources/modello/com/soebes/maven/plugins/mlv/model/io/xpp3/LicensesXpp3Reader.java"/>
+<file line="926" path="/home/kama/ws-git/Maven-License-Verifier-Plugin/target/checkout/target/generated-sources/modello/com/soebes/maven/plugins/mlv/model/io/xpp3/LicensesXpp3Reader.java"/>
+<codefragment>
+<![CDATA[
+        LicensesList licensesList = new LicensesList();
+        for ( int i = parser.getAttributeCount() - 1; i >= 0; i-- )
+        {
+            String name = parser.getAttributeName( i );
+            String value = parser.getAttributeValue( i );
+
+            if ( name.indexOf( ':' ) >= 0 )
+            {
+                // just ignore attributes with non-default namespace (for example: xmlns:xsi)
+            }
+            else
+            {
+                checkUnknownAttribute( parser, name, tagName, strict );
+            }
+        }
+        java.util.Set parsed = new java.util.HashSet();
+        while ( ( strict ? parser.nextTag() : nextTag( parser ) ) == XmlPullParser.START_TAG )
+        {
+            if ( "license".equals( parser.getName() ) )
 ]]>
 </codefragment>
 </duplication>
