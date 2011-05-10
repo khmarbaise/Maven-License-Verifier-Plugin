@@ -39,7 +39,7 @@ The first and simplest usage is to configure the Maven Licenses Verifier Plugin
     <plugin>
       <groupId>com.soebes.maven.plugins.mlv</groupId>
       <artifactId>maven-licenses-verifier-plugin</artifactId>
-      <version>0.3</version>
+      <version>0.4</version>
       <executions>
         <execution>
           <phase>test</phase>
