@@ -38,7 +38,7 @@ The first and simplest usage is to configure the Maven Licenses Verifier Plugin
 
     <plugin>
       <groupId>com.soebes.maven.plugins.mlv</groupId>
-      <artifactId>maven-licenses-verifier-plugin</artifactId>
+      <artifactId>maven-license-verifier-plugin</artifactId>
       <version>0.4</version>
       <executions>
         <execution>
@@ -49,6 +49,25 @@ The first and simplest usage is to configure the Maven Licenses Verifier Plugin
         </execution>
       </executions>
     </plugin>
+
+## Settings Configuration
+
+If you like you can configure an appropriate plugin group in your
+settings.xml file to make life a little bit easier.
+
+   <settings>
+     ...
+     <pluginGroups>
+       <pluginGroup>com.soebes.maven.plugins.mlv</pluginGroup>
+     </pluginGroups>
+     ...
+   </settings>
+
+The above setting makes it possible to call the plugin on command 
+line simply:
+
+  mvn license-verifier:check 
+
 
 ## Reporting about Licenses
 

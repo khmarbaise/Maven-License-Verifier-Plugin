@@ -21,9 +21,6 @@
  */
 package com.soebes.maven.plugins.mlv;
 
-import java.util.Collections;
-import java.util.Set;
-
 import org.apache.maven.plugin.MojoExecutionException;
 
 
@@ -39,86 +36,52 @@ import org.apache.maven.plugin.MojoExecutionException;
 public class LicenseVerifierMojo
     extends AbstractLicenseVerifierPlugIn
 {
-
+    
+    
     public void execute()
         throws MojoExecutionException
     {
-// The following code can be later used if we load a license.xml file from an
-// different package.
-//		ClassLoader sysClassLoader = this.getClass().getClassLoader();
-//        URL[] urls = ((URLClassLoader)sysClassLoader).getURLs();
-//        if (getLog().isDebugEnabled()) {
-//			for (int i = 0; i < urls.length; i++) {
-//				getLog().debug("ClassPath: " + urls[i].getFile());
-//			}
-//        }
-//
-//		try {
-//			Enumeration<URL> list = this.getClass().getClassLoader().getResources("/license/*.xml");
-//		} catch (IOException e) {
-//			getLog().error("Exception: " + e.getMessage());
-//		}
-        loadLicensesFile();
+        loadLicenseData();
 
-        //Get a set with all dependent artifacts incl.
-        //the transitive dependencies.
-        Set<?> depArtifacts = this.project.getArtifacts();
-
-        //Check if we have to do something.
-        if (depArtifacts.isEmpty()) {
-            getLog().info("We haven't found any dependencies.");
-            return;
-        }
-
-        //Get all the informations about the licenses of the artifacts.
-        getDependArtifacts(depArtifacts);
-
-        Collections.sort(getLicenseInformations(), new ArtifactComperator());
-
-        boolean isValid = false;
-        boolean isInvalid = false;
-        boolean isWarning = false;
-        boolean isUnknwon = false;
-
-        for (LicenseInformation item : getLicenseInformations()) {
-
-            /*
-             * [INFO]    XXXX
-             * [ERROR]   XXXX
-             * [WARNING] XXXX
-             *
-             * ]VALID[   XXX
-             * ]INVALID[ XXX
-             * ]WARNING[ XXX
-             * ]UNKNOWN[ XXX
-             */
-            if (licenseValidator.isValid(item.getLicenses())) {
+        if (licenseData.hasValid()) {
+            for (LicenseInformation item : licenseData.getValid()) {
                 if (isVerbose()) {
                     getLog().info("   ]VALID[   (" + item.getArtifact().getScope() + ") The artifact " + item.getProject().getId() + " has a license which is categorized as valid");
                 }
-                isValid = true;
-            } else if (licenseValidator.isInvalid(item.getLicenses())) {
-                getLog().error("  ]INVALID[ (" + item.getArtifact().getScope() + ") The artifact " + item.getProject().getId() + " has a license which is categorized as invalid");
-                isInvalid = true;
-            } else if (licenseValidator.isWarning(item.getLicenses())) {
-                getLog().warn("]WARNING[ (" + item.getArtifact().getScope() + ") The artifact " + item.getProject().getId() + " has a license which is categorized as warning");
-                isWarning = true;
-            } else if (licenseValidator.isUnknown(item.getLicenses())) {
-                getLog().warn("]UNKNOWN[ (" + item.getArtifact().getScope() + ") The artifact " + item.getProject().getId() + " has a license which is categorized as unknown");
-                isUnknwon = true;
             }
         }
 
-        if (isValid && failOnValid) {
+        if (licenseData.hasInvalid()) {
+            for (LicenseInformation item : licenseData.getInvalid()) {
+                getLog().error("  ]INVALID[ (" + item.getArtifact().getScope() + ") The artifact " + item.getProject().getId() + " has a license which is categorized as invalid");
+            }
+        }
+
+        if (licenseData.hasWarning()) {
+            for (LicenseInformation item : licenseData.getWarning()) {
+                getLog().warn("]WARNING[ (" + item.getArtifact().getScope() + ") The artifact " + item.getProject().getId() + " has a license which is categorized as warning");
+            }
+        }
+
+        if (licenseData.hasUnknown()) {
+            for (LicenseInformation item : licenseData.getUnknown()) {
+                getLog().warn("]UNKNOWN[ (" + item.getArtifact().getScope() + ") The artifact " + item.getProject().getId() + " has a license which is categorized as unknown");
+            }
+        }
+
+        if (licenseData.hasValid() && failOnValid) {
             throw new MojoExecutionException("A license which is categorized as VALID has been found.");
         }
-        if (isInvalid && failOnInvalid) {
+
+        if (licenseData.hasInvalid() && failOnInvalid) {
             throw new MojoExecutionException("A license which is categorized as INVALID has been found.");
         }
-        if (isWarning && failOnWarning) {
+
+        if (licenseData.hasWarning() && failOnWarning) {
             throw new MojoExecutionException("A license which is categorized as WARNING has been found.");
         }
-        if (isUnknwon && failOnUnknown) {
+
+        if (licenseData.hasUnknown() && failOnUnknown) {
             throw new MojoExecutionException("A license which is categorized as UNKNOWN has been found.");
         }
     }

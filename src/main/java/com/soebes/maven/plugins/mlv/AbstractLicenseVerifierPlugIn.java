@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -90,7 +90,6 @@ public abstract class AbstractLicenseVerifierPlugIn
      */
     protected List<ArtifactRepository> remoteRepositories;
 
-
     /**
      * This will turn on verbose behavior and will print out
      * all information about the artifacts.
@@ -106,7 +105,7 @@ public abstract class AbstractLicenseVerifierPlugIn
      *
      * @parameter expression="${mlv.strickChecking}" default-value="false"
      */
-    private boolean stricktChecking;
+    protected boolean stricktChecking;
 
     /**
      * The build will fail if a license with the category <b>Valid</b>
@@ -154,16 +153,28 @@ public abstract class AbstractLicenseVerifierPlugIn
      */
     protected List<String> excludes;
 
-    /**
-     * This is just for simplicity to store all license information
-     * here to make the checkings and other operation simpler.
-     */
-    private ArrayList<LicenseInformation> licenseInformations = new ArrayList<LicenseInformation>();
+    protected LicenseData licenseData = null;
 
-    private HashMap<String, LicenseInformation> licenseList = new HashMap<String, LicenseInformation>();
+    protected void loadLicenseData() throws MojoExecutionException {
+        LicensesContainer licenseContainer = loadLicensesFile();
 
-    protected LicenseValidator licenseValidator = null;
-    protected LicensesContainer licensesContainer = null;
+        //Get a set with all dependent artifacts incl.
+        //the transitive dependencies.
+        Set<?> depArtifacts = this.project.getArtifacts();
+
+        //Get all the informations about the licenses of the artifacts.
+        ArrayList<LicenseInformation> licenseInformations = getDependArtifacts(depArtifacts);
+
+        LicenseValidator licenseValidator = new LicenseValidator(licenseContainer);
+        licenseValidator.setStrictChecking(stricktChecking);
+
+
+        Collections.sort(licenseInformations, new ArtifactComperator());
+
+        licenseData = new LicenseData(licenseValidator, licenseInformations);
+
+    }
+
 
     /**
      * Get all their dependencies and put the information
@@ -172,8 +183,10 @@ public abstract class AbstractLicenseVerifierPlugIn
      * @param depArtifacts
      * @throws MojoExecutionException
      */
-    protected void getDependArtifacts(Set<?> depArtifacts)
+    protected ArrayList<LicenseInformation> getDependArtifacts(Set<?> depArtifacts)
             throws MojoExecutionException {
+
+        ArrayList<LicenseInformation> licenseInformations = new ArrayList<LicenseInformation>();
 
         PatternExcludeFilter patternExcludeFilter = new PatternExcludeFilter();
         ArtifactFilter filter = patternExcludeFilter.createFilter(excludes);
@@ -190,11 +203,6 @@ public abstract class AbstractLicenseVerifierPlugIn
 
            LicenseInformation li = new LicenseInformation();
 
-           // Here we access to the files so we can check if they contain LICENSE file etc. (check for JAR file reading? Other file types ? )
-//           if (verbose) {
-//               getLog().info("Artifact file:" + depArt.getFile().getAbsolutePath());
-//           }
-
            //store the artifact about which the following license information
            //will be extracted.
            li.setArtifact(depArt);
@@ -208,7 +216,6 @@ public abstract class AbstractLicenseVerifierPlugIn
               throw new MojoExecutionException( "Unable to build project: " + depArt.getDependencyConflictId(), e );
            }
 
-           // depArt.getScope() => Can be use eventually
            //Set the project of the current license information
            li.setProject(depProject);
 
@@ -222,33 +229,33 @@ public abstract class AbstractLicenseVerifierPlugIn
            }
            licenseInformations.add(li);
         }
-    }
-
-    public HashMap<String, LicenseInformation> getLicenseList() {
-        return licenseList;
-    }
-
-    public ArrayList<LicenseInformation> getLicenseInformations() {
         return licenseInformations;
     }
 
     /**
-     * This method will load the licenses.xml file.
+     * This method will load the licenses.xml file either
+     * from file system or via classpath. The second case
+     * is given if the user defines a particular dependency
+     * to define the licenses via a maven artifact.
      *
      * @throws MojoExecutionException
      */
-    protected void loadLicensesFile() throws MojoExecutionException {
+    protected LicensesContainer loadLicensesFile() throws MojoExecutionException {
+        LicensesContainer licenseContainer = null;
+
         if (licenseFile == null)
         {
             //If no licenseFile configuration given we will end.
-            return;
+            //Check in which cases this happens!
+            return null;
         }
+
         try {
             getLog().debug("Trying to find " + licenseFile.getAbsolutePath() + " in file system.");
             if (licenseFile.exists()) {
                 getLog().debug("Found licenses file in file system.");
                 getLog().info("Loading " + licenseFile.getAbsolutePath() + " licenses file.");
-                licensesContainer = LicensesFile.getLicenses(licenseFile);
+                licenseContainer = LicensesFile.getLicenses(licenseFile);
             } else {
                 getLog().info("Loading license file via classpath.");
                 URL licenseURL = this.getClass().getResource(licenseFile.getPath());
@@ -261,10 +268,10 @@ public abstract class AbstractLicenseVerifierPlugIn
                     licenseURL = this.getClass().getResource(licenseFile.getPath());
                 }
                 getLog().debug("Loading licenses.xml from " + licenseURL);
-                licensesContainer = LicensesFile.getLicenses(inputStream);
+                licenseContainer = LicensesFile.getLicenses(inputStream);
             }
-            licenseValidator = new LicenseValidator(licensesContainer);
-            licenseValidator.setStrictChecking(stricktChecking);
+
+            return licenseContainer;
 
         } catch (IOException e) {
             //Use the internal licenses.xml file.???
@@ -272,7 +279,6 @@ public abstract class AbstractLicenseVerifierPlugIn
                 "The LicenseFile configuration is wrong, " +
                 "cause we couldn't find the " + licenseFile.getAbsolutePath());
         } catch (XmlPullParserException e) {
-            //Use the internal licenses.xml file.???
             throw new MojoExecutionException(
                 "The LicenseFile is wrong, " +
                 "cause we couldn't read it " + e);

@@ -22,11 +22,9 @@
 package com.soebes.maven.plugins.mlv;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.doxia.module.xhtml.decoration.render.RenderingContext;
@@ -73,7 +71,7 @@ public class LicenseVerifierReport
      */
     protected void executeReport(Locale locale) throws MavenReportException {
         try {
-            getLog().info("LicenseVerifierReport:executeReport()");
+            getLog().debug("LicenseVerifierReport:executeReport()");
             RenderingContext context = new RenderingContext(getOutputDirectory(), getOutputName() + ".html");
             SiteRendererSink sink = new SiteRendererSink(context);
             generate(sink, locale);
@@ -175,27 +173,33 @@ public class LicenseVerifierReport
         sink.section1_();
 
 //The different scopes should be seen only if we have artifacts with an appropriately scope otherwise no headlines etc.
-        if (hasScope(Artifact.SCOPE_COMPILE)) {
+        if (licenseData.hasArtifactsByScope(Artifact.SCOPE_COMPILE)) {
             sink.section1();
             doGenerateArtifactCategories(bundle, sink, Artifact.SCOPE_COMPILE);
             sink.section1_();
         }
 
-        if (hasScope(Artifact.SCOPE_TEST)) {
+        if (licenseData.hasArtifactsByScope(Artifact.SCOPE_TEST)) {
             sink.section1();
             doGenerateArtifactCategories(bundle, sink, Artifact.SCOPE_TEST);
             sink.section1_();
         }
 
-        if (hasScope(Artifact.SCOPE_PROVIDED)) {
+        if (licenseData.hasArtifactsByScope(Artifact.SCOPE_PROVIDED)) {
             sink.section1();
             doGenerateArtifactCategories(bundle, sink, Artifact.SCOPE_PROVIDED);
             sink.section1_();
         }
 
-        if (hasScope(Artifact.SCOPE_RUNTIME)) {
+        if (licenseData.hasArtifactsByScope(Artifact.SCOPE_RUNTIME)) {
             sink.section1();
             doGenerateArtifactCategories(bundle, sink, Artifact.SCOPE_RUNTIME);
+            sink.section1_();
+        }
+
+        if (licenseData.hasArtifactsByScope(Artifact.SCOPE_SYSTEM)) {
+            sink.section1();
+            doGenerateArtifactCategories(bundle, sink, Artifact.SCOPE_SYSTEM);
             sink.section1_();
         }
 
@@ -204,63 +208,6 @@ public class LicenseVerifierReport
         sink.close();
     }
 
-    private boolean hasScope(String scope) {
-        boolean result = false;
-        for (LicenseInformation item : getLicenseInformations()) {
-            if (scope.equals(item.getArtifact().getScope())) {
-                result = true;
-            }
-        }
-        return result;
-    }
-
-//The following four methods are copy&past except the isXXXX() Think hard about that!!!
-    private boolean hasValidEntries (String scope) {
-        boolean hasEntries = false;
-        for (LicenseInformation item : getLicenseInformations()) {
-            if (scope.equals(item.getArtifact().getScope())) {
-                if (licenseValidator.isValid(item.getLicenses())) {
-                    hasEntries = true;
-                }
-            }
-        }
-        return hasEntries;
-    }
-    private boolean hasInvalidEntries (String scope) {
-        boolean hasEntries = false;
-        for (LicenseInformation item : getLicenseInformations()) {
-            if (scope.equals(item.getArtifact().getScope())) {
-                if (licenseValidator.isInvalid(item.getLicenses())) {
-                    hasEntries = true;
-                }
-            }
-        }
-        return hasEntries;
-    }
-    private boolean hasWarningEntries (String scope) {
-        boolean hasEntries = false;
-        for (LicenseInformation item : getLicenseInformations()) {
-            if (scope.equals(item.getArtifact().getScope())) {
-                if (licenseValidator.isWarning(item.getLicenses())) {
-                    hasEntries = true;
-                }
-            }
-        }
-        return hasEntries;
-    }
-    private boolean hasUnknownEntries (String scope) {
-        boolean hasEntries = false;
-        for (LicenseInformation item : getLicenseInformations()) {
-            if (scope.equals(item.getArtifact().getScope())) {
-                if (licenseValidator.isUnknown(item.getLicenses())) {
-                    hasEntries = true;
-                }
-            }
-        }
-        return hasEntries;
-    }
-
-
     private void doGenerateLicenseCategories(ResourceBundle bundle, Sink sink) {
 //TODO: Use bundles instead of hard coded strings.
         sink.sectionTitle1();
@@ -268,9 +215,9 @@ public class LicenseVerifierReport
         sink.sectionTitle1_();
 
 //TODO: Show only areas which contain items!
-        doGenerateReportLicensesConfiguration(bundle, sink, "Valid", licenseValidator.getValid());
-        doGenerateReportLicensesConfiguration(bundle, sink, "Warning", licenseValidator.getWarning());
-        doGenerateReportLicensesConfiguration(bundle, sink, "Invalid", licenseValidator.getInvalid());
+        doGenerateReportLicensesConfiguration(bundle, sink, "Valid", licenseData.getLicenseValidator().getValid());
+        doGenerateReportLicensesConfiguration(bundle, sink, "Warning", licenseData.getLicenseValidator().getWarning());
+        doGenerateReportLicensesConfiguration(bundle, sink, "Invalid", licenseData.getLicenseValidator().getInvalid());
 
     }
 
@@ -279,17 +226,17 @@ public class LicenseVerifierReport
         sink.text("Artifact Categories (" + scope + ")");
         sink.sectionTitle1_();
 
-        if (hasValidEntries(scope)) {
-            doGenerateValidReport(bundle, sink, scope);
+        if (licenseData.hasValidByScope(scope)) {
+            doGenerateValidReport(bundle, sink, "Valid", licenseData.getValidByScope(scope));
         }
-        if (hasWarningEntries(scope)) {
-            doGenerateWarningReport(bundle, sink, scope);
+        if (licenseData.hasWarningByScope(scope)) {
+            doGenerateValidReport(bundle, sink, "Warning", licenseData.getWarningByScope(scope));
         }
-        if (hasInvalidEntries(scope)) {
-            doGenerateInvalidReport(bundle, sink, scope);
+        if (licenseData.hasInvalidByScope(scope)) {
+            doGenerateValidReport(bundle, sink, "Invalid", licenseData.getInvalidByScope(scope));
         }
-        if (hasUnknownEntries(scope)) {
-            doGenerateUnknownReport(bundle, sink, scope);
+        if (licenseData.hasUnknwonByScope(scope)) {
+            doGenerateValidReport(bundle, sink, "Unknown", licenseData.getUnknownByScope(scope));
         }
     }
 
@@ -337,6 +284,14 @@ public class LicenseVerifierReport
 
             sink.tableRow_();
         }
+
+        sink.tableRow();
+        headerCell(sink, "Id");
+        headerCell(sink, "Description");
+        headerCell(sink, "Names");
+        headerCell(sink, "URL's");
+        sink.tableRow_();
+
         sink.table_();
     }
 
@@ -377,15 +332,15 @@ public class LicenseVerifierReport
         headerCell(sink, "Unknown");
         sink.tableRow_();
 
-        for (LicenseInformation item : getLicenseInformations()) {
+        for (LicenseInformation item : licenseData.getLicenseInformations()) {
             sink.tableRow();
 
             cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
 
-            boolean isValid = licenseValidator.isValid(item.getLicenses());
-            boolean isWarning = licenseValidator.isWarning(item.getLicenses());
-            boolean isInvalid = licenseValidator.isInvalid(item.getLicenses());
-            boolean isUnknown = licenseValidator.isUnknown(item.getLicenses());
+            boolean isValid = licenseData.getLicenseValidator().isValid(item.getLicenses());
+            boolean isWarning = licenseData.getLicenseValidator().isWarning(item.getLicenses());
+            boolean isInvalid = licenseData.getLicenseValidator().isInvalid(item.getLicenses());
+            boolean isUnknown = licenseData.getLicenseValidator().isUnknown(item.getLicenses());
 
             sink.tableCell();
             sink.text(item.getArtifact().getScope());
@@ -417,10 +372,9 @@ public class LicenseVerifierReport
         sink.table_();
     }
 
-//FIXME: The following four methods are copy&past except for licenseValidate.isXXX() Think hard about this.!
-    private void doGenerateValidReport(ResourceBundle bundle, Sink sink, String scope) {
+    private void doGenerateValidReport(ResourceBundle bundle, Sink sink, String category, List<LicenseInformation> licenseInformations) {
         sink.sectionTitle2();
-        sink.text("Artifacts Catagorized as Valid");
+        sink.text("Artifacts Catagorized as " + category);
         sink.sectionTitle2_();
 
         sink.table();
@@ -432,153 +386,25 @@ public class LicenseVerifierReport
         headerCell(sink, "URL");
         sink.tableRow_();
 
-        for (LicenseInformation item : getLicenseInformations()) {
-            if (scope.equals(item.getArtifact().getScope())) {
-                if (licenseValidator.isValid(item.getLicenses())) {
-                    sink.tableRow();
+        for (LicenseInformation item : licenseInformations) {
+            sink.tableRow();
 
-                    cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
+            cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
 
-                    sink.tableCell();
-                    sink.text(item.getArtifact().getScope());
-                    sink.tableCell_();
+            sink.tableCell();
+            sink.text(item.getArtifact().getScope());
+            sink.tableCell_();
 
-                    if (item.getLicenses().isEmpty()) {
-                        cell(sink, "");
-                        cell(sink, "");
-                    } else {
-                        for (License license : item.getLicenses()) {
-                            cell(sink, license.getName());
-                            cell(sink, license.getUrl());
-                        }
-                    }
-                    sink.tableRow_();
+            if (item.getLicenses().isEmpty()) {
+                cell(sink, "");
+                cell(sink, "");
+            } else {
+                for (License license : item.getLicenses()) {
+                    cell(sink, license.getName());
+                    cell(sink, license.getUrl());
                 }
             }
-        }
-
-        sink.table_();
-    }
-
-    private void doGenerateWarningReport(ResourceBundle bundle, Sink sink, String scope) {
-        sink.sectionTitle2();
-        sink.text("Artifacts Catagorized as Warning");
-        sink.sectionTitle2_();
-
-        sink.table();
-
-        sink.tableRow();
-        headerCell(sink, "Id");
-        headerCell(sink, "Scope");
-        headerCell(sink, "Name");
-        headerCell(sink, "URL");
-        sink.tableRow_();
-
-        for (LicenseInformation item : getLicenseInformations()) {
-            if (scope.equals(item.getArtifact().getScope())) {
-                if (licenseValidator.isWarning(item.getLicenses())) {
-                    sink.tableRow();
-
-                    cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
-                    sink.tableCell();
-                    sink.text(item.getArtifact().getScope());
-                    sink.tableCell_();
-
-                    if (item.getLicenses().isEmpty()) {
-                        cell(sink, "");
-                        cell(sink, "");
-                    } else {
-                        for (License license : item.getLicenses()) {
-                            cell(sink, license.getName());
-                            cell(sink, license.getUrl());
-                        }
-                    }
-                    sink.tableRow_();
-                }
-            }
-        }
-
-        sink.table_();
-    }
-
-    private void doGenerateInvalidReport(ResourceBundle bundle, Sink sink, String scope) {
-        sink.sectionTitle2();
-        sink.text("Artifacts Catagorized as Invalid");
-        sink.sectionTitle2_();
-
-        sink.table();
-
-        sink.tableRow();
-        headerCell(sink, "Id");
-        headerCell(sink, "Scope");
-        headerCell(sink, "Name");
-        headerCell(sink, "URL");
-        sink.tableRow_();
-
-        for (LicenseInformation item : getLicenseInformations()) {
-            //Should be made better...
-            if (scope.equals(item.getArtifact().getScope())) {
-                if (licenseValidator.isInvalid(item.getLicenses())) {
-                    sink.tableRow();
-
-                    cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
-                    sink.tableCell();
-                    sink.text(item.getArtifact().getScope());
-                    sink.tableCell_();
-
-                    if (item.getLicenses().isEmpty()) {
-                        cell(sink, "");
-                        cell(sink, "");
-                    } else {
-                        for (License license : item.getLicenses()) {
-                            cell(sink, license.getName());
-                            cell(sink, license.getUrl());
-                        }
-                    }
-                    sink.tableRow_();
-                }
-            }
-        }
-
-        sink.table_();
-    }
-
-    private void doGenerateUnknownReport(ResourceBundle bundle, Sink sink, String scope) {
-        sink.sectionTitle2();
-        sink.text("Artifacts Catagorized as Unknown");
-        sink.sectionTitle2_();
-
-        sink.table();
-
-        sink.tableRow();
-        headerCell(sink, "Id");
-        headerCell(sink, "Scope");
-        headerCell(sink, "Name");
-        headerCell(sink, "URL");
-        sink.tableRow_();
-
-        for (LicenseInformation item : getLicenseInformations()) {
-            if (scope.equals(item.getArtifact().getScope())) {
-                if (licenseValidator.isUnknown(item.getLicenses())) {
-                    sink.tableRow();
-
-                    cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
-                    sink.tableCell();
-                    sink.text(item.getArtifact().getScope());
-                    sink.tableCell_();
-
-                    if (item.getLicenses().isEmpty()) {
-                        cell(sink, "");
-                        cell(sink, "");
-                    } else {
-                        for (License license : item.getLicenses()) {
-                            cell(sink, license.getName());
-                            cell(sink, license.getUrl());
-                        }
-                    }
-                    sink.tableRow_();
-                }
-            }
+            sink.tableRow_();
         }
 
         sink.table_();
@@ -609,32 +435,12 @@ public class LicenseVerifierReport
     }
 
     public void generate(Sink sink, Locale locale) throws MavenReportException {
-        getLog().info("LicenseVerifierReport:generate()");
+        getLog().debug("LicenseVerifierReport:generate()");
         if (project.getArtifacts().isEmpty()) {
             //If we have no artifacts at all.
             doGenerateEmptyReport(getBundle(locale), sink);
         } else {
-            try {
-                loadLicensesFile();
-            } catch (MojoExecutionException e1) {
-                throw new MavenReportException("Failure during load of the license.xml file", e1);
-            }
-
-            //Get a set with all dependent artifacts incl.
-            //the transitive dependencies.
-            Set depArtifacts = project.getArtifacts();
-
-            //Get all the informations about the licenses of the artifacts.
-            try {
-                getDependArtifacts(depArtifacts);
-
-                //Sorting the artifacts...
-                Collections.sort(getLicenseInformations(), new ArtifactComperator());
-                doGenerateReport(getBundle(locale), sink);
-
-            } catch (MojoExecutionException e) {
-                getLog().error("Something wrong (BETTER MESSAGE): ", e);
-            }
+            doGenerateReport(getBundle(locale), sink);
         }
     }
 
@@ -656,8 +462,10 @@ public class LicenseVerifierReport
     }
 
     public void execute() throws MojoExecutionException, MojoFailureException {
+        loadLicenseData();
+
         try {
-            getLog().info("LicenseVerifierReport:execute()");
+            getLog().debug("LicenseVerifierReport:execute()");
             RenderingContext context = new RenderingContext(getOutputDirectory(), getOutputName() + ".html");
             SiteRendererSink sink = new SiteRendererSink(context);
             Locale locale = Locale.getDefault();
