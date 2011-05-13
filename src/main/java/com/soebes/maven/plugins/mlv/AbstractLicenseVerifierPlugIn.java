@@ -171,7 +171,7 @@ public abstract class AbstractLicenseVerifierPlugIn
 
         Collections.sort(licenseInformations, new ArtifactComperator());
 
-        licenseData = new LicenseData(licenseValidator, licenseInformations);
+        licenseData = new LicenseData(licenseValidator, licenseInformations, excludes);
 
     }
 
@@ -188,18 +188,8 @@ public abstract class AbstractLicenseVerifierPlugIn
 
         ArrayList<LicenseInformation> licenseInformations = new ArrayList<LicenseInformation>();
 
-        PatternExcludeFilter patternExcludeFilter = new PatternExcludeFilter();
-        ArtifactFilter filter = patternExcludeFilter.createFilter(excludes);
-
         for (Iterator<?> depArtIter = depArtifacts.iterator(); depArtIter.hasNext(); ) {
            Artifact depArt = (Artifact) depArtIter.next();
-
-           if (!filter.include(depArt)) {
-               if (isVerbose()) {
-                   getLog().warn("The artifact: " + depArt.getId() + " has been execluded by the configuration.");
-               }
-               continue;
-           }
 
            LicenseInformation li = new LicenseInformation();
 

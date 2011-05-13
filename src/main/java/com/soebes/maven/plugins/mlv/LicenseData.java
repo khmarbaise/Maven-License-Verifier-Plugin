@@ -3,6 +3,9 @@ package com.soebes.maven.plugins.mlv;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.maven.artifact.resolver.filter.ArtifactFilter;
+
+import com.soebes.maven.plugins.mlv.filter.PatternExcludeFilter;
 import com.soebes.maven.plugins.mlv.licenses.LicenseValidator;
 
 public class LicenseData {
@@ -11,11 +14,13 @@ public class LicenseData {
     private ArrayList<LicenseInformation> invalid;
     private ArrayList<LicenseInformation> warning;
     private ArrayList<LicenseInformation> unknown;
+    
+    private List<String> excludes;
     private ArrayList<LicenseInformation> excludedByConfiguration; //Check this?
     
     private LicenseValidator licenseValidator;
 
-    public LicenseData(LicenseValidator licenseValidaor, ArrayList<LicenseInformation> licenseInformations) {
+    public LicenseData(LicenseValidator licenseValidaor, ArrayList<LicenseInformation> licenseInformations, List<String> excludes) {
         setLicenseInformations(licenseInformations);
         setLicenseValidator(licenseValidaor);
         setValid(new ArrayList<LicenseInformation>());
@@ -23,6 +28,7 @@ public class LicenseData {
         setWarning(new ArrayList<LicenseInformation>());
         setUnknown(new ArrayList<LicenseInformation>());
         setExcludedByConfiguration(new ArrayList<LicenseInformation>());
+        setExcludes(excludes);
         categorize();
     }
 
@@ -182,6 +188,9 @@ public class LicenseData {
     }
 
     private void categorize() {
+        PatternExcludeFilter patternExcludeFilter = new PatternExcludeFilter();
+        ArtifactFilter filter = patternExcludeFilter.createFilter(getExcludes());
+
         for (LicenseInformation license : getLicenseInformations()) {
             if (getLicenseValidator().isValid(license.getLicenses())) {
                 getValid().add(license);
@@ -191,6 +200,8 @@ public class LicenseData {
                 getWarning().add(license);
             } else if (getLicenseValidator().isUnknown(license.getLicenses())) {
                 getUnknown().add(license);
+            } else if (!filter.include(license.getArtifact())) {
+                getExcludedByConfiguration().add(license);
             }
         }
     }
@@ -206,6 +217,10 @@ public class LicenseData {
     }
     public boolean hasUnknown() {
         return !getUnknown().isEmpty();
+    }
+
+    public boolean hasExcludedByConfiguration() {
+        return !getExcludedByConfiguration().isEmpty();
     }
 
     public void setLicenseInformations(ArrayList<LicenseInformation> licenseInformations) {
@@ -262,6 +277,16 @@ public class LicenseData {
 
     public ArrayList<LicenseInformation> getExcludedByConfiguration() {
         return excludedByConfiguration;
+    }
+
+
+    public void setExcludes(List<String> excludes) {
+        this.excludes = excludes;
+    }
+
+
+    public List<String> getExcludes() {
+        return excludes;
     }
     
 }

@@ -43,6 +43,14 @@ public class LicenseVerifierMojo
     {
         loadLicenseData();
 
+        if (licenseData.hasExcludedByConfiguration()) {
+            if (isVerbose()) {
+                for (LicenseInformation item : licenseData.getValid()) {
+                    getLog().warn("The artifact: " + item.getArtifact().getId() + " has been execluded by the configuration.");
+                }
+            }
+        }
+
         if (licenseData.hasValid()) {
             for (LicenseInformation item : licenseData.getValid()) {
                 if (isVerbose()) {

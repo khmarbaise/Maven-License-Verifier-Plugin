@@ -238,6 +238,9 @@ public class LicenseVerifierReport
         if (licenseData.hasUnknwonByScope(scope)) {
             doGenerateValidReport(bundle, sink, "Unknown", licenseData.getUnknownByScope(scope));
         }
+        if (licenseData.hasExcludedByConfiguration()) {
+            doGenerateValidReport(bundle, sink, "Excluded by Configuration", licenseData.getExcludedByConfiguration());
+        }
     }
 
     private void doGenerateReportLicensesConfiguration(ResourceBundle bundle, Sink sink, String header, List<LicenseItem> licenseItems) {
