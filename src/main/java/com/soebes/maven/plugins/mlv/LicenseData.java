@@ -1,26 +1,55 @@
+/**
+ * The Maven License Verifier Plugin
+ *
+ * Copyright (c) 2009, 2010, 2011 by SoftwareEntwicklung Beratung Schulung (SoEBeS)
+ * Copyright (c) 2009, 2010, 2011 by Karl Heinz Marbaise
+ *
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.soebes.maven.plugins.mlv;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.maven.artifact.resolver.filter.ArtifactFilter;
+import org.apache.maven.plugin.logging.Log;
 
 import com.soebes.maven.plugins.mlv.filter.PatternExcludeFilter;
 import com.soebes.maven.plugins.mlv.licenses.LicenseValidator;
 
+/**
+ * @author <a href="mailto:kama@soebes.de">Karl Heinz Marbaise</a>
+ *
+ * @since 0.5
+ */
 public class LicenseData {
     private ArrayList<LicenseInformation> licenseInformations;
     private ArrayList<LicenseInformation> valid;
     private ArrayList<LicenseInformation> invalid;
     private ArrayList<LicenseInformation> warning;
     private ArrayList<LicenseInformation> unknown;
-    
+    private ArrayList<LicenseInformation> excludedByConfiguration;
+
     private List<String> excludes;
-    private ArrayList<LicenseInformation> excludedByConfiguration; //Check this?
-    
+
+    private Log log;
+
     private LicenseValidator licenseValidator;
 
-    public LicenseData(LicenseValidator licenseValidaor, ArrayList<LicenseInformation> licenseInformations, List<String> excludes) {
+    public LicenseData(LicenseValidator licenseValidaor, ArrayList<LicenseInformation> licenseInformations, List<String> excludes, Log log) {
         setLicenseInformations(licenseInformations);
         setLicenseValidator(licenseValidaor);
         setValid(new ArrayList<LicenseInformation>());
@@ -29,10 +58,11 @@ public class LicenseData {
         setUnknown(new ArrayList<LicenseInformation>());
         setExcludedByConfiguration(new ArrayList<LicenseInformation>());
         setExcludes(excludes);
+        setLog(log);
         categorize();
     }
 
-    
+
     public boolean hasArtifactsByScope(String scope) {
         boolean result = false;
         if (hasValidByScope(scope)) {
@@ -84,7 +114,7 @@ public class LicenseData {
         return result;
     }
 
-    
+
     /**
      * This will check if we have artifacts which are
      * in the category <b>Invalid</b> and in the given scope.
@@ -187,21 +217,49 @@ public class LicenseData {
         return result;
     }
 
+    /**
+     * This will give you a list with all artifacts without the
+     * excluded artifacts.
+     * @return List with artifacts. Never null.
+     */
+    public List<LicenseInformation> getAllWithoutExcluded() {
+        ArrayList<LicenseInformation> result = new ArrayList<LicenseInformation>();
+
+        result.addAll(getValid());
+        result.addAll(getInvalid());
+        result.addAll(getWarning());
+        result.addAll(getUnknown());
+        return result;
+    }
+
+    /**
+     * This will go through all licenses and categorize them
+     * into their appropriate group.
+     *
+     */
     private void categorize() {
         PatternExcludeFilter patternExcludeFilter = new PatternExcludeFilter();
         ArtifactFilter filter = patternExcludeFilter.createFilter(getExcludes());
 
         for (LicenseInformation license : getLicenseInformations()) {
+            if (!filter.include(license.getArtifact())) {
+                getExcludedByConfiguration().add(license);
+                getLog().debug("artifact " + license.getArtifact().getId() + " exculded by configuration.");
+                continue;
+            }
+
             if (getLicenseValidator().isValid(license.getLicenses())) {
                 getValid().add(license);
+                getLog().debug("artifact " + license.getArtifact().getId() + " has been categorized as Valid.");
             } else if (getLicenseValidator().isInvalid(license.getLicenses())) {
                 getInvalid().add(license);
+                getLog().debug("artifact " + license.getArtifact().getId() + " has been categorized as Invalid.");
             } else if (getLicenseValidator().isWarning(license.getLicenses())) {
                 getWarning().add(license);
+                getLog().debug("artifact " + license.getArtifact().getId() + " has been categorized as Warning.");
             } else if (getLicenseValidator().isUnknown(license.getLicenses())) {
                 getUnknown().add(license);
-            } else if (!filter.include(license.getArtifact())) {
-                getExcludedByConfiguration().add(license);
+                getLog().debug("artifact " + license.getArtifact().getId() + " has been categorized as Unknown.");
             }
         }
     }
@@ -288,5 +346,15 @@ public class LicenseData {
     public List<String> getExcludes() {
         return excludes;
     }
-    
+
+
+    public void setLog(Log log) {
+        this.log = log;
+    }
+
+
+    public Log getLog() {
+        return log;
+    }
+
 }

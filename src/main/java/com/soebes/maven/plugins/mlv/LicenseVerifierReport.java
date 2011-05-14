@@ -69,19 +69,19 @@ public class LicenseVerifierReport
     /**
      * @see org.apache.maven.reporting.AbstractMavenReport#executeReport(java.util.Locale)
      */
-    protected void executeReport(Locale locale) throws MavenReportException {
-        try {
-            getLog().debug("LicenseVerifierReport:executeReport()");
-            RenderingContext context = new RenderingContext(getOutputDirectory(), getOutputName() + ".html");
-            SiteRendererSink sink = new SiteRendererSink(context);
-            generate(sink, locale);
-        } catch (MavenReportException e) {
-            getLog().error("An error has occurred in " + getName(Locale.ENGLISH)
-                    + " report generation:" + e.getMessage(), e);
-        } catch (RuntimeException e) {
-            getLog().error(e.getMessage(), e);
-        }
-    }
+//    protected void executeReport(Locale locale) throws MavenReportException {
+//        try {
+//            getLog().debug("LicenseVerifierReport:executeReport()");
+//            RenderingContext context = new RenderingContext(getOutputDirectory(), getOutputName() + ".html");
+//            SiteRendererSink sink = new SiteRendererSink(context);
+//            generate(sink, locale);
+//        } catch (MavenReportException e) {
+//            getLog().error("An error has occurred in " + getName(Locale.ENGLISH)
+//                    + " report generation:" + e.getMessage(), e);
+//        } catch (RuntimeException e) {
+//            getLog().error(e.getMessage(), e);
+//        }
+//    }
 
     protected File getOutputDirectory() {
         if (!outputDirectory.isAbsolute()) {
@@ -335,7 +335,7 @@ public class LicenseVerifierReport
         headerCell(sink, "Unknown");
         sink.tableRow_();
 
-        for (LicenseInformation item : licenseData.getLicenseInformations()) {
+        for (LicenseInformation item : licenseData.getAllWithoutExcluded()) {
             sink.tableRow();
 
             cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
@@ -434,11 +434,18 @@ public class LicenseVerifierReport
     }
 
     public boolean canGenerateReport() {
+        getLog().debug("canGenerateReport()");
         return true;
     }
 
     public void generate(Sink sink, Locale locale) throws MavenReportException {
         getLog().debug("LicenseVerifierReport:generate()");
+        try {
+            loadLicenseData();
+        } catch (MojoExecutionException e) {
+            throw new MavenReportException("MojoExecutionException:", e);
+        }
+
         if (project.getArtifacts().isEmpty()) {
             //If we have no artifacts at all.
             doGenerateEmptyReport(getBundle(locale), sink);

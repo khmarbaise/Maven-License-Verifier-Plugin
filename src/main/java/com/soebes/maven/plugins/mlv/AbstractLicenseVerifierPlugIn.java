@@ -33,7 +33,6 @@ import java.util.Set;
 
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.repository.ArtifactRepository;
-import org.apache.maven.artifact.resolver.filter.ArtifactFilter;
 import org.apache.maven.model.License;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -42,7 +41,6 @@ import org.apache.maven.project.MavenProjectBuilder;
 import org.apache.maven.project.ProjectBuildingException;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 
-import com.soebes.maven.plugins.mlv.filter.PatternExcludeFilter;
 import com.soebes.maven.plugins.mlv.licenses.LicenseValidator;
 import com.soebes.maven.plugins.mlv.licenses.LicensesFile;
 import com.soebes.maven.plugins.mlv.model.LicensesContainer;
@@ -156,6 +154,7 @@ public abstract class AbstractLicenseVerifierPlugIn
     protected LicenseData licenseData = null;
 
     protected void loadLicenseData() throws MojoExecutionException {
+        getLog().debug("loadLicenseData()");
         LicensesContainer licenseContainer = loadLicensesFile();
 
         //Get a set with all dependent artifacts incl.
@@ -171,8 +170,8 @@ public abstract class AbstractLicenseVerifierPlugIn
 
         Collections.sort(licenseInformations, new ArtifactComperator());
 
-        licenseData = new LicenseData(licenseValidator, licenseInformations, excludes);
-
+        licenseData = new LicenseData(licenseValidator, licenseInformations, excludes, getLog());
+        getLog().debug("loadLicenseData() done.");
     }
 
 

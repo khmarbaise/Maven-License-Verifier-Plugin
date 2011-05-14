@@ -27,6 +27,18 @@
     <title>Feature Additions, Fixes, and Updates</title>
   </properties>
   <body>
+    <release version="0.5" date="XX.05.2011" desc="Enhancement Release">
+        <action
+            dev="Karl Heinz Marbaise"
+            type="update" issue="11">
+            Removed differences between command line and HTML reports.
+        </action>
+        <action
+            dev="Karl Heinz Marbaise"
+            type="update">
+            Refactored code to get better reporting.
+        </action>
+    </release>
     <release version="0.4" date="07.05.2011" desc="Enhancement Release">
         <action
             dev="Karl Heinz Marbaise"
