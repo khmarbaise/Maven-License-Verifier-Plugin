@@ -33,7 +33,6 @@ import java.util.Set;
 
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.artifact.repository.ArtifactRepository;
-import org.apache.maven.artifact.resolver.filter.ArtifactFilter;
 import org.apache.maven.model.License;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -42,7 +41,6 @@ import org.apache.maven.project.MavenProjectBuilder;
 import org.apache.maven.project.ProjectBuildingException;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 
-import com.soebes.maven.plugins.mlv.filter.PatternExcludeFilter;
 import com.soebes.maven.plugins.mlv.licenses.LicenseValidator;
 import com.soebes.maven.plugins.mlv.licenses.LicensesFile;
 import com.soebes.maven.plugins.mlv.model.LicensesContainer;
@@ -51,9 +49,8 @@ import com.soebes.maven.plugins.mlv.model.LicensesContainer;
  * @author <a href="mailto:kama@soebes.de">Karl Heinz Marbaise</a>
  * @requiresDependencyResolution test
  */
-public abstract class AbstractLicenseVerifierPlugIn
-    extends AbstractMojo
-{
+public abstract class AbstractLicenseVerifierPlugIn extends AbstractMojo {
+
     /**
      * The Maven project.
      *

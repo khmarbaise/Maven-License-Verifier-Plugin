@@ -33,14 +33,10 @@ import org.apache.maven.plugin.MojoExecutionException;
  * @requiresDependencyResolution test
  * @author <a href="mailto:kama@soebes.de">Karl Heinz Marbaise</a>
  */
-public class LicenseVerifierMojo
-    extends AbstractLicenseVerifierPlugIn
-{
-    
-    
-    public void execute()
-        throws MojoExecutionException
-    {
+public class LicenseVerifierMojo extends AbstractLicenseVerifierPlugIn {
+
+    public void execute() throws MojoExecutionException {
+
         loadLicenseData();
 
         if (licenseData.hasExcludedByConfiguration()) {

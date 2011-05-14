@@ -165,7 +165,7 @@ public class LicenseVerifierReport
         sink.body();
 
         sink.section1();
-        doGenerateLicenseCategories(bundle, sink);
+        doGenerateLicenseConfigurationReport(bundle, sink);
         sink.section1_();
 
         sink.section1();
@@ -208,42 +208,42 @@ public class LicenseVerifierReport
         sink.close();
     }
 
-    private void doGenerateLicenseCategories(ResourceBundle bundle, Sink sink) {
+    private void doGenerateArtifactCategories(ResourceBundle bundle, Sink sink, String scope) {
+        sink.sectionTitle1();
+        sink.text("Artifact Categories (" + scope + ")");
+        sink.sectionTitle1_();
+        
+        if (licenseData.hasValidByScope(scope)) {
+            doGenerateCategoryReport(bundle, sink, "Valid", licenseData.getValidByScope(scope));
+        }
+        if (licenseData.hasWarningByScope(scope)) {
+            doGenerateCategoryReport(bundle, sink, "Warning", licenseData.getWarningByScope(scope));
+        }
+        if (licenseData.hasInvalidByScope(scope)) {
+            doGenerateCategoryReport(bundle, sink, "Invalid", licenseData.getInvalidByScope(scope));
+        }
+        if (licenseData.hasUnknwonByScope(scope)) {
+            doGenerateCategoryReport(bundle, sink, "Unknown", licenseData.getUnknownByScope(scope));
+        }
+        if (licenseData.hasExcludedByConfiguration()) {
+            doGenerateCategoryReport(bundle, sink, "Excluded by Configuration", licenseData.getExcludedByConfiguration());
+        }
+    }
+
+    private void doGenerateLicenseConfigurationReport(ResourceBundle bundle, Sink sink) {
 //TODO: Use bundles instead of hard coded strings.
         sink.sectionTitle1();
         sink.text("License Categories (Configured)");
         sink.sectionTitle1_();
 
 //TODO: Show only areas which contain items!
-        doGenerateReportLicensesConfiguration(bundle, sink, "Valid", licenseData.getLicenseValidator().getValid());
-        doGenerateReportLicensesConfiguration(bundle, sink, "Warning", licenseData.getLicenseValidator().getWarning());
-        doGenerateReportLicensesConfiguration(bundle, sink, "Invalid", licenseData.getLicenseValidator().getInvalid());
+        doGenerateLicenseCategoryConfigurationReport(bundle, sink, "Valid", licenseData.getLicenseValidator().getValid());
+        doGenerateLicenseCategoryConfigurationReport(bundle, sink, "Warning", licenseData.getLicenseValidator().getWarning());
+        doGenerateLicenseCategoryConfigurationReport(bundle, sink, "Invalid", licenseData.getLicenseValidator().getInvalid());
 
     }
 
-    private void doGenerateArtifactCategories(ResourceBundle bundle, Sink sink, String scope) {
-        sink.sectionTitle1();
-        sink.text("Artifact Categories (" + scope + ")");
-        sink.sectionTitle1_();
-
-        if (licenseData.hasValidByScope(scope)) {
-            doGenerateValidReport(bundle, sink, "Valid", licenseData.getValidByScope(scope));
-        }
-        if (licenseData.hasWarningByScope(scope)) {
-            doGenerateValidReport(bundle, sink, "Warning", licenseData.getWarningByScope(scope));
-        }
-        if (licenseData.hasInvalidByScope(scope)) {
-            doGenerateValidReport(bundle, sink, "Invalid", licenseData.getInvalidByScope(scope));
-        }
-        if (licenseData.hasUnknwonByScope(scope)) {
-            doGenerateValidReport(bundle, sink, "Unknown", licenseData.getUnknownByScope(scope));
-        }
-        if (licenseData.hasExcludedByConfiguration()) {
-            doGenerateValidReport(bundle, sink, "Excluded by Configuration", licenseData.getExcludedByConfiguration());
-        }
-    }
-
-    private void doGenerateReportLicensesConfiguration(ResourceBundle bundle, Sink sink, String header, List<LicenseItem> licenseItems) {
+    private void doGenerateLicenseCategoryConfigurationReport(ResourceBundle bundle, Sink sink, String header, List<LicenseItem> licenseItems) {
         sink.sectionTitle2();
         sink.text(header);
         sink.sectionTitle2_();
@@ -375,7 +375,7 @@ public class LicenseVerifierReport
         sink.table_();
     }
 
-    private void doGenerateValidReport(ResourceBundle bundle, Sink sink, String category, List<LicenseInformation> licenseInformations) {
+    private void doGenerateCategoryReport(ResourceBundle bundle, Sink sink, String category, List<LicenseInformation> licenseInformations) {
         sink.sectionTitle2();
         sink.text("Artifacts Catagorized as " + category);
         sink.sectionTitle2_();
