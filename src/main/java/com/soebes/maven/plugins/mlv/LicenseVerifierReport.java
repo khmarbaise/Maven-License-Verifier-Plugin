@@ -37,6 +37,7 @@ import org.apache.maven.reporting.MavenReport;
 import org.apache.maven.reporting.MavenReportException;
 import org.codehaus.doxia.sink.Sink;
 
+import com.soebes.maven.plugins.mlv.licenses.LicenseInformation;
 import com.soebes.maven.plugins.mlv.model.LicenseItem;
 
 /**

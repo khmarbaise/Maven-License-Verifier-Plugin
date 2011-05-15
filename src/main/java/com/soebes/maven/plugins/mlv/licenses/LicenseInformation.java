@@ -19,7 +19,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.soebes.maven.plugins.mlv;
+package com.soebes.maven.plugins.mlv.licenses;
 
 import java.util.ArrayList;
 

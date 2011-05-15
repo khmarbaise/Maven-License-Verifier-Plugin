@@ -41,6 +41,8 @@ import org.apache.maven.project.MavenProjectBuilder;
 import org.apache.maven.project.ProjectBuildingException;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 
+import com.soebes.maven.plugins.mlv.licenses.LicenseData;
+import com.soebes.maven.plugins.mlv.licenses.LicenseInformation;
 import com.soebes.maven.plugins.mlv.licenses.LicenseValidator;
 import com.soebes.maven.plugins.mlv.licenses.LicensesFile;
 import com.soebes.maven.plugins.mlv.model.LicensesContainer;
@@ -137,6 +139,22 @@ public abstract class AbstractLicenseVerifierPlugIn
      * 				default-value="${project.basedir}/src/licenses/licenses.xml"
      */
     protected File licenseFile;
+
+    /**
+     * Gives you the possibility to
+     * define a list of references to licenses files.
+     * <p>
+     * &lt;configuration>
+     *    [...]
+     *    &lt;licenseRefs>
+     *      &lt;licenseRef>oss-licenses.xml&lt;/licenseRef>
+     *      &lt;licenseRef>test-licenses.xml&lt;/licenseRef>
+     *      [...]
+     *    &lt;/licenseRefs>
+     *    [...]
+     * &lt;/configuration>
+     */
+    protected ArrayList<File> licenseRefs;
 
     /**
      * By using excludes you can exclude particular artifacts from being checked

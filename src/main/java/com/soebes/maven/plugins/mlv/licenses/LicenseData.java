@@ -19,7 +19,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.soebes.maven.plugins.mlv;
+package com.soebes.maven.plugins.mlv.licenses;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,6 @@ import org.apache.maven.artifact.resolver.filter.ArtifactFilter;
 import org.apache.maven.plugin.logging.Log;
 
 import com.soebes.maven.plugins.mlv.filter.PatternExcludeFilter;
-import com.soebes.maven.plugins.mlv.licenses.LicenseValidator;
 
 /**
  * @author <a href="mailto:kama@soebes.de">Karl Heinz Marbaise</a>
@@ -45,6 +44,10 @@ public class LicenseData {
 
     private List<String> excludes;
 
+    /**
+     * The instance of the logging framework to
+     * log within this in the default Maven way.
+     */
     private Log log;
 
     private LicenseValidator licenseValidator;
