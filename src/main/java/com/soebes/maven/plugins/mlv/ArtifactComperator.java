@@ -23,6 +23,8 @@ package com.soebes.maven.plugins.mlv;
 
 import java.util.Comparator;
 
+import com.soebes.maven.plugins.mlv.licenses.LicenseInformation;
+
 /**
  * The comparator for the artifacts.
  *

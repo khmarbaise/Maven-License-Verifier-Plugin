@@ -41,6 +41,8 @@ import org.apache.maven.project.MavenProjectBuilder;
 import org.apache.maven.project.ProjectBuildingException;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 
+import com.soebes.maven.plugins.mlv.licenses.LicenseData;
+import com.soebes.maven.plugins.mlv.licenses.LicenseInformation;
 import com.soebes.maven.plugins.mlv.licenses.LicenseValidator;
 import com.soebes.maven.plugins.mlv.licenses.LicensesFile;
 import com.soebes.maven.plugins.mlv.model.LicensesContainer;
@@ -138,6 +140,22 @@ public abstract class AbstractLicenseVerifierPlugIn extends AbstractMojo {
     protected File licenseFile;
 
     /**
+     * Gives you the possibility to
+     * define a list of references to licenses files.
+     * <p>
+     * &lt;configuration>
+     *    [...]
+     *    &lt;licenseRefs>
+     *      &lt;licenseRef>oss-licenses.xml&lt;/licenseRef>
+     *      &lt;licenseRef>test-licenses.xml&lt;/licenseRef>
+     *      [...]
+     *    &lt;/licenseRefs>
+     *    [...]
+     * &lt;/configuration>
+     */
+    protected ArrayList<File> licenseRefs;
+
+    /**
      * By using excludes you can exclude particular artifacts from being checked
      * by the Maven Licenses Verifier Plugin.
      * <pre>
@@ -153,6 +171,7 @@ public abstract class AbstractLicenseVerifierPlugIn extends AbstractMojo {
     protected LicenseData licenseData = null;
 
     protected void loadLicenseData() throws MojoExecutionException {
+        getLog().debug("loadLicenseData()");
         LicensesContainer licenseContainer = loadLicensesFile();
 
         //Get a set with all dependent artifacts incl.
@@ -168,8 +187,8 @@ public abstract class AbstractLicenseVerifierPlugIn extends AbstractMojo {
 
         Collections.sort(licenseInformations, new ArtifactComperator());
 
-        licenseData = new LicenseData(licenseValidator, licenseInformations, excludes);
-
+        licenseData = new LicenseData(licenseValidator, licenseInformations, excludes, getLog());
+        getLog().debug("loadLicenseData() done.");
     }
 
 

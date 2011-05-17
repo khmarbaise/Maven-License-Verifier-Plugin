@@ -23,6 +23,8 @@ package com.soebes.maven.plugins.mlv;
 
 import org.apache.maven.plugin.MojoExecutionException;
 
+import com.soebes.maven.plugins.mlv.licenses.LicenseInformation;
+
 
 /**
  * This goal is intended to check the artifacts during the prepare-package phase and

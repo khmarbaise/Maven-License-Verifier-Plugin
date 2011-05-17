@@ -106,7 +106,8 @@ Roadmap
   or warning instead of the unknown category which is automatically selected if no license
   information is given.
   Hm. Think about this, cause you can simply exclude the artifact from being checked? Is this
-  enough?
+  enough? The disadvantage is that you can define this only in the project and not in the
+  licenses.xml file which is more a global location than the plugin configuration.
 
 +----
 <configuration>
@@ -182,4 +183,3 @@ Roadmap
 
  * Define an particular artifact to be assigned to be having a License.
    Afterward we have to categorize only the licenses.
-   

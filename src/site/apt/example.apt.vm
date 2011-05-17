@@ -51,12 +51,12 @@ Examples
           <goal>verify</goal>
         </goals>
       </execution>
-    </exectuions>
+    </executions>
   </plugin>
 +-----
 
-  And of course create a <<<licenses.xml>>> file based on the 
-  {{{./licenses-modell.html}modell}} with the following contents. 
+  And of course create a <<<licenses.xml>>> file based on the
+  {{{./licenses-modell.html}modell}} with the following contents.
 
 +-----
 <?xml version="1.0" encoding="UTF-8"?>
@@ -271,7 +271,7 @@ Examples
 
 +-----
 [INFO]
-[INFO] --- maven-license-verifier-plugin:0.3-SNAPSHOT:verify (license-verifier) @ sapm ---
+[INFO] --- maven-license-verifier-plugin:${project.version}:verify (license-verifier) @ sapm ---
 [INFO] Loading /home/kama/ws-git/sapm/src/licenses/licenses.xml licenses file.
 [WARNING] ]UNKNOWN[ (test) The artifact org.beanshell:bsh:jar:2.0b4 has a license which is categorized as unknown
 [INFO]
@@ -312,7 +312,7 @@ Examples
 
 +----
 [INFO]
-[INFO] --- maven-license-verifier-plugin:0.3-SNAPSHOT:verify (license-verifier) @ sapm ---
+[INFO] --- maven-license-verifier-plugin:${project.version}:verify (license-verifier) @ sapm ---
 [INFO] Loading /home/kama/ws-git/sapm/src/licenses/licenses.xml licenses file.
 [INFO]
 +----
