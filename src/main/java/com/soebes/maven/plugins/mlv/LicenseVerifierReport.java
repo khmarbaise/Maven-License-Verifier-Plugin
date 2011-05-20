@@ -67,23 +67,6 @@ public class LicenseVerifierReport
      */
     private File reportOutputDirectory;
 
-    /**
-     * @see org.apache.maven.reporting.AbstractMavenReport#executeReport(java.util.Locale)
-     */
-//    protected void executeReport(Locale locale) throws MavenReportException {
-//        try {
-//            getLog().debug("LicenseVerifierReport:executeReport()");
-//            RenderingContext context = new RenderingContext(getOutputDirectory(), getOutputName() + ".html");
-//            SiteRendererSink sink = new SiteRendererSink(context);
-//            generate(sink, locale);
-//        } catch (MavenReportException e) {
-//            getLog().error("An error has occurred in " + getName(Locale.ENGLISH)
-//                    + " report generation:" + e.getMessage(), e);
-//        } catch (RuntimeException e) {
-//            getLog().error(e.getMessage(), e);
-//        }
-//    }
-
     protected File getOutputDirectory() {
         if (!outputDirectory.isAbsolute()) {
             outputDirectory = new File(project.getBasedir(), outputDirectory.getPath());
