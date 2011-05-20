@@ -55,13 +55,13 @@ The first and simplest usage is to configure the Maven Licenses Verifier Plugin
 If you like you can configure an appropriate plugin group in your
 settings.xml file to make life a little bit easier.
 
-   <settings>
-     ...
-     <pluginGroups>
-       <pluginGroup>com.soebes.maven.plugins.mlv</pluginGroup>
-     </pluginGroups>
-     ...
-   </settings>
+    <settings>
+      ...
+      <pluginGroups>
+        <pluginGroup>com.soebes.maven.plugins.mlv</pluginGroup>
+      </pluginGroups>
+      ...
+    </settings>
 
 The above setting makes it possible to call the plugin on command 
 line simply:
