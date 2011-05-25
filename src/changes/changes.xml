@@ -30,6 +30,11 @@
     <release version="0.5" date="XX.05.2011" desc="Enhancement Release">
         <action
             dev="Karl Heinz Marbaise"
+            type="update">
+            Updated to version 2.5.1 of cobertur-maven-plugin
+        </action>
+        <action
+            dev="Karl Heinz Marbaise"
             type="fix" issue="10">
             Fixed configuration for maven-changes-plugin
         </action>
