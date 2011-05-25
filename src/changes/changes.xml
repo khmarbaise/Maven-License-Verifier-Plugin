@@ -29,9 +29,15 @@
   <body>
     <release version="0.5" date="XX.05.2011" desc="Enhancement Release">
         <action
+            dev="Karl Heinz Marbaise">
+            Updated to version 2.5.1 of cobertur-maven-plugin
+        </action>
+        <action
             dev="Karl Heinz Marbaise"
             type="update">
-            Updated to version 2.5.1 of cobertur-maven-plugin
+            type="fix" issue="13">
+            Fixed problem in relationship with maven-project-info-report-plugin upgrade
+            from 2.3.1 to 2.4
         </action>
         <action
             dev="Karl Heinz Marbaise"

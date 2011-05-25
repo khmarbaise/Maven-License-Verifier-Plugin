@@ -254,6 +254,10 @@
         </executions>
       </plugin>
 
+      <!-- Currently the generation of the xml file only works
+           via command line mvn cobertura:cobertura
+           http://jira.codehaus.org/browse/MCOBERTURA-145
+      -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>cobertura-maven-plugin</artifactId>
@@ -418,6 +422,32 @@
             <format>html</format>
           </formats>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>2.4</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+            <report>cim</report>
+            <report>dependencies</report>
+            <report>dependency-convergence</report>
+            <report>dependency-management</report>
+            <report>distribution-management</report>
+            <report>index</report>
+            <report>issue-tracking</report>
+            <report>license</report>
+            <report>mailing-list</report>
+            <report>modules</report>
+            <report>plugin-management</report>
+            <report>plugins</report>
+            <report>project-team</report>
+            <report>scm</report>
+            <report>summary</report>
+            </reports>
+          </reportSet>
+        </reportSets>
       </plugin>
     </plugins>
   </reporting>
