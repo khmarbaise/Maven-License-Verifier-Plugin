@@ -181,21 +181,9 @@
               <goal>xpp3-reader</goal>
               <goal>xpp3-writer</goal>
               <goal>java</goal>
-              <goal>xsd</goal>
             </goals>
             <configuration>
               <useJava5>true</useJava5>
-              <version>${mdoVersion}</version>
-            </configuration>
-          </execution>
-          <execution>
-            <id>mdo-site</id>
-            <phase>pre-site</phase>
-            <goals>
-              <goal>xsd</goal>
-            </goals>
-            <configuration>
-              <outputDirectory>${basedir}/target/generated-site/resources/xsd</outputDirectory>
               <version>${mdoVersion}</version>
             </configuration>
           </execution>
@@ -204,6 +192,7 @@
             <phase>pre-site</phase>
             <goals>
               <goal>xdoc</goal>
+              <goal>xsd</goal>
             </goals>
             <configuration>
               <xdocFileName>licenses-modello.xml</xdocFileName>
@@ -213,7 +202,7 @@
         </executions>
       </plugin>
 
-      
+
       <plugin>
         <groupId>com.mycila.maven-license-plugin</groupId>
         <artifactId>maven-license-plugin</artifactId>
