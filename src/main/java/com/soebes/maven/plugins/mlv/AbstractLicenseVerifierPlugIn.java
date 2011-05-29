@@ -143,15 +143,15 @@ public abstract class AbstractLicenseVerifierPlugIn extends AbstractMojo {
      * Gives you the possibility to
      * define a list of references to licenses files.
      * <p>
-     * &lt;configuration>
+     * &lt;configuration&gt;
      *    [...]
-     *    &lt;licenseRefs>
-     *      &lt;licenseRef>oss-licenses.xml&lt;/licenseRef>
-     *      &lt;licenseRef>test-licenses.xml&lt;/licenseRef>
+     *    &lt;licenseRefs&gt;
+     *      &lt;licenseRef&gt;oss-licenses.xml&lt;/licenseRef&gt;
+     *      &lt;licenseRef&gt;test-licenses.xml&lt;/licenseRef&gt;
      *      [...]
-     *    &lt;/licenseRefs>
+     *    &lt;/licenseRefs&gt;
      *    [...]
-     * &lt;/configuration>
+     * &lt;/configuration&gt;
      */
     protected ArrayList<File> licenseRefs;
 

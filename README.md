@@ -31,6 +31,7 @@ be checked in more detail (warning) or unknown licenses or invalid licenses.
 
  * Make the reports better.
  * http://www.sonatype.com/people/2011/01/how-to-use-aether-in-maven-plugins/
+ * http://maven.apache.org/guides/mini/guide-maven-classloading.html (Check this!!)
 
 ## Usage
 
