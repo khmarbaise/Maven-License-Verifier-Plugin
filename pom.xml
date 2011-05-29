@@ -188,14 +188,26 @@
             </configuration>
           </execution>
           <execution>
-            <id>xdoc-site</id>
+            <id>xsd</id>
             <phase>pre-site</phase>
             <goals>
-              <goal>xdoc</goal>
               <goal>xsd</goal>
             </goals>
             <configuration>
+              <outputDirectory>${project.build.directory}/generated-site/resources/xsd</outputDirectory>
+              <useJava5>true</useJava5>
+              <version>${mdoVersion}</version>
+            </configuration>
+          </execution>
+          <execution>
+            <id>xdoc</id>
+            <phase>pre-site</phase>
+            <goals>
+              <goal>xdoc</goal>
+            </goals>
+            <configuration>
               <xdocFileName>licenses-modello.xml</xdocFileName>
+              <useJava5>true</useJava5>
               <version>${mdoVersion}</version>
             </configuration>
           </execution>
@@ -243,10 +255,8 @@
         </executions>
       </plugin>
 
-      <!-- Currently the generation of the xml file only works
-           via command line mvn cobertura:cobertura
-           http://jira.codehaus.org/browse/MCOBERTURA-145
-      -->
+      <!-- Currently the generation of the xml file only works via command
+        line mvn cobertura:cobertura http://jira.codehaus.org/browse/MCOBERTURA-145 -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>cobertura-maven-plugin</artifactId>
@@ -419,21 +429,21 @@
         <reportSets>
           <reportSet>
             <reports>
-            <report>cim</report>
-            <report>dependencies</report>
-            <report>dependency-convergence</report>
-            <report>dependency-management</report>
-            <report>distribution-management</report>
-            <report>index</report>
-            <report>issue-tracking</report>
-            <report>license</report>
-            <report>mailing-list</report>
-            <report>modules</report>
-            <report>plugin-management</report>
-            <report>plugins</report>
-            <report>project-team</report>
-            <report>scm</report>
-            <report>summary</report>
+              <report>cim</report>
+              <report>dependencies</report>
+              <report>dependency-convergence</report>
+              <report>dependency-management</report>
+              <report>distribution-management</report>
+              <report>index</report>
+              <report>issue-tracking</report>
+              <report>license</report>
+              <report>mailing-list</report>
+              <report>modules</report>
+              <report>plugin-management</report>
+              <report>plugins</report>
+              <report>project-team</report>
+              <report>scm</report>
+              <report>summary</report>
             </reports>
           </reportSet>
         </reportSets>
