@@ -21,13 +21,14 @@
  */
 package com.soebes.maven.plugins.mlv.licenses;
 
+import static org.fest.assertions.Assertions.assertThat;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import org.apache.maven.model.License;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -56,14 +57,15 @@ public class LicenseValidatorIdTest extends TestBase {
         License cl = new License();
         cl.setName("GNU General Public License, version 3");
         cl.setUrl("http://www.gnu.org/licenses/gpl-3.0.txt");
-        Assert.assertFalse(result.isValid(cl));
-        Assert.assertTrue(result.isInvalid(cl));
-        Assert.assertFalse(result.isWarning(cl));
-        Assert.assertFalse(result.isUnknown(cl));
 
-        Assert.assertNull(result.getValidId(cl));
-        Assert.assertEquals(result.getInvalidId(cl), "GNU General Public License (GPL)");
-        Assert.assertNull(result.getWarningId(cl));
+        assertThat(result.isValid(cl)).isFalse();
+        assertThat(result.isInvalid(cl)).isTrue();
+        assertThat(result.isWarning(cl)).isFalse();
+        assertThat(result.isUnknown(cl)).isFalse();
+
+        assertThat(result.getValidId(cl)).isNull();
+        assertThat(result.getInvalidId(cl)).isEqualTo("GNU General Public License (GPL)");
+        assertThat(result.getWarningId(cl)).isNull();
     }
 
     @Test
@@ -80,13 +82,13 @@ public class LicenseValidatorIdTest extends TestBase {
         licenses.add(cl1);
         licenses.add(cl2);
 
-        Assert.assertTrue(result.isValid(licenses));
-        Assert.assertFalse(result.isInvalid(licenses));
-        Assert.assertFalse(result.isWarning(licenses));
-        Assert.assertFalse(result.isUnknown(licenses));
+        assertThat(result.isValid(licenses)).isTrue();
+        assertThat(result.isInvalid(licenses)).isFalse();
+        assertThat(result.isWarning(licenses)).isFalse();
+        assertThat(result.isUnknown(licenses)).isFalse();
 
-        Assert.assertEquals(result.getValidIds(licenses).size(), 1);
-        Assert.assertEquals(result.getValidIds(licenses).get(0), "Test License for two Licenses");
+        assertThat(result.getValidIds(licenses)).isNotEmpty().hasSize(1);
+        assertThat(result.getValidIds(licenses)).containsOnly("Test License for two Licenses");
     }
 
     @Test
@@ -103,14 +105,13 @@ public class LicenseValidatorIdTest extends TestBase {
         licenses.add(cl1);
         licenses.add(cl2);
 
-        Assert.assertTrue(result.isValid(licenses));
-        Assert.assertFalse(result.isInvalid(licenses));
-        Assert.assertFalse(result.isWarning(licenses));
-        Assert.assertFalse(result.isUnknown(licenses));
+        assertThat(result.isValid(licenses)).isTrue();
+        assertThat(result.isInvalid(licenses)).isFalse();
+        assertThat(result.isWarning(licenses)).isFalse();
+        assertThat(result.isUnknown(licenses)).isFalse();
 
-        Assert.assertEquals(result.getValidIds(licenses).size(), 2);
-        Assert.assertEquals(result.getValidIds(licenses).get(0), "The TMate Open Source License");
-        Assert.assertEquals(result.getValidIds(licenses).get(1), "Test License for two Licenses");
+        assertThat(result.getValidIds(licenses)).isNotEmpty().hasSize(2);
+        assertThat(result.getValidIds(licenses)).containsExactly("The TMate Open Source License", "Test License for two Licenses");
     }
 
 }

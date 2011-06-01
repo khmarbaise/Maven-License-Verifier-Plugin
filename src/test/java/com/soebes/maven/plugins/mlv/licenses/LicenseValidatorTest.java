@@ -21,13 +21,14 @@
  */
 package com.soebes.maven.plugins.mlv.licenses;
 
+import static org.fest.assertions.Assertions.assertThat;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import org.apache.maven.model.License;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -63,10 +64,10 @@ public class LicenseValidatorTest extends TestBase {
         License cl = new License();
         cl.setName("Common Public License Version 1.0");
         cl.setUrl("http://www.opensource.org/licenses/cpl1.0.txt");
-        Assert.assertTrue(result.isValid(cl));
-        Assert.assertFalse(result.isInvalid(cl));
-        Assert.assertFalse(result.isWarning(cl));
-        Assert.assertFalse(result.isUnknown(cl));
+        assertThat(result.isValid(cl)).isTrue();
+        assertThat(result.isInvalid(cl)).isFalse();
+        assertThat(result.isWarning(cl)).isFalse();
+        assertThat(result.isUnknown(cl)).isFalse();
     }
 
     @Test
@@ -74,10 +75,11 @@ public class LicenseValidatorTest extends TestBase {
         License cl = new License();
         cl.setName("Apache Software License, Version 2.0");
         cl.setUrl("http://apache.org/licenses/LICENSE-2.0.txt");
-        Assert.assertTrue(result.isValid(cl));
-        Assert.assertFalse(result.isInvalid(cl));
-        Assert.assertFalse(result.isWarning(cl));
-        Assert.assertFalse(result.isUnknown(cl));
+
+        assertThat(result.isValid(cl)).isTrue();
+        assertThat(result.isInvalid(cl)).isFalse();
+        assertThat(result.isWarning(cl)).isFalse();
+        assertThat(result.isUnknown(cl)).isFalse();
     }
 
     @Test
@@ -85,10 +87,11 @@ public class LicenseValidatorTest extends TestBase {
         License cl = new License();
         cl.setName("The Apache Software License, Version 2.0");
         cl.setUrl("/LICENSE.txt");
-        Assert.assertTrue(result.isValid(cl));
-        Assert.assertFalse(result.isInvalid(cl));
-        Assert.assertFalse(result.isWarning(cl));
-        Assert.assertFalse(result.isUnknown(cl));
+
+        assertThat(result.isValid(cl)).isTrue();
+        assertThat(result.isInvalid(cl)).isFalse();
+        assertThat(result.isWarning(cl)).isFalse();
+        assertThat(result.isUnknown(cl)).isFalse();
     }
 
     @Test
@@ -96,10 +99,11 @@ public class LicenseValidatorTest extends TestBase {
         License cl = new License();
         cl.setName("GNU General Public License, version 3");
         cl.setUrl("http://www.gnu.org/licenses/gpl-3.0.txt");
-        Assert.assertFalse(result.isValid(cl));
-        Assert.assertTrue(result.isInvalid(cl));
-        Assert.assertFalse(result.isWarning(cl));
-        Assert.assertFalse(result.isUnknown(cl));
+
+        assertThat(result.isValid(cl)).isFalse();
+        assertThat(result.isInvalid(cl)).isTrue();
+        assertThat(result.isWarning(cl)).isFalse();
+        assertThat(result.isUnknown(cl)).isFalse();
     }
 
     @Test
@@ -107,20 +111,22 @@ public class LicenseValidatorTest extends TestBase {
         License cl = new License();
         cl.setName("Apache License, Version 1.1");
         cl.setUrl("http://www.apache.org/licenses/LICENSE-1.1");
-        Assert.assertFalse(result.isValid(cl));
-        Assert.assertFalse(result.isInvalid(cl));
-        Assert.assertTrue(result.isWarning(cl));
-        Assert.assertFalse(result.isUnknown(cl));
+
+        assertThat(result.isValid(cl)).isFalse();
+        assertThat(result.isInvalid(cl)).isFalse();
+        assertThat(result.isWarning(cl)).isTrue();
+        assertThat(result.isUnknown(cl)).isFalse();
     }
 
     @Test
     public void catagorizeApache11OnlyByURL() {
         License cl = new License();
         cl.setUrl("http://www.apache.org/licenses/LICENSE-1.1");
-        Assert.assertFalse(result.isValid(cl));
-        Assert.assertFalse(result.isInvalid(cl));
-        Assert.assertTrue(result.isWarning(cl));
-        Assert.assertFalse(result.isUnknown(cl));
+
+        assertThat(result.isValid(cl)).isFalse();
+        assertThat(result.isInvalid(cl)).isFalse();
+        assertThat(result.isWarning(cl)).isTrue();
+        assertThat(result.isUnknown(cl)).isFalse();
     }
 
     @Test
@@ -128,10 +134,11 @@ public class LicenseValidatorTest extends TestBase {
         License cl = new License();
         cl.setName("Unknown License");
         cl.setUrl(null);
-        Assert.assertFalse(result.isValid(cl));
-        Assert.assertFalse(result.isInvalid(cl));
-        Assert.assertFalse(result.isWarning(cl));
-        Assert.assertTrue(result.isUnknown(cl));
+
+        assertThat(result.isValid(cl)).isFalse();
+        assertThat(result.isInvalid(cl)).isFalse();
+        assertThat(result.isWarning(cl)).isFalse();
+        assertThat(result.isUnknown(cl)).isTrue();
     }
 
     @Test
@@ -148,10 +155,10 @@ public class LicenseValidatorTest extends TestBase {
         licenses.add(cl1);
         licenses.add(cl2);
 
-        Assert.assertTrue(result.isValid(licenses));
-        Assert.assertFalse(result.isInvalid(licenses));
-        Assert.assertFalse(result.isWarning(licenses));
-        Assert.assertFalse(result.isUnknown(licenses));
+        assertThat(result.isValid(licenses)).isTrue();
+        assertThat(result.isInvalid(licenses)).isFalse();
+        assertThat(result.isWarning(licenses)).isFalse();
+        assertThat(result.isUnknown(licenses)).isFalse();
 
     }
 
@@ -169,10 +176,10 @@ public class LicenseValidatorTest extends TestBase {
         licenses.add(cl1);
         licenses.add(cl2);
 
-        Assert.assertTrue(result.isValid(licenses));
-        Assert.assertFalse(result.isInvalid(licenses));
-        Assert.assertFalse(result.isWarning(licenses));
-        Assert.assertFalse(result.isUnknown(licenses));
+        assertThat(result.isValid(licenses)).isTrue();
+        assertThat(result.isInvalid(licenses)).isFalse();
+        assertThat(result.isWarning(licenses)).isFalse();
+        assertThat(result.isUnknown(licenses)).isFalse();
     }
 
     @Test
@@ -191,10 +198,10 @@ public class LicenseValidatorTest extends TestBase {
         licenses.add(cl1);
         licenses.add(cl2);
 
-        Assert.assertFalse(result.isValid(licenses));
-        Assert.assertFalse(result.isInvalid(licenses));
-        Assert.assertFalse(result.isWarning(licenses));
-        Assert.assertTrue(result.isUnknown(licenses));
+        assertThat(result.isValid(licenses)).isFalse();
+        assertThat(result.isInvalid(licenses)).isFalse();
+        assertThat(result.isWarning(licenses)).isFalse();
+        assertThat(result.isUnknown(licenses)).isTrue();
     }
 
     @Test
@@ -212,20 +219,20 @@ public class LicenseValidatorTest extends TestBase {
         licenses.add(cl1);
         licenses.add(cl2);
 
-        Assert.assertFalse(result.isValid(licenses));
-        Assert.assertFalse(result.isInvalid(licenses));
-        Assert.assertFalse(result.isWarning(licenses));
-        Assert.assertTrue(result.isUnknown(licenses));
+        assertThat(result.isValid(licenses)).isFalse();
+        assertThat(result.isInvalid(licenses)).isFalse();
+        assertThat(result.isWarning(licenses)).isFalse();
+        assertThat(result.isUnknown(licenses)).isTrue();
     }
 
     @Test
     public void catagorizeArtifactNoLicenses() {
         ArrayList<License> licenses = new ArrayList<License>();
 
-        Assert.assertFalse(result.isValid(licenses));
-        Assert.assertFalse(result.isInvalid(licenses));
-        Assert.assertFalse(result.isWarning(licenses));
-        Assert.assertTrue(result.isUnknown(licenses));
+        assertThat(result.isValid(licenses)).isFalse();
+        assertThat(result.isInvalid(licenses)).isFalse();
+        assertThat(result.isWarning(licenses)).isFalse();
+        assertThat(result.isUnknown(licenses)).isTrue();
     }
 
 }

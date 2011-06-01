@@ -142,6 +142,8 @@ public abstract class AbstractLicenseVerifierPlugIn extends AbstractMojo {
     /**
      * Gives you the possibility to
      * define a list of references to licenses files.
+     * This has precedence over the {@link AbstractLicenseVerifierPlugIn#licenseFile}
+     * configuration.
      * <p>
      * &lt;configuration&gt;
      *    [...]

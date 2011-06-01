@@ -339,6 +339,13 @@
     </dependency>
 
     <dependency>
+      <groupId>org.easytesting</groupId>
+      <artifactId>fest-assert</artifactId>
+      <version>1.4</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
       <!-- May be we should change to JUnit -->
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
