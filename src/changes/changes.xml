@@ -30,11 +30,11 @@
     <release version="0.5" date="XX.05.2011" desc="Enhancement Release">
         <action
             dev="Karl Heinz Marbaise">
-            Updated to version 2.5.1 of cobertur-maven-plugin
+            Updated to version 2.5.1 of cobertura-maven-plugin
         </action>
         <action
             dev="Karl Heinz Marbaise"
-            type="update">
+            type="update"
             type="fix" issue="13">
             Fixed problem in relationship with maven-project-info-report-plugin upgrade
             from 2.3.1 to 2.4
