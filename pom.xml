@@ -24,6 +24,11 @@
     <url>https://github.com/khmarbaise/Maven-License-Verifier-Plugin/issues</url>
   </issueManagement>
 
+  <ciManagement>
+    <system>Jenkins</system>
+    <url>http://78.46.16.202:8080/jenkins/</url>
+  </ciManagement>
+
   <licenses>
     <license>
       <name>The Apache Software License, Version 2.0</name>
