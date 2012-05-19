@@ -16,7 +16,7 @@ if ( !file.exists() )
 }
 
 String[] checkedLines = {
-  "[INFO] Rendering site with org.apache.maven.skins:maven-default-skin:jar:1.0 skin.",
+  "[INFO] Rendering site with org.apache.maven.skins:maven-default-skin:jar:1.1 skin.",
   "[INFO] Generating \"License Verifier Report\" report",
   "[INFO] Generating \"Continuous Integration\" report    --- maven-project-info-reports-plugin:2.4",
   "[INFO] Generating \"Dependencies\" report    --- maven-project-info-reports-plugin:2.4",

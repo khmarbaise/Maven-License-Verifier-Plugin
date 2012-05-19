@@ -45,7 +45,7 @@ public class LicenseValidator {
     private boolean strictChecking;
 
     public LicenseValidator(LicensesContainer licensesContainer) {
-        strictChecking = false;
+        this.strictChecking = false;
         this.licensesContainer = licensesContainer;
     }
 
@@ -64,7 +64,7 @@ public class LicenseValidator {
     }
 
     public void setValid(List<LicenseItem> valid) {
-        this.licensesContainer.getInvalid().setLicenses(valid);
+        this.licensesContainer.getValid().setLicenses(valid);
     }
 
     /**
