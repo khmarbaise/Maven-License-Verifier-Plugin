@@ -81,7 +81,7 @@ public class LicenseValidator {
         }
     }
 
-    public void setInvalid(ArrayList<LicenseItem> invalid) {
+    public void setInvalid(List<LicenseItem> invalid) {
         this.licensesContainer.getInvalid().setLicenses(invalid);
     }
 
@@ -100,7 +100,7 @@ public class LicenseValidator {
         }
     }
 
-    public void setWarning(ArrayList<LicenseItem> warning) {
+    public void setWarning(List<LicenseItem> warning) {
         this.licensesContainer.getWarning().setLicenses(warning);
     }
 
@@ -223,7 +223,7 @@ public class LicenseValidator {
      * @param licenses
      * @return
      */
-    public boolean isValid(ArrayList<License> licenses) {
+    public boolean isValid(List<License> licenses) {
         boolean result = true;
         if (licenses.isEmpty()) {
             result = false;
@@ -244,7 +244,7 @@ public class LicenseValidator {
      * @param licenses
      * @return
      */
-    public ArrayList<String> getValidIds(ArrayList<License> licenses) {
+    public List<String> getValidIds(List<License> licenses) {
         ArrayList<String> result = new ArrayList<String>();
         if (licenses.isEmpty()) {
             return result;
@@ -261,7 +261,7 @@ public class LicenseValidator {
         return result;
     }
 
-    public ArrayList<String> getInvalidIds(ArrayList<License> licenses) {
+    public List<String> getInvalidIds(List<License> licenses) {
         ArrayList<String> result = new ArrayList<String>();
         if (licenses.isEmpty()) {
             return result;
@@ -278,7 +278,7 @@ public class LicenseValidator {
         return result;
     }
 
-    public ArrayList<String> getWarningIds(ArrayList<License> licenses) {
+    public List<String> getWarningIds(List<License> licenses) {
         ArrayList<String> result = new ArrayList<String>();
         if (licenses.isEmpty()) {
             return result;
@@ -303,7 +303,7 @@ public class LicenseValidator {
      * @param licenses
      * @return
      */
-    public boolean isInvalid(ArrayList<License> licenses) {
+    public boolean isInvalid(List<License> licenses) {
         boolean result = true;
         if (licenses.isEmpty()) {
             result = false;
@@ -325,7 +325,7 @@ public class LicenseValidator {
      * @param licenses
      * @return
      */
-    public boolean isWarning(ArrayList<License> licenses) {
+    public boolean isWarning(List<License> licenses) {
         boolean result = true;
         if (licenses.isEmpty()) {
             result = false;
@@ -354,7 +354,7 @@ public class LicenseValidator {
      * @return true if a license is from no category.
      *
      */
-    public boolean isUnknown(ArrayList<License> licenses) {
+    public boolean isUnknown(List<License> licenses) {
         boolean result = false;
         if (licenses.isEmpty()) {
             result = true;

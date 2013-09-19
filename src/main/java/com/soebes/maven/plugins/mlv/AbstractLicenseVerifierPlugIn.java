@@ -181,7 +181,7 @@ public abstract class AbstractLicenseVerifierPlugIn extends AbstractMojo {
         Set<?> depArtifacts = this.project.getArtifacts();
 
         //Get all the informations about the licenses of the artifacts.
-        ArrayList<LicenseInformation> licenseInformations = getDependArtifacts(depArtifacts);
+        List<LicenseInformation> licenseInformations = getDependArtifacts(depArtifacts);
 
         LicenseValidator licenseValidator = new LicenseValidator(licenseContainer);
         licenseValidator.setStrictChecking(stricktChecking);
@@ -201,10 +201,10 @@ public abstract class AbstractLicenseVerifierPlugIn extends AbstractMojo {
      * @param depArtifacts
      * @throws MojoExecutionException
      */
-    protected ArrayList<LicenseInformation> getDependArtifacts(Set<?> depArtifacts)
+    protected List<LicenseInformation> getDependArtifacts(Set<?> depArtifacts)
             throws MojoExecutionException {
 
-        ArrayList<LicenseInformation> licenseInformations = new ArrayList<LicenseInformation>();
+        List<LicenseInformation> licenseInformations = new ArrayList<LicenseInformation>();
 
         for (Iterator<?> depArtIter = depArtifacts.iterator(); depArtIter.hasNext(); ) {
            Artifact depArt = (Artifact) depArtIter.next();

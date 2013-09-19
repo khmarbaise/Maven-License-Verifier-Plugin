@@ -47,7 +47,7 @@
     <mavenVersion>2.2.1</mavenVersion>
 
     <!-- all kind of resources etc. will be UTF-8 encoded -->
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	
   </properties>
 
   <prerequisites>

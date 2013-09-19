@@ -22,6 +22,7 @@
 package com.soebes.maven.plugins.mlv.licenses;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.maven.artifact.Artifact;
 import org.apache.maven.model.License;
@@ -38,7 +39,7 @@ public class LicenseInformation {
 
     private Artifact artifact;
     private MavenProject project;
-    private ArrayList<License> licenses = new ArrayList<License>();
+    private List<License> licenses = new ArrayList<License>();
 
     public void setArtifact(Artifact artifact) {
         this.artifact = artifact;
@@ -52,7 +53,7 @@ public class LicenseInformation {
         this.licenses = licenses;
     }
 
-    public ArrayList<License> getLicenses() {
+    public List<License> getLicenses() {
         return licenses;
     }
 

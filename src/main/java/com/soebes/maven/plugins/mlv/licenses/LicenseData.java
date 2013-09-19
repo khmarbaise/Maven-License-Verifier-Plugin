@@ -35,12 +35,12 @@ import com.soebes.maven.plugins.mlv.filter.PatternExcludeFilter;
  * @since 0.5
  */
 public class LicenseData {
-    private ArrayList<LicenseInformation> licenseInformations;
-    private ArrayList<LicenseInformation> valid;
-    private ArrayList<LicenseInformation> invalid;
-    private ArrayList<LicenseInformation> warning;
-    private ArrayList<LicenseInformation> unknown;
-    private ArrayList<LicenseInformation> excludedByConfiguration;
+    private List<LicenseInformation> licenseInformations;
+    private List<LicenseInformation> valid;
+    private List<LicenseInformation> invalid;
+    private List<LicenseInformation> warning;
+    private List<LicenseInformation> unknown;
+    private List<LicenseInformation> excludedByConfiguration;
 
     private List<String> excludes;
 
@@ -52,7 +52,7 @@ public class LicenseData {
 
     private LicenseValidator licenseValidator;
 
-    public LicenseData(LicenseValidator licenseValidaor, ArrayList<LicenseInformation> licenseInformations, List<String> excludes, Log log) {
+    public LicenseData(LicenseValidator licenseValidaor, List<LicenseInformation> licenseInformations, List<String> excludes, Log log) {
         setLicenseInformations(licenseInformations);
         setLicenseValidator(licenseValidaor);
         setValid(new ArrayList<LicenseInformation>());
@@ -284,11 +284,11 @@ public class LicenseData {
         return !getExcludedByConfiguration().isEmpty();
     }
 
-    public void setLicenseInformations(ArrayList<LicenseInformation> licenseInformations) {
+    public void setLicenseInformations(List<LicenseInformation> licenseInformations) {
         this.licenseInformations = licenseInformations;
     }
 
-    public ArrayList<LicenseInformation> getLicenseInformations() {
+    public List<LicenseInformation> getLicenseInformations() {
         return licenseInformations;
     }
 
@@ -300,19 +300,19 @@ public class LicenseData {
         return licenseValidator;
     }
 
-    public void setValid(ArrayList<LicenseInformation> valid) {
+    public void setValid(List<LicenseInformation> valid) {
         this.valid = valid;
     }
 
-    public ArrayList<LicenseInformation> getValid() {
+    public List<LicenseInformation> getValid() {
         return valid;
     }
 
-    public void setInvalid(ArrayList<LicenseInformation> invalid) {
+    public void setInvalid(List<LicenseInformation> invalid) {
         this.invalid = invalid;
     }
 
-    public ArrayList<LicenseInformation> getInvalid() {
+    public List<LicenseInformation> getInvalid() {
         return invalid;
     }
 
@@ -320,15 +320,15 @@ public class LicenseData {
         this.warning = warning;
     }
 
-    public ArrayList<LicenseInformation> getWarning() {
+    public List<LicenseInformation> getWarning() {
         return warning;
     }
 
-    public void setUnknown(ArrayList<LicenseInformation> unknown) {
+    public void setUnknown(List<LicenseInformation> unknown) {
         this.unknown = unknown;
     }
 
-    public ArrayList<LicenseInformation> getUnknown() {
+    public List<LicenseInformation> getUnknown() {
         return unknown;
     }
 
@@ -336,7 +336,7 @@ public class LicenseData {
         this.excludedByConfiguration = excludedByConfiguration;
     }
 
-    public ArrayList<LicenseInformation> getExcludedByConfiguration() {
+    public List<LicenseInformation> getExcludedByConfiguration() {
         return excludedByConfiguration;
     }
 
