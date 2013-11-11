@@ -19,7 +19,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.soebes.maven.plugins.mlv.licenses;
+package com.soebes.maven.plugins.licenseverifier.licenses;
 
 import static org.fest.assertions.Assertions.assertThat;
 
@@ -29,30 +29,30 @@ import java.util.ArrayList;
 
 import org.apache.maven.model.License;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.soebes.maven.plugins.mlv.TestBase;
+import com.soebes.maven.plugins.licenseverifier.TestBase;
+import com.soebes.maven.plugins.licenseverifier.licenses.LicenseValidator;
+import com.soebes.maven.plugins.licenseverifier.licenses.LicensesFile;
 import com.soebes.maven.plugins.mlv.model.LicensesContainer;
 
 /**
- * The intention of this test is to check if the usage of a licenses.xml file
- * will work which contains an invaild section only.
+ * The intention of this test is to check if the comparsion only based on name
+ * and/or on URL of the license is working correctly.
  *
  * @author Karl Heinz Marbaise
  *
  */
-public class LicenseValidatorInvalidOnlyTest extends TestBase {
+public class LicenseValidatorTest extends TestBase {
 
     private LicenseValidator result;
     private LicensesContainer licensesContainer;
 
     @BeforeClass
     public void beforeClass() throws IOException, XmlPullParserException {
-        licensesContainer = LicensesFile
-                .getLicenses(new File(getTestResourcesDirectory() + "licenses-invalid-only.xml"));
+        licensesContainer = LicensesFile.getLicenses(new File(getTestResourcesDirectory() + "licenses.xml"));
         result = new LicenseValidator(licensesContainer);
     }
 
@@ -62,14 +62,72 @@ public class LicenseValidatorInvalidOnlyTest extends TestBase {
     }
 
     @Test
+    public void catagorizeCPLV10() {
+        License cl = new License();
+        cl.setName("Common Public License Version 1.0");
+        cl.setUrl("http://www.opensource.org/licenses/cpl1.0.txt");
+        assertThat(result.isValid(cl)).isTrue();
+        assertThat(result.isInvalid(cl)).isFalse();
+        assertThat(result.isWarning(cl)).isFalse();
+        assertThat(result.isUnknown(cl)).isFalse();
+    }
+
+    @Test
     public void catagorizeApache20() {
         License cl = new License();
         cl.setName("Apache Software License, Version 2.0");
         cl.setUrl("http://apache.org/licenses/LICENSE-2.0.txt");
 
+        assertThat(result.isValid(cl)).isTrue();
+        assertThat(result.isInvalid(cl)).isFalse();
+        assertThat(result.isWarning(cl)).isFalse();
+        assertThat(result.isUnknown(cl)).isFalse();
+    }
+
+    @Test
+    public void categorizeApache20WithWrongURL() {
+        License cl = new License();
+        cl.setName("The Apache Software License, Version 2.0");
+        cl.setUrl("/LICENSE.txt");
+
+        assertThat(result.isValid(cl)).isTrue();
+        assertThat(result.isInvalid(cl)).isFalse();
+        assertThat(result.isWarning(cl)).isFalse();
+        assertThat(result.isUnknown(cl)).isFalse();
+    }
+
+    @Test
+    public void catagorizeGPL20() {
+        License cl = new License();
+        cl.setName("GNU General Public License, version 3");
+        cl.setUrl("http://www.gnu.org/licenses/gpl-3.0.txt");
+
         assertThat(result.isValid(cl)).isFalse();
         assertThat(result.isInvalid(cl)).isTrue();
         assertThat(result.isWarning(cl)).isFalse();
+        assertThat(result.isUnknown(cl)).isFalse();
+    }
+
+    @Test
+    public void catagorizeApache11() {
+        License cl = new License();
+        cl.setName("Apache License, Version 1.1");
+        cl.setUrl("http://www.apache.org/licenses/LICENSE-1.1");
+
+        assertThat(result.isValid(cl)).isFalse();
+        assertThat(result.isInvalid(cl)).isFalse();
+        assertThat(result.isWarning(cl)).isTrue();
+        assertThat(result.isUnknown(cl)).isFalse();
+    }
+
+    @Test
+    public void catagorizeApache11OnlyByURL() {
+        License cl = new License();
+        cl.setUrl("http://www.apache.org/licenses/LICENSE-1.1");
+
+        assertThat(result.isValid(cl)).isFalse();
+        assertThat(result.isInvalid(cl)).isFalse();
+        assertThat(result.isWarning(cl)).isTrue();
         assertThat(result.isUnknown(cl)).isFalse();
     }
 
@@ -83,6 +141,47 @@ public class LicenseValidatorInvalidOnlyTest extends TestBase {
         assertThat(result.isInvalid(cl)).isFalse();
         assertThat(result.isWarning(cl)).isFalse();
         assertThat(result.isUnknown(cl)).isTrue();
+    }
+
+    @Test
+    public void catagorizeArtifactValidWithTwoLicensesNames() {
+        License cl1 = new License();
+        cl1.setName("Test License");
+        cl1.setUrl(null);
+
+        License cl2 = new License();
+        cl2.setName("Test License, Version 1.0");
+        cl2.setUrl(null);
+
+        ArrayList<License> licenses = new ArrayList<License>();
+        licenses.add(cl1);
+        licenses.add(cl2);
+
+        assertThat(result.isValid(licenses)).isTrue();
+        assertThat(result.isInvalid(licenses)).isFalse();
+        assertThat(result.isWarning(licenses)).isFalse();
+        assertThat(result.isUnknown(licenses)).isFalse();
+
+    }
+
+    @Test
+    public void catagorizeArtifactValidWithTwoLicensesNameAndURL() {
+        License cl1 = new License();
+        cl1.setName("Test License");
+        cl1.setUrl(null);
+
+        License cl2 = new License();
+        cl2.setName(null);
+        cl2.setUrl("http://www.testlicense.org/License-1.0.txt");
+
+        ArrayList<License> licenses = new ArrayList<License>();
+        licenses.add(cl1);
+        licenses.add(cl2);
+
+        assertThat(result.isValid(licenses)).isTrue();
+        assertThat(result.isInvalid(licenses)).isFalse();
+        assertThat(result.isWarning(licenses)).isFalse();
+        assertThat(result.isUnknown(licenses)).isFalse();
     }
 
     @Test

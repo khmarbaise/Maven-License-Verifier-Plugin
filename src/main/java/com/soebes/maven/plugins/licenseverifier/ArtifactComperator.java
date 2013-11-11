@@ -19,11 +19,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.soebes.maven.plugins.mlv;
+package com.soebes.maven.plugins.licenseverifier;
 
 import java.util.Comparator;
 
-import com.soebes.maven.plugins.mlv.licenses.LicenseInformation;
+import com.soebes.maven.plugins.licenseverifier.licenses.LicenseInformation;
 
 /**
  * The comparator for the artifacts.

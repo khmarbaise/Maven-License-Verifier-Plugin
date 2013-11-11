@@ -19,7 +19,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.soebes.maven.plugins.mlv.licenses;
+package com.soebes.maven.plugins.licenseverifier.licenses;
 
 import static org.fest.assertions.Assertions.assertThat;
 
@@ -33,24 +33,19 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.soebes.maven.plugins.mlv.TestBase;
+import com.soebes.maven.plugins.licenseverifier.TestBase;
+import com.soebes.maven.plugins.licenseverifier.licenses.LicenseValidator;
+import com.soebes.maven.plugins.licenseverifier.licenses.LicensesFile;
 import com.soebes.maven.plugins.mlv.model.LicensesContainer;
 
-/**
- * The intention of this test is to check if the usage of a licenses.xml file
- * will work which contains a vaild section only.
- *
- * @author Karl Heinz Marbaise
- *
- */
-public class LicenseValidatorValidOnlyTest extends TestBase {
+public class LicenseValidatorIdTest extends TestBase {
 
     private LicenseValidator result;
     private LicensesContainer licensesContainer;
 
     @BeforeClass
     public void beforeClass() throws IOException, XmlPullParserException {
-        licensesContainer = LicensesFile.getLicenses(new File(getTestResourcesDirectory() + "licenses-valid-only.xml"));
+        licensesContainer = LicensesFile.getLicenses(new File(getTestResourcesDirectory() + "licenses.xml"));
         result = new LicenseValidator(licensesContainer);
     }
 
@@ -60,35 +55,25 @@ public class LicenseValidatorValidOnlyTest extends TestBase {
     }
 
     @Test
-    public void catagorizeApache20() {
+    public void catagorizeGPL20WithId() {
         License cl = new License();
-        cl.setName("Apache Software License, Version 2.0");
-        cl.setUrl("http://apache.org/licenses/LICENSE-2.0.txt");
-
-        assertThat(result.isValid(cl)).isTrue();
-        assertThat(result.isInvalid(cl)).isFalse();
-        assertThat(result.isWarning(cl)).isFalse();
-        assertThat(result.isUnknown(cl)).isFalse();
-    }
-
-    @Test
-    public void catagorizeUnknown() {
-        License cl = new License();
-        cl.setName("Unknown License");
-        cl.setUrl(null);
+        cl.setName("GNU General Public License, version 3");
+        cl.setUrl("http://www.gnu.org/licenses/gpl-3.0.txt");
 
         assertThat(result.isValid(cl)).isFalse();
-        assertThat(result.isInvalid(cl)).isFalse();
+        assertThat(result.isInvalid(cl)).isTrue();
         assertThat(result.isWarning(cl)).isFalse();
-        assertThat(result.isUnknown(cl)).isTrue();
+        assertThat(result.isUnknown(cl)).isFalse();
+
+        assertThat(result.getValidId(cl)).isNull();
+        assertThat(result.getInvalidId(cl)).isEqualTo("GNU General Public License (GPL)");
+        assertThat(result.getWarningId(cl)).isNull();
     }
 
     @Test
-    public void catagorizeArtifactWithTwoLicensesFromTwoCategories() {
-        // The first license is in the "Invalid" category
-        // whereas the second one is in the "Valid" category
+    public void catagorizeArtifactValidWithTwoLicensesNameAndURLWithId() {
         License cl1 = new License();
-        cl1.setName("GNU General Public License, version 2");
+        cl1.setName("Test License");
         cl1.setUrl(null);
 
         License cl2 = new License();
@@ -99,41 +84,36 @@ public class LicenseValidatorValidOnlyTest extends TestBase {
         licenses.add(cl1);
         licenses.add(cl2);
 
-        assertThat(result.isValid(licenses)).isFalse();
+        assertThat(result.isValid(licenses)).isTrue();
         assertThat(result.isInvalid(licenses)).isFalse();
         assertThat(result.isWarning(licenses)).isFalse();
-        assertThat(result.isUnknown(licenses)).isTrue();
+        assertThat(result.isUnknown(licenses)).isFalse();
+
+        assertThat(result.getValidIds(licenses)).isNotEmpty().hasSize(1);
+        assertThat(result.getValidIds(licenses)).containsOnly("Test License for two Licenses");
     }
 
     @Test
-    public void catagorizeArtifactWithTwoLicensesFromNoCategory() {
-        // whereas the second one is in the "Valid" category
+    public void catagorizeTwoLicensesWithIds() {
         License cl1 = new License();
-        cl1.setName("Unknown License V1.0");
+        cl1.setName("The TMate Open Source License");
         cl1.setUrl(null);
 
         License cl2 = new License();
         cl2.setName(null);
-        cl2.setUrl("http://www.the-unknown-license.com/license-v.1.0.html");
+        cl2.setUrl("http://www.testlicense.org/License-1.0.txt");
 
         ArrayList<License> licenses = new ArrayList<License>();
         licenses.add(cl1);
         licenses.add(cl2);
 
-        assertThat(result.isValid(licenses)).isFalse();
+        assertThat(result.isValid(licenses)).isTrue();
         assertThat(result.isInvalid(licenses)).isFalse();
         assertThat(result.isWarning(licenses)).isFalse();
-        assertThat(result.isUnknown(licenses)).isTrue();
-    }
+        assertThat(result.isUnknown(licenses)).isFalse();
 
-    @Test
-    public void catagorizeArtifactNoLicenses() {
-        ArrayList<License> licenses = new ArrayList<License>();
-
-        assertThat(result.isValid(licenses)).isFalse();
-        assertThat(result.isInvalid(licenses)).isFalse();
-        assertThat(result.isWarning(licenses)).isFalse();
-        assertThat(result.isUnknown(licenses)).isTrue();
+        assertThat(result.getValidIds(licenses)).isNotEmpty().hasSize(2);
+        assertThat(result.getValidIds(licenses)).containsExactly("The TMate Open Source License", "Test License for two Licenses");
     }
 
 }

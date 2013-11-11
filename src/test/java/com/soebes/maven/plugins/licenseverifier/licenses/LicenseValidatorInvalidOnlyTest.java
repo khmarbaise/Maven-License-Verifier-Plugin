@@ -19,7 +19,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.soebes.maven.plugins.mlv.licenses;
+package com.soebes.maven.plugins.licenseverifier.licenses;
 
 import static org.fest.assertions.Assertions.assertThat;
 
@@ -29,21 +29,24 @@ import java.util.ArrayList;
 
 import org.apache.maven.model.License;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.soebes.maven.plugins.mlv.TestBase;
+import com.soebes.maven.plugins.licenseverifier.TestBase;
+import com.soebes.maven.plugins.licenseverifier.licenses.LicenseValidator;
+import com.soebes.maven.plugins.licenseverifier.licenses.LicensesFile;
 import com.soebes.maven.plugins.mlv.model.LicensesContainer;
 
 /**
  * The intention of this test is to check if the usage of a licenses.xml file
- * will work which contains an warning section only.
+ * will work which contains an invaild section only.
  *
  * @author Karl Heinz Marbaise
  *
  */
-public class LicenseValidatorWarningOnlyTest extends TestBase {
+public class LicenseValidatorInvalidOnlyTest extends TestBase {
 
     private LicenseValidator result;
     private LicensesContainer licensesContainer;
@@ -51,7 +54,7 @@ public class LicenseValidatorWarningOnlyTest extends TestBase {
     @BeforeClass
     public void beforeClass() throws IOException, XmlPullParserException {
         licensesContainer = LicensesFile
-                .getLicenses(new File(getTestResourcesDirectory() + "licenses-warning-only.xml"));
+                .getLicenses(new File(getTestResourcesDirectory() + "licenses-invalid-only.xml"));
         result = new LicenseValidator(licensesContainer);
     }
 
@@ -67,8 +70,8 @@ public class LicenseValidatorWarningOnlyTest extends TestBase {
         cl.setUrl("http://apache.org/licenses/LICENSE-2.0.txt");
 
         assertThat(result.isValid(cl)).isFalse();
-        assertThat(result.isInvalid(cl)).isFalse();
-        assertThat(result.isWarning(cl)).isTrue();
+        assertThat(result.isInvalid(cl)).isTrue();
+        assertThat(result.isWarning(cl)).isFalse();
         assertThat(result.isUnknown(cl)).isFalse();
     }
 

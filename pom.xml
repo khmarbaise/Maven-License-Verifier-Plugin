@@ -11,15 +11,15 @@
     <version>0.4</version>
   </parent>
 
-  <groupId>com.soebes.maven.plugins.mlv</groupId>
-  <artifactId>maven-license-verifier-plugin</artifactId>
+  <groupId>com.soebes.maven.plugins</groupId>
+  <artifactId>license-verifier-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
   <version>0.5-SNAPSHOT</version>
-  <name>Maven License Verifier Plugin</name>
+  <name>License Verifier Maven Plugin</name>
   <url>https://github.com/khmarbaise/Maven-License-Verifier-Plugin</url>
 
   <inceptionYear>2009</inceptionYear>
-  <description>The Maven License Verifier Plugin is intented to check
+  <description>The License Verifier Maven Plugin is intented to check
     the different artifacts of a project.</description>
 
   <issueManagement>
@@ -29,7 +29,7 @@
 
   <ciManagement>
     <system>Jenkins</system>
-    <url>http://78.46.16.202:8080/jenkins/</url>
+    <url>http://188.40.37.211:8080/</url>
   </ciManagement>
 
   <licenses>
@@ -212,8 +212,8 @@
             <apt.vm>DOUBLETILDE_STYLE</apt.vm>
           </mapping>
           <properties>
-            <year>2009, 2010, 2011</year>
-            <email>mlvp@soebes.de</email>
+            <year>2009, 2010, 2011, 2012, 2013</year>
+            <email>lvmp@soebes.de</email>
           </properties>
         </configuration>
         <executions>

@@ -19,7 +19,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.soebes.maven.plugins.mlv.licenses;
+package com.soebes.maven.plugins.licenseverifier.licenses;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ import java.util.List;
 import org.apache.maven.artifact.resolver.filter.ArtifactFilter;
 import org.apache.maven.plugin.logging.Log;
 
-import com.soebes.maven.plugins.mlv.filter.PatternExcludeFilter;
+import com.soebes.maven.plugins.licenseverifier.filter.PatternExcludeFilter;
 
 /**
  * @author <a href="mailto:kama@soebes.de">Karl Heinz Marbaise</a>

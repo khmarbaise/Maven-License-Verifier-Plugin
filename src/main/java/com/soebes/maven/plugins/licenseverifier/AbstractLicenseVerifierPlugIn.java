@@ -19,7 +19,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.soebes.maven.plugins.mlv;
+package com.soebes.maven.plugins.licenseverifier;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,10 +41,10 @@ import org.apache.maven.project.MavenProjectBuilder;
 import org.apache.maven.project.ProjectBuildingException;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 
-import com.soebes.maven.plugins.mlv.licenses.LicenseData;
-import com.soebes.maven.plugins.mlv.licenses.LicenseInformation;
-import com.soebes.maven.plugins.mlv.licenses.LicenseValidator;
-import com.soebes.maven.plugins.mlv.licenses.LicensesFile;
+import com.soebes.maven.plugins.licenseverifier.licenses.LicenseData;
+import com.soebes.maven.plugins.licenseverifier.licenses.LicenseInformation;
+import com.soebes.maven.plugins.licenseverifier.licenses.LicenseValidator;
+import com.soebes.maven.plugins.licenseverifier.licenses.LicensesFile;
 import com.soebes.maven.plugins.mlv.model.LicensesContainer;
 
 /**
