@@ -1,6 +1,6 @@
 Release 0.6
 
-User visibl changes:
+User visible changes:
   - Changed groupId of the plugin from com.soebes.maven.plugins.mlv
     into com.soebes.maven.plugins
-
+    and the name of the plugin changed according to the trade mark rules

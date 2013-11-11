@@ -38,9 +38,9 @@ be checked in more detail (warning) or unknown licenses or invalid licenses.
 The first and simplest usage is to configure the Maven Licenses Verifier Plugin
 
     <plugin>
-      <groupId>com.soebes.maven.plugins.mlv</groupId>
-      <artifactId>maven-license-verifier-plugin</artifactId>
-      <version>0.4</version>
+      <groupId>com.soebes.maven.plugins</groupId>
+      <artifactId>license-verifier-maven-plugin</artifactId>
+      <version>0.5</version>
       <executions>
         <execution>
           <phase>test</phase>
@@ -59,7 +59,7 @@ settings.xml file to make life a little bit easier.
     <settings>
       ...
       <pluginGroups>
-        <pluginGroup>com.soebes.maven.plugins.mlv</pluginGroup>
+        <pluginGroup>com.soebes.maven.plugins</pluginGroup>
       </pluginGroups>
       ...
     </settings>
@@ -77,5 +77,5 @@ line simply:
 Examples
 --------
 
-A real example can be looked at [Maven Licenses Verifier Plugin Example](http://khmarbaise.github.com/mlvp-example/licenseverifierreport.html)
+A real example can be looked at [Licenses Verifier Maven Plugin Example](http://khmarbaise.github.com/mlvp-example/licenseverifierreport.html)
 
