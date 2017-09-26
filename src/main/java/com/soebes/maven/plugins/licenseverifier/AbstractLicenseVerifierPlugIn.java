@@ -132,6 +132,13 @@ public abstract class AbstractLicenseVerifierPlugIn extends AbstractMojo {
     protected boolean failOnUnknown;
 
     /**
+     * The build will fail if a license can not be categorized
+     * in any of the categories.
+     * @parameter expression="${mlv.acceptLicenceIfAnyValid}" default-value="false"
+     */
+    protected boolean acceptLicenceIfAnyValid;
+
+    /**
      * The name of the licenses.xml file which will be used to categorize
      * the licenses of the artifacts.
      * @parameter	expression="${mlv.licenseFile}"
@@ -183,7 +190,7 @@ public abstract class AbstractLicenseVerifierPlugIn extends AbstractMojo {
         //Get all the informations about the licenses of the artifacts.
         List<LicenseInformation> licenseInformations = getDependArtifacts(depArtifacts);
 
-        LicenseValidator licenseValidator = new LicenseValidator(licenseContainer);
+        LicenseValidator licenseValidator = new LicenseValidator(licenseContainer, acceptLicenceIfAnyValid);
         licenseValidator.setStrictChecking(stricktChecking);
 
 

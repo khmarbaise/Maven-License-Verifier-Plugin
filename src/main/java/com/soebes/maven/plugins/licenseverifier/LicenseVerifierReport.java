@@ -325,9 +325,14 @@ public class LicenseVerifierReport
             cell(sink, item.getArtifact().getId()); // 1st Row item artifactId
 
             boolean isValid = licenseData.getLicenseValidator().isValid(item.getLicenses());
-            boolean isWarning = licenseData.getLicenseValidator().isWarning(item.getLicenses());
-            boolean isInvalid = licenseData.getLicenseValidator().isInvalid(item.getLicenses());
-            boolean isUnknown = licenseData.getLicenseValidator().isUnknown(item.getLicenses());
+            boolean isWarning = false;
+            boolean isInvalid = false;
+            boolean isUnknown = false;
+            if (!(acceptLicenceIfAnyValid && isValid)) {
+                isWarning = licenseData.getLicenseValidator().isWarning(item.getLicenses());
+                isInvalid = licenseData.getLicenseValidator().isInvalid(item.getLicenses());
+                isUnknown = licenseData.getLicenseValidator().isUnknown(item.getLicenses());
+            }
 
             sink.tableCell();
             sink.text(item.getArtifact().getScope());

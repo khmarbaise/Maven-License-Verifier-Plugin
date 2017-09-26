@@ -55,7 +55,7 @@ public class LicenseValidatorStrictTest extends TestBase {
     @BeforeClass
     public void beforeClass() throws IOException, XmlPullParserException {
         licensesContainer = LicensesFile.getLicenses(new File(getTestResourcesDirectory() + "licenses.xml"));
-        result = new LicenseValidator(licensesContainer);
+        result = new LicenseValidator(licensesContainer, false);
         result.setStrictChecking(true);
     }
 
