@@ -55,7 +55,7 @@ public class LicenseValidatorInvalidOnlyTest extends TestBase {
     public void beforeClass() throws IOException, XmlPullParserException {
         licensesContainer = LicensesFile
                 .getLicenses(new File(getTestResourcesDirectory() + "licenses-invalid-only.xml"));
-        result = new LicenseValidator(licensesContainer);
+        result = new LicenseValidator(licensesContainer, false);
     }
 
     @AfterClass

@@ -21,22 +21,19 @@
  */
 package com.soebes.maven.plugins.licenseverifier.licenses;
 
-import static org.fest.assertions.Assertions.assertThat;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-
+import com.soebes.maven.plugins.licenseverifier.TestBase;
+import com.soebes.maven.plugins.mlv.model.LicensesContainer;
 import org.apache.maven.model.License;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.soebes.maven.plugins.licenseverifier.TestBase;
-import com.soebes.maven.plugins.licenseverifier.licenses.LicenseValidator;
-import com.soebes.maven.plugins.licenseverifier.licenses.LicensesFile;
-import com.soebes.maven.plugins.mlv.model.LicensesContainer;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+
+import static org.fest.assertions.Assertions.assertThat;
 
 /**
  * The intention of this test is to check if the comparsion only based on name
@@ -45,7 +42,7 @@ import com.soebes.maven.plugins.mlv.model.LicensesContainer;
  * @author Karl Heinz Marbaise
  *
  */
-public class LicenseValidatorTest extends TestBase {
+public class LicenseValidatorAcceptLicenceIfAnyValidTest extends TestBase {
 
     private LicenseValidator result;
     private LicensesContainer licensesContainer;
@@ -53,7 +50,7 @@ public class LicenseValidatorTest extends TestBase {
     @BeforeClass
     public void beforeClass() throws IOException, XmlPullParserException {
         licensesContainer = LicensesFile.getLicenses(new File(getTestResourcesDirectory() + "licenses.xml"));
-        result = new LicenseValidator(licensesContainer, false);
+        result = new LicenseValidator(licensesContainer, true);
     }
 
     @AfterClass
@@ -62,33 +59,10 @@ public class LicenseValidatorTest extends TestBase {
     }
 
     @Test
-    public void catagorizeCPLV10() {
-        License cl = new License();
-        cl.setName("Common Public License Version 1.0");
-        cl.setUrl("http://www.opensource.org/licenses/cpl1.0.txt");
-        assertThat(result.isValid(cl)).isTrue();
-        assertThat(result.isInvalid(cl)).isFalse();
-        assertThat(result.isWarning(cl)).isFalse();
-        assertThat(result.isUnknown(cl)).isFalse();
-    }
-
-    @Test
     public void catagorizeApache20() {
         License cl = new License();
         cl.setName("Apache Software License, Version 2.0");
         cl.setUrl("http://apache.org/licenses/LICENSE-2.0.txt");
-
-        assertThat(result.isValid(cl)).isTrue();
-        assertThat(result.isInvalid(cl)).isFalse();
-        assertThat(result.isWarning(cl)).isFalse();
-        assertThat(result.isUnknown(cl)).isFalse();
-    }
-
-    @Test
-    public void categorizeApache20WithWrongURL() {
-        License cl = new License();
-        cl.setName("The Apache Software License, Version 2.0");
-        cl.setUrl("/LICENSE.txt");
 
         assertThat(result.isValid(cl)).isTrue();
         assertThat(result.isInvalid(cl)).isFalse();
@@ -200,7 +174,7 @@ public class LicenseValidatorTest extends TestBase {
         licenses.add(cl1);
         licenses.add(cl2);
 
-        assertThat(result.isValid(licenses)).isFalse();
+        assertThat(result.isValid(licenses)).isTrue();
         assertThat(result.isInvalid(licenses)).isFalse();
         assertThat(result.isWarning(licenses)).isFalse();
         assertThat(result.isUnknown(licenses)).isTrue();

@@ -42,11 +42,14 @@ public class LicenseValidator {
      */
     private final LicensesContainer licensesContainer;
 
+    private final boolean acceptLicenceIfAnyValid;
+
     private boolean strictChecking;
 
-    public LicenseValidator(LicensesContainer licensesContainer) {
+    public LicenseValidator(LicensesContainer licensesContainer, boolean acceptLicenceIfAnyValid) {
         this.strictChecking = false;
         this.licensesContainer = licensesContainer;
+        this.acceptLicenceIfAnyValid = acceptLicenceIfAnyValid;
     }
 
     /**
@@ -228,6 +231,15 @@ public class LicenseValidator {
         if (licenses.isEmpty()) {
             result = false;
         } else {
+            if (acceptLicenceIfAnyValid) {
+                for (License license : licenses) {
+                    if (isValid(license)) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            
             for (License license : licenses) {
                 if (!isValid(license)) {
                     result = false;
