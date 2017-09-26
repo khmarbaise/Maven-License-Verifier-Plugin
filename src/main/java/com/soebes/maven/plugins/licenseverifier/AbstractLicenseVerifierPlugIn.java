@@ -98,6 +98,14 @@ public abstract class AbstractLicenseVerifierPlugIn extends AbstractMojo {
     private boolean verbose;
 
     /**
+     * This will turn on explicit licence information in
+     * error, warning and info messages.
+     *
+     * @parameter expression="${mlv.explicitLicenceInfo}" default-value="false"
+     */
+    private boolean explicitLicenceInfo;
+
+    /**
      * This will turn on strictChecking behavior which
      * will check URL and Name of a license instead of
      * only URL or Name.
@@ -299,5 +307,13 @@ public abstract class AbstractLicenseVerifierPlugIn extends AbstractMojo {
 
     public boolean isVerbose() {
         return verbose;
+    }
+
+    public boolean isExplicitLicenceInfo() {
+        return explicitLicenceInfo;
+    }
+
+    public void setExplicitLicenceInfo(boolean explicitLicenceInfo) {
+        this.explicitLicenceInfo = explicitLicenceInfo;
     }
 }
