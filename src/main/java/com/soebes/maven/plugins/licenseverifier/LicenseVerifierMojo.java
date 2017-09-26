@@ -52,26 +52,26 @@ public class LicenseVerifierMojo extends AbstractLicenseVerifierPlugIn {
         if (licenseData.hasValid()) {
             for (LicenseInformation item : licenseData.getValid()) {
                 if (isVerbose()) {
-                    getLog().info("   ]VALID[   (" + item.getArtifact().getScope() + ") The artifact " + item.getProject().getId() + " has a license which is categorized as valid");
+                    getLog().info(createLogString(6, item, "]VALID[", "valid"));
                 }
             }
         }
 
         if (licenseData.hasInvalid()) {
             for (LicenseInformation item : licenseData.getInvalid()) {
-                getLog().error("  ]INVALID[ (" + item.getArtifact().getScope() + ") The artifact " + item.getProject().getId() + " has a license which is categorized as invalid");
+                getLog().error(createLogString(7, item, "]INVALID[", "invalid"));
             }
         }
 
         if (licenseData.hasWarning()) {
             for (LicenseInformation item : licenseData.getWarning()) {
-                getLog().warn("]WARNING[ (" + item.getArtifact().getScope() + ") The artifact " + item.getProject().getId() + " has a license which is categorized as warning");
+                getLog().warn(createLogString(9, item, "]WARNING[", "warning"));
             }
         }
 
         if (licenseData.hasUnknown()) {
             for (LicenseInformation item : licenseData.getUnknown()) {
-                getLog().warn("]UNKNOWN[ (" + item.getArtifact().getScope() + ") The artifact " + item.getProject().getId() + " has a license which is categorized as unknown");
+                getLog().warn(createLogString(9, item, "]UNKNOWN[", "unknown"));
             }
         }
 
@@ -92,4 +92,44 @@ public class LicenseVerifierMojo extends AbstractLicenseVerifierPlugIn {
         }
     }
 
+    private String createLogString(int logLevelLength, LicenseInformation item, String prefix, String status) {
+        StringBuilder log = new StringBuilder();
+
+        for(int i = 0; i < (9 - logLevelLength); i++) {
+            log.append(" ");
+        }
+
+        log.append(prefix);
+
+        for(int i = 0; i < (10 - prefix.length()); i++) {
+            log.append(" ");
+        }
+
+        log.append("(");
+        log.append(item.getArtifact().getScope());
+        log.append(") The artifact ");
+        log.append(item.getProject().getId());
+        log.append(" has a license ");
+        if (isExplicitLicenceInfo()) {
+            StringBuilder licenseInfo = new StringBuilder();
+            for(org.apache.maven.model.License license : item.getLicenses()) {
+                licenseInfo.append("\"");
+                licenseInfo.append(license.getName());
+                licenseInfo.append("\" - ");
+                licenseInfo.append(license.getUrl());
+                licenseInfo.append(", ");
+            }
+
+            if (licenseInfo.length() > 2) {
+                log.append("(");
+                log.append(licenseInfo.toString().substring(0, licenseInfo.length() - 2));
+                log.append(") ");
+            }
+        }
+
+        log.append("which is categorized as ");
+        log.append(status);
+
+        return log.toString();
+    }
 }
