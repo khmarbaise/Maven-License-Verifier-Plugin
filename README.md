@@ -67,7 +67,7 @@ settings.xml file to make life a little bit easier.
 The above setting makes it possible to call the plugin on command 
 line simply:
 
-  mvn license-verifier:check 
+  mvn license-verifier:verify
 
 
 ## Reporting about Licenses
