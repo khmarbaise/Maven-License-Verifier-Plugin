@@ -44,7 +44,7 @@ public class LicenseVerifierMojo extends AbstractLicenseVerifierPlugIn {
         if (licenseData.hasExcludedByConfiguration()) {
             if (isVerbose()) {
                 for (LicenseInformation item : licenseData.getValid()) {
-                    getLog().warn("The artifact: " + item.getArtifact().getId() + " has been execluded by the configuration.");
+                    getLog().warn("The artifact: " + item.getArtifact().getId() + " has been excluded by the configuration.");
                 }
             }
         }
