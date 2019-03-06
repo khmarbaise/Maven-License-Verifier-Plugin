@@ -23,7 +23,7 @@ be checked in more detail (warning) or unknown licenses or invalid licenses.
 ## Status
 
  * Reports are created.
- * Currently no fail of a build indenpendant of the category.
+ * Currently no fail of a build independant of the category.
  ** Later the default will be: failOnInvalid and failOnUnknown.
 
 
